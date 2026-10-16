@@ -1,6 +1,587 @@
 {
-  "updatedAt": "2026-10-16 13:22:11",
-  "totalTradeCount": 717,
-  "curatedCount": 0,
-  "curatedTransactions": []
+  "updatedAt": "2026-10-16 13:47:14",
+  "totalTradeCount": 4138,
+  "curatedCount": 24,
+  "curatedTransactions": [
+    {
+      "id": "tx-140",
+      "complexName": "동천자이",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "용인시 수지구 동천동",
+      "area": "84.8㎡",
+      "floor": "10층",
+      "dealPrice": 12.5,
+      "previousHigh": 12.5,
+      "dealType": "volume",
+      "diff": 0.0,
+      "diffPercent": 0.0,
+      "date": "2026-10-15",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        12.5,
+        12.5
+      ]
+    },
+    {
+      "id": "tx-372",
+      "complexName": "신동아아파트1",
+      "regionCategory": "seoul-northeast",
+      "regionName": "서울 도봉구 방학동",
+      "area": "43.4㎡",
+      "floor": "11층",
+      "dealPrice": 2.8,
+      "previousHigh": 2.9,
+      "dealType": "volume",
+      "diff": -0.1,
+      "diffPercent": -3.45,
+      "date": "2026-10-15",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        2.9,
+        2.8,
+        2.8
+      ]
+    },
+    {
+      "id": "tx-123",
+      "complexName": "동부",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "용인시 수지구 풍덕천동",
+      "area": "59.6㎡",
+      "floor": "7층",
+      "dealPrice": 8.4,
+      "previousHigh": 8.7,
+      "dealType": "volume",
+      "diff": 0.1,
+      "diffPercent": 1.2,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        8.2,
+        8.49,
+        8.5,
+        8.3,
+        8.4
+      ]
+    },
+    {
+      "id": "tx-203",
+      "complexName": "미사강변2차푸르지오",
+      "regionCategory": "gyeonggi-close",
+      "regionName": "하남시 선동",
+      "area": "101.8㎡",
+      "floor": "5층",
+      "dealPrice": 15.6,
+      "previousHigh": 16.45,
+      "dealType": "volume",
+      "diff": -0.25,
+      "diffPercent": -1.58,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        15.85,
+        16.1,
+        16.45,
+        15.6
+      ]
+    },
+    {
+      "id": "tx-249",
+      "complexName": "벽적골9단지주공",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "수원시 영통구 영통동",
+      "area": "59.4㎡",
+      "floor": "15층",
+      "dealPrice": 7.0,
+      "previousHigh": 7.45,
+      "dealType": "volume",
+      "diff": -0.1,
+      "diffPercent": -1.41,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        7.2,
+        7.2,
+        7.4,
+        6.9,
+        7.0
+      ]
+    },
+    {
+      "id": "tx-250",
+      "complexName": "벽적골두산",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "수원시 영통구 영통동",
+      "area": "59.8㎡",
+      "floor": "20층",
+      "dealPrice": 5.6,
+      "previousHigh": 6.0,
+      "dealType": "volume",
+      "diff": 0.65,
+      "diffPercent": 13.13,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        6.0,
+        5.5,
+        6.0,
+        5.7,
+        5.6
+      ]
+    },
+    {
+      "id": "tx-270",
+      "complexName": "북한산아이파크5차",
+      "regionCategory": "seoul-northeast",
+      "regionName": "서울 도봉구 창동",
+      "area": "119.2㎡",
+      "floor": "14층",
+      "dealPrice": 11.2,
+      "previousHigh": 11.45,
+      "dealType": "volume",
+      "diff": -0.25,
+      "diffPercent": -2.18,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        11.45,
+        11.2
+      ]
+    },
+    {
+      "id": "tx-364",
+      "complexName": "신나무실동보",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "수원시 영통구 영통동",
+      "area": "84.9㎡",
+      "floor": "14층",
+      "dealPrice": 8.35,
+      "previousHigh": 8.35,
+      "dealType": "volume",
+      "diff": 0.0,
+      "diffPercent": 0.0,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        8.35,
+        7.95,
+        8.35
+      ]
+    },
+    {
+      "id": "tx-375",
+      "complexName": "신동아아파트1",
+      "regionCategory": "seoul-northeast",
+      "regionName": "서울 도봉구 방학동",
+      "area": "70.6㎡",
+      "floor": "9층",
+      "dealPrice": 4.65,
+      "previousHigh": 4.6,
+      "dealType": "ath",
+      "diff": 0.05,
+      "diffPercent": 1.09,
+      "date": "2026-10-14",
+      "tags": [
+        "신고가경신",
+        "상급지리딩"
+      ],
+      "description": "종전 최고가 4.6억 대비 0.05억원 상승하며 최고가를 경신했습니다.",
+      "recentPrices": [
+        4.45,
+        4.18,
+        4.6,
+        4.65
+      ]
+    },
+    {
+      "id": "tx-393",
+      "complexName": "신현대12차",
+      "regionCategory": "seoul-southeast",
+      "regionName": "서울 강남구 압구정동",
+      "area": "182.9㎡",
+      "floor": "6층",
+      "dealPrice": 88.0,
+      "previousHigh": 100.0,
+      "dealType": "volume",
+      "diff": -12.0,
+      "diffPercent": -12.0,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        100.0,
+        88.0
+      ]
+    },
+    {
+      "id": "tx-412",
+      "complexName": "영통아이파크캐슬2단지",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "수원시 영통구 망포동",
+      "area": "60.0㎡",
+      "floor": "13층",
+      "dealPrice": 10.05,
+      "previousHigh": 8.25,
+      "dealType": "ath",
+      "diff": 1.8,
+      "diffPercent": 21.82,
+      "date": "2026-10-14",
+      "tags": [
+        "신고가경신",
+        "상급지리딩"
+      ],
+      "description": "종전 최고가 8.25억 대비 1.8억원 상승하며 최고가를 경신했습니다.",
+      "recentPrices": [
+        8.25,
+        10.05
+      ]
+    },
+    {
+      "id": "tx-471",
+      "complexName": "자연앤힐스테이트",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "수원시 영통구 이의동",
+      "area": "84.5㎡",
+      "floor": "18층",
+      "dealPrice": 20.4,
+      "previousHigh": 21.4,
+      "dealType": "volume",
+      "diff": 2.2,
+      "diffPercent": 12.09,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        20.9,
+        21.4,
+        20.5,
+        21.25,
+        20.4
+      ]
+    },
+    {
+      "id": "tx-617",
+      "complexName": "현대2",
+      "regionCategory": "seoul-southwest",
+      "regionName": "서울 영등포구 대림동",
+      "area": "84.7㎡",
+      "floor": "16층",
+      "dealPrice": 6.5,
+      "previousHigh": 10.1,
+      "dealType": "volume",
+      "diff": -3.6,
+      "diffPercent": -35.64,
+      "date": "2026-10-14",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        10.1,
+        6.5
+      ]
+    },
+    {
+      "id": "tx-182",
+      "complexName": "마젤란21",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "수원시 영통구 망포동",
+      "area": "84.7㎡",
+      "floor": "11층",
+      "dealPrice": 5.35,
+      "previousHigh": 5.65,
+      "dealType": "volume",
+      "diff": -0.3,
+      "diffPercent": -5.31,
+      "date": "2026-10-13",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        5.65,
+        5.35
+      ]
+    },
+    {
+      "id": "tx-193",
+      "complexName": "매탄위브하늘채",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "수원시 영통구 매탄동",
+      "area": "84.7㎡",
+      "floor": "21층",
+      "dealPrice": 8.2,
+      "previousHigh": 8.3,
+      "dealType": "volume",
+      "diff": -0.1,
+      "diffPercent": -1.2,
+      "date": "2026-10-13",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        7.8,
+        8.2,
+        8.3,
+        8.3,
+        8.2
+      ]
+    },
+    {
+      "id": "tx-248",
+      "complexName": "벽적골9단지주공",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "수원시 영통구 영통동",
+      "area": "49.6㎡",
+      "floor": "8층",
+      "dealPrice": 6.25,
+      "previousHigh": 6.0,
+      "dealType": "ath",
+      "diff": 0.25,
+      "diffPercent": 4.17,
+      "date": "2026-10-13",
+      "tags": [
+        "신고가경신",
+        "상급지리딩"
+      ],
+      "description": "종전 최고가 6.0억 대비 0.25억원 상승하며 최고가를 경신했습니다.",
+      "recentPrices": [
+        6.0,
+        6.25
+      ]
+    },
+    {
+      "id": "tx-279",
+      "complexName": "산장아파트가동,나동",
+      "regionCategory": "seoul-northeast",
+      "regionName": "서울 성북구 정릉동",
+      "area": "52.9㎡",
+      "floor": "8층",
+      "dealPrice": 4.2,
+      "previousHigh": 3.5,
+      "dealType": "ath",
+      "diff": 0.7,
+      "diffPercent": 20.0,
+      "date": "2026-10-13",
+      "tags": [
+        "신고가경신",
+        "상급지리딩"
+      ],
+      "description": "종전 최고가 3.5억 대비 0.7억원 상승하며 최고가를 경신했습니다.",
+      "recentPrices": [
+        3.5,
+        4.2
+      ]
+    },
+    {
+      "id": "tx-301",
+      "complexName": "상계주공10(고층)",
+      "regionCategory": "seoul-northeast",
+      "regionName": "서울 노원구 상계동",
+      "area": "49.9㎡",
+      "floor": "8층",
+      "dealPrice": 7.0,
+      "previousHigh": 6.53,
+      "dealType": "ath",
+      "diff": 0.47,
+      "diffPercent": 7.2,
+      "date": "2026-10-13",
+      "tags": [
+        "신고가경신",
+        "상급지리딩"
+      ],
+      "description": "종전 최고가 6.53억 대비 0.47억원 상승하며 최고가를 경신했습니다.",
+      "recentPrices": [
+        4.27,
+        6.53,
+        6.5,
+        7.0
+      ]
+    },
+    {
+      "id": "tx-303",
+      "complexName": "상계주공12(고층)",
+      "regionCategory": "seoul-northeast",
+      "regionName": "서울 노원구 상계동",
+      "area": "41.3㎡",
+      "floor": "11층",
+      "dealPrice": 5.9,
+      "previousHigh": 5.85,
+      "dealType": "ath",
+      "diff": 0.05,
+      "diffPercent": 0.85,
+      "date": "2026-10-13",
+      "tags": [
+        "신고가경신",
+        "상급지리딩"
+      ],
+      "description": "종전 최고가 5.85억 대비 0.05억원 상승하며 최고가를 경신했습니다.",
+      "recentPrices": [
+        5.85,
+        5.0,
+        5.6,
+        5.47,
+        5.9
+      ]
+    },
+    {
+      "id": "tx-313",
+      "complexName": "상계주공7(고층)",
+      "regionCategory": "seoul-northeast",
+      "regionName": "서울 노원구 상계동",
+      "area": "41.3㎡",
+      "floor": "9층",
+      "dealPrice": 5.9,
+      "previousHigh": 6.6,
+      "dealType": "volume",
+      "diff": -0.1,
+      "diffPercent": -1.67,
+      "date": "2026-10-13",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        6.0,
+        6.6,
+        6.35,
+        5.9
+      ]
+    },
+    {
+      "id": "tx-333",
+      "complexName": "성원",
+      "regionCategory": "seoul-northeast",
+      "regionName": "서울 도봉구 쌍문동",
+      "area": "71.8㎡",
+      "floor": "11층",
+      "dealPrice": 5.2,
+      "previousHigh": 5.4,
+      "dealType": "volume",
+      "diff": -0.2,
+      "diffPercent": -3.7,
+      "date": "2026-10-13",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        5.4,
+        5.2
+      ]
+    },
+    {
+      "id": "tx-337",
+      "complexName": "성현마을우미이노스빌2차",
+      "regionCategory": "gyeonggi-south",
+      "regionName": "용인시 수지구 죽전동",
+      "area": "60.0㎡",
+      "floor": "7층",
+      "dealPrice": 7.48,
+      "previousHigh": 7.35,
+      "dealType": "ath",
+      "diff": 0.13,
+      "diffPercent": 1.77,
+      "date": "2026-10-13",
+      "tags": [
+        "신고가경신",
+        "상급지리딩"
+      ],
+      "description": "종전 최고가 7.35억 대비 0.13억원 상승하며 최고가를 경신했습니다.",
+      "recentPrices": [
+        7.35,
+        7.48
+      ]
+    },
+    {
+      "id": "tx-345",
+      "complexName": "송파더센트레",
+      "regionCategory": "seoul-southeast",
+      "regionName": "서울 송파구 장지동",
+      "area": "51.8㎡",
+      "floor": "14층",
+      "dealPrice": 15.85,
+      "previousHigh": 15.5,
+      "dealType": "ath",
+      "diff": 0.35,
+      "diffPercent": 2.26,
+      "date": "2026-10-13",
+      "tags": [
+        "신고가경신",
+        "상급지리딩"
+      ],
+      "description": "종전 최고가 15.5억 대비 0.35억원 상승하며 최고가를 경신했습니다.",
+      "recentPrices": [
+        15.5,
+        15.85
+      ]
+    },
+    {
+      "id": "tx-347",
+      "complexName": "송파시그니처롯데캐슬",
+      "regionCategory": "seoul-southeast",
+      "regionName": "서울 송파구 거여동",
+      "area": "85.0㎡",
+      "floor": "24층",
+      "dealPrice": 21.0,
+      "previousHigh": 21.0,
+      "dealType": "volume",
+      "diff": 0.0,
+      "diffPercent": 0.0,
+      "date": "2026-10-13",
+      "tags": [
+        "거래량급증",
+        "손바뀜활발"
+      ],
+      "description": "단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
+      "recentPrices": [
+        21.0,
+        21.0
+      ]
+    }
+  ]
 }
