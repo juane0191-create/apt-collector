@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>부동산 실거래 데이터 대시보드</title>
+  <title>수도권 아파트 실거래 & 5개년 역대 전고점 벤치마크 대시보드</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons -->
@@ -12,26 +12,47 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     .glass-card {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(14px);
     }
     .mono {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
     .badge-ath {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(220, 38, 38, 0.1) 100%);
       color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      border: 1px solid rgba(239, 68, 68, 0.35);
     }
     .badge-volume {
       background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.1) 100%);
       color: #34d399;
       border: 1px solid rgba(16, 185, 129, 0.3);
     }
+    .badge-benchmark {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.1) 100%);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+    .badge-liquidity {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(79, 70, 229, 0.1) 100%);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
     .glass-card-hover:hover {
-      border-color: rgba(99, 102, 241, 0.4);
+      border-color: rgba(99, 102, 241, 0.45);
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -40,12 +61,15 @@
   <!-- [상단 헤더 섹션] -->
   <header class="flex items-center justify-between py-2 border-b border-slate-800/80 pb-4">
     <div class="flex items-center space-x-3">
-      <div class="w-9 h-9 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-indigo-600/30">
         <i class="fa-solid fa-chart-line text-lg"></i>
       </div>
       <div>
-        <h1 class="text-lg font-bold text-white tracking-tight">수도권 아파트 실거래 모니터링</h1>
-        <p class="text-xs text-slate-400">25개 핵심 권역 국토교통부 실거래가 · 5개년 전고점 벤치마크 엔진</p>
+        <div class="flex items-center space-x-2">
+          <h1 class="text-lg font-bold text-white tracking-tight">수도권 아파트 실거래 모니터링</h1>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">5개년 ATH 엔진</span>
+        </div>
+        <p class="text-xs text-slate-400">25개 핵심 권역 국토부 실거래가 · 2022~2026 역대 전고점 정밀 비교 시스템</p>
       </div>
     </div>
 
@@ -61,76 +85,76 @@
     </div>
   </header>
 
-  <!-- [월별 전환 탭 섹션] -->
+  <!-- [월별 및 5개년 전고점 전환 탭 섹션] -->
   <section class="glass-card rounded-2xl p-4 border border-indigo-500/30 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-slate-900/95 via-indigo-950/40 to-slate-900/95 shadow-xl">
     <div class="flex items-center space-x-3 text-sm">
-      <div class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-        <i class="fa-solid fa-calendar-days"></i>
+      <div class="w-9 h-9 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+        <i class="fa-solid fa-layer-group" id="tab-mode-icon"></i>
       </div>
       <div>
-        <span class="text-white font-bold block" id="current-month-heading">조회 월 선택</span>
-        <span class="text-slate-400 text-xs" id="month-desc">선택한 월의 국토부 실거래 데이터만 필터링하여 표시합니다.</span>
+        <span class="text-white font-bold block" id="current-tab-heading">데이터 뷰 선택</span>
+        <span class="text-slate-400 text-xs" id="tab-mode-desc">월별 최신 실거래 내역과 5개년 역대 전고점 기준표를 자유롭게 전환합니다.</span>
       </div>
     </div>
 
-    <!-- 동적으로 생성되는 9월/10월 버튼 컨테이너 -->
-    <div id="month-tabs-container" class="flex items-center gap-2 p-1.5 bg-slate-950/90 rounded-xl border border-slate-800 w-full md:w-auto overflow-x-auto">
-      <!-- JS에서 9월/10월 버튼 동적 주입 -->
+    <!-- 월별 버튼 + 5개년 전고점 탭 통합 컨테이너 -->
+    <div id="tabs-container" class="flex items-center gap-2 p-1.5 bg-slate-950/90 rounded-xl border border-slate-800 w-full md:w-auto overflow-x-auto">
+      <!-- 동적 월별 버튼 및 5개년 전고점 버튼 주입 -->
     </div>
   </section>
 
   <!-- Key Metrics Ribbon -->
-  <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+  <section class="grid grid-cols-2 lg:grid-cols-4 gap-4" id="metrics-section">
     <div class="glass-card rounded-xl p-4 border border-slate-800">
       <div class="flex items-center justify-between text-slate-400 text-xs">
-        <span>해당 월 수집 거래량</span>
+        <span id="metric-title-1">해당 월 수집 거래량</span>
         <i class="fa-solid fa-file-invoice text-indigo-400"></i>
       </div>
       <div class="mt-2 flex items-baseline space-x-2">
-        <span id="metric-total-trades" class="text-2xl font-bold text-white mono">--</span>
-        <span class="text-xs text-slate-400">건</span>
+        <span id="metric-val-1" class="text-2xl font-bold text-white mono">--</span>
+        <span id="metric-unit-1" class="text-xs text-slate-400">건</span>
       </div>
-      <div id="metric-period-label" class="mt-1 text-[11px] text-slate-500">국토교통부 집계</div>
+      <div id="metric-sub-1" class="mt-1 text-[11px] text-slate-500">국토교통부 집계</div>
     </div>
 
     <div class="glass-card rounded-xl p-4 border border-slate-800">
       <div class="flex items-center justify-between text-slate-400 text-xs">
-        <span>신고가 경신 (ATH)</span>
+        <span id="metric-title-2">신고가 경신 (ATH)</span>
         <i class="fa-solid fa-fire text-rose-400"></i>
       </div>
       <div class="mt-2 flex items-baseline space-x-2">
-        <span id="metric-ath-count" class="text-2xl font-bold text-rose-400 mono">--</span>
-        <span class="text-xs text-slate-400">건</span>
+        <span id="metric-val-2" class="text-2xl font-bold text-rose-400 mono">--</span>
+        <span id="metric-unit-2" class="text-xs text-slate-400">건</span>
       </div>
-      <div class="mt-1 text-[11px] text-slate-500">종전 최고가 돌파 단지</div>
+      <div id="metric-sub-2" class="mt-1 text-[11px] text-slate-500">5개년 최고가 돌파 단지</div>
     </div>
 
     <div class="glass-card rounded-xl p-4 border border-slate-800">
       <div class="flex items-center justify-between text-slate-400 text-xs">
-        <span>선별 큐레이션 단지</span>
+        <span id="metric-title-3">선별 큐레이션 단지</span>
         <i class="fa-solid fa-crosshairs text-blue-400"></i>
       </div>
       <div class="mt-2 flex items-baseline space-x-2">
-        <span id="metric-curated-count" class="text-2xl font-bold text-blue-400 mono">--</span>
-        <span class="text-xs text-slate-400">개</span>
+        <span id="metric-val-3" class="text-2xl font-bold text-blue-400 mono">--</span>
+        <span id="metric-unit-3" class="text-xs text-slate-400">개</span>
       </div>
-      <div class="mt-1 text-[11px] text-slate-500">특이거래 핀셋 추출</div>
+      <div id="metric-sub-3" class="mt-1 text-[11px] text-slate-500">특이거래 핀셋 추출</div>
     </div>
 
     <div class="glass-card rounded-xl p-4 border border-slate-800">
       <div class="flex items-center justify-between text-slate-400 text-xs">
-        <span>데이터 파이프라인</span>
-        <i class="fa-solid fa-server text-emerald-400"></i>
+        <span id="metric-title-4">5개년 DB 연동 상태</span>
+        <i class="fa-solid fa-database text-amber-400"></i>
       </div>
       <div class="mt-2 flex items-baseline space-x-2">
-        <span id="metric-status" class="text-lg font-bold text-emerald-400 mono">동기화 완료</span>
+        <span id="metric-val-4" class="text-lg font-bold text-amber-400 mono">확인 중</span>
       </div>
-      <div id="metric-sync-time" class="mt-1 text-[11px] text-slate-500 truncate">확인 중...</div>
+      <div id="metric-sub-4" class="mt-1 text-[11px] text-slate-500 truncate">역대 전고점 대조 활성</div>
     </div>
   </section>
 
-  <!-- Visualizations -->
-  <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <!-- Visualizations (월별 모드일 때만 표출) -->
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-6" id="visualizations-section">
     <div class="glass-card rounded-2xl p-5 border border-slate-800 lg:col-span-2 flex flex-col justify-between">
       <div class="flex items-center justify-between mb-4">
         <div>
@@ -171,15 +195,15 @@
     </div>
   </section>
 
-  <!-- Filters -->
+  <!-- Filters & Controls -->
   <section class="space-y-4">
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div>
         <h3 class="text-base font-bold text-white flex items-center gap-2">
-          <span>선별 실거래 상세 내역</span>
+          <span id="list-title">선별 실거래 상세 내역</span>
           <span id="filtered-count-badge" class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold">0개 단지</span>
         </h3>
-        <p class="text-xs text-slate-400 mt-0.5">5개년 역대 신고가 경신 및 거래량 집중 단지만 선별하여 표출합니다.</p>
+        <p class="text-xs text-slate-400 mt-0.5" id="list-subtitle">5개년 역대 신고가 경신 및 거래량 집중 단지만 선별하여 표출합니다.</p>
       </div>
       <div class="relative w-full md:w-72">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
@@ -188,9 +212,9 @@
     </div>
 
     <!-- 유형 및 권역 필터 -->
-    <div class="flex flex-wrap items-center gap-2 pt-1">
-      <div class="flex items-center p-1 bg-slate-900/80 rounded-xl border border-slate-800 text-xs overflow-x-auto">
-        <button data-type="all" class="type-filter px-3 py-1.5 rounded-lg font-medium text-white bg-indigo-600 transition">전체 특이거래</button>
+    <div class="flex flex-wrap items-center gap-2 pt-1" id="filter-buttons-container">
+      <div class="flex items-center p-1 bg-slate-900/80 rounded-xl border border-slate-800 text-xs overflow-x-auto" id="type-filter-group">
+        <button data-type="all" class="type-filter px-3 py-1.5 rounded-lg font-medium text-white bg-indigo-600 transition">전체</button>
         <button data-type="ath" class="type-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-rose-500"></span>신고가 (ATH)
         </button>
@@ -216,7 +240,7 @@
     <div id="transactions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     <div id="empty-state" class="hidden glass-card rounded-2xl p-12 text-center border border-slate-800">
       <i class="fa-solid fa-filter-circle-xmark text-4xl text-slate-600 mb-3"></i>
-      <h4 class="text-sm font-bold text-slate-300">선택한 조건에 부합하는 거래 내역이 없습니다</h4>
+      <h4 class="text-sm font-bold text-slate-300">선택한 조건에 부합하는 내역이 없습니다</h4>
       <p class="text-xs text-slate-500 mt-1">상단의 다른 필터를 선택하거나 검색어를 변경해 보세요.</p>
     </div>
   </section>
@@ -235,6 +259,8 @@
   <script>
     let globalDataByMonth = {};
     let availableMonths = [];
+    let benchmarkList = []; // 5개년 벤치마크 단지 목록
+    let activeTab = "monthly"; // "monthly" 또는 "benchmark"
     let selectedMonth = "";
     let currentTransactions = [];
     let currentTypeFilter = "all";
@@ -248,43 +274,98 @@
       setupSearchDebounce();
       setupRefreshButton();
       setupModalCloseEvents();
-      loadRealData();
+      loadAllData();
     });
 
-    // 1. JSON 데이터 로드 함수 (캐시 방지 및 복수 경로 탐색)
-    async function loadRealData() {
+    // 1. JSON 데일리 데이터 및 5개년 CSV 벤치마크 동시 로드
+    async function loadAllData() {
       const refreshIcon = document.getElementById('refresh-icon');
       refreshIcon.classList.add('fa-spin');
 
       const timestamp = new Date().getTime();
-      const urls = [
+      
+      // A. 데일리 브리핑 JSON 로드
+      const jsonUrls = [
         `./data/daily_briefing_data.json?t=${timestamp}`,
         `https://raw.githubusercontent.com/juane0191-create/apt-collector/main/data/daily_briefing_data.json?t=${timestamp}`
       ];
 
-      let payload = null;
-      for (const url of urls) {
+      let jsonPayload = null;
+      for (const url of jsonUrls) {
         try {
           const res = await fetch(url, { cache: 'no-store' });
           if (res.ok) {
-            payload = await res.json();
+            jsonPayload = await res.json();
             break;
           }
         } catch (e) {
-          console.warn("데이터 경로 확인 중:", url);
+          console.warn("JSON 경로 확인 중:", url);
+        }
+      }
+
+      // B. 5개년 벤치마크 CSV 로드
+      const csvUrls = [
+        `./data/history_ath_benchmark.csv?t=${timestamp}`,
+        `https://raw.githubusercontent.com/juane0191-create/apt-collector/main/data/history_ath_benchmark.csv?t=${timestamp}`
+      ];
+
+      benchmarkList = [];
+      for (const url of csvUrls) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (res.ok) {
+            const csvText = await res.text();
+            benchmarkList = parseBenchmarkCSV(csvText);
+            break;
+          }
+        } catch (e) {
+          console.warn("벤치마크 CSV 확인 중:", url);
         }
       }
 
       refreshIcon.classList.remove('fa-spin');
 
-      if (payload) {
-        document.getElementById('header-date').textContent = payload.updatedAt || '최신 수집본';
-        document.getElementById('metric-sync-time').textContent = `최근 갱신: ${payload.updatedAt || '방금 전'}`;
-        processPayload(payload);
+      // 벤치마크 DB 상태 표시
+      if (benchmarkList.length > 0) {
+        document.getElementById('metric-val-4').textContent = `${benchmarkList.length}개 단지`;
+        document.getElementById('metric-sub-4').textContent = `5개년 ATH 기준표 연동 완료`;
+      } else {
+        document.getElementById('metric-val-4').textContent = `단기 연동`;
+        document.getElementById('metric-sub-4').textContent = `벤치마크 DB 대기 중`;
+      }
+
+      if (jsonPayload) {
+        document.getElementById('header-date').textContent = jsonPayload.updatedAt || '최신 수집본';
+        processPayload(jsonPayload);
       } else {
         document.getElementById('header-date').textContent = '데이터 확인 대기';
-        document.getElementById('metric-sync-time').textContent = '수집 파일 대기 중';
       }
+    }
+
+    // CSV 파서
+    function parseBenchmarkCSV(csvText) {
+      const lines = csvText.trim().split('\n');
+      if (lines.length < 2) return [];
+
+      const records = [];
+      for (let i = 1; i < lines.length; i++) {
+        const row = lines[i].split(',');
+        if (row.length >= 6) {
+          records.push({
+            id: `bm-${i}`,
+            complexName: row[0]?.trim() || '',
+            area: `${parseFloat(row[1] || 84.0).toFixed(1)}㎡`,
+            areaGroup: parseInt(row[2]) || 84,
+            regionName: row[3]?.trim() || '',
+            regionCategory: row[4]?.trim() || 'all',
+            athPrice: parseFloat(row[5]) || 0,
+            athDate: row[6]?.trim() || '',
+            athFloor: row[7]?.trim() || '중층',
+            tradeCount: parseInt(row[8]) || 1
+          });
+        }
+      }
+      return records;
     }
 
     // 2. 수집된 JSON 데이터 구조화
@@ -302,96 +383,136 @@
             transactions: mData.transactions || mData.curatedTransactions || []
           };
         }
-      } else if (payload.periods) {
-        for (const [key, pData] of Object.entries(payload.periods)) {
-          const ym = pData.ym || (pData.label ? pData.label.replace(/[^0-9]/g, '').slice(0, 6) : key);
-          globalDataByMonth[ym] = {
-            label: pData.label || `${ym.slice(0, 4)}년 ${parseInt(ym.slice(4))}월`,
-            totalTrades: pData.totalTradeCount || 0,
-            athCount: pData.athCount || 0,
-            seoulPercent: pData.seoulPercent,
-            gyeonggiPercent: pData.gyeonggiPercent,
-            transactions: pData.transactions || pData.curatedTransactions || []
-          };
-        }
-      } else {
-        const txList = payload.curatedTransactions || payload.transactions || [];
-        txList.forEach(item => {
-          let ym = item.month || (item.date ? item.date.replace('-', '').slice(0, 6) : "202610");
-          if (!globalDataByMonth[ym]) {
-            globalDataByMonth[ym] = {
-              label: `${ym.slice(0, 4)}년 ${parseInt(ym.slice(4))}월`,
-              totalTrades: 0,
-              athCount: 0,
-              transactions: []
-            };
-          }
-          globalDataByMonth[ym].transactions.push(item);
-        });
-
-        for (const ym in globalDataByMonth) {
-          globalDataByMonth[ym].totalTrades = payload.totalTradeCount || (globalDataByMonth[ym].transactions.length * 6);
-          globalDataByMonth[ym].athCount = globalDataByMonth[ym].transactions.filter(t => t.dealType === 'ath').length;
-        }
       }
 
       availableMonths = Object.keys(globalDataByMonth).sort().reverse();
-
       if (availableMonths.length === 0) {
         availableMonths = ["202610", "202609"];
         globalDataByMonth["202610"] = { label: "2026년 10월", totalTrades: 0, athCount: 0, transactions: [] };
         globalDataByMonth["202609"] = { label: "2026년 9월", totalTrades: 0, athCount: 0, transactions: [] };
       }
 
-      renderMonthTabs();
+      renderTabs();
       const defaultYm = (payload.defaultMonth && globalDataByMonth[payload.defaultMonth]) ? payload.defaultMonth : availableMonths[0];
       selectMonth(defaultYm);
     }
 
-    // 3. 월별 탭 버튼 생성
-    function renderMonthTabs() {
-      const container = document.getElementById('month-tabs-container');
-      container.innerHTML = availableMonths.map(ym => {
+    // 3. 상단 탭 렌더링 (월별 탭 + 5개년 전고점 전용 탭)
+    function renderTabs() {
+      const container = document.getElementById('tabs-container');
+      
+      const monthButtonsHtml = availableMonths.map(ym => {
         const item = globalDataByMonth[ym];
         const count = item.transactions.length;
         return `
-          <button data-ym="${ym}" onclick="selectMonth('${ym}')"
-                  class="month-tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-slate-400 hover:text-white">
+          <button data-tab="month-${ym}" onclick="selectMonth('${ym}')"
+                  class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-slate-400 hover:text-white">
             <i class="fa-solid fa-calendar-check text-[11px]"></i>
             <span>${item.label}</span>
             <span class="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-slate-800 text-indigo-300 mono">${count}건</span>
           </button>
         `;
       }).join('');
+
+      const benchmarkButtonHtml = `
+        <button data-tab="benchmark" onclick="selectBenchmarkTab()"
+                class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30">
+          <i class="fa-solid fa-crown text-amber-400 text-[11px]"></i>
+          <span>⭐ 5개년 전고점 벤치마크</span>
+          <span class="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 mono">${benchmarkList.length}개</span>
+        </button>
+      `;
+
+      container.innerHTML = monthButtonsHtml + benchmarkButtonHtml;
     }
 
     // 4. 월 선택 시 화면 전환
     window.selectMonth = function(ym) {
+      activeTab = "monthly";
       selectedMonth = ym;
       const mData = globalDataByMonth[ym] || { label: ym, totalTrades: 0, transactions: [] };
 
-      document.querySelectorAll('.month-tab-btn').forEach(btn => {
-        if (btn.getAttribute('data-ym') === ym) {
-          btn.className = "month-tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
+      // 탭 스타일 갱신
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === `month-${ym}`) {
+          btn.className = "tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
+        } else if (btn.getAttribute('data-tab') === 'benchmark') {
+          btn.className = "tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30";
         } else {
-          btn.className = "month-tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-slate-400 hover:text-white";
+          btn.className = "tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-slate-400 hover:text-white";
         }
       });
 
-      document.getElementById('current-month-heading').textContent = `${mData.label} 실거래 데이터`;
-      document.getElementById('month-desc').textContent = `${mData.label}에 체결된 국토교통부 검증 거래 내역입니다.`;
+      // 안내 문구 및 차트 복원
+      document.getElementById('current-tab-heading').textContent = `${mData.label} 실거래 데이터`;
+      document.getElementById('tab-mode-desc').textContent = `${mData.label}에 체결된 국토교통부 실거래 검증 데이터입니다.`;
+      document.getElementById('visualizations-section').classList.remove('hidden');
+      document.getElementById('type-filter-group').classList.remove('hidden');
+      document.getElementById('list-title').textContent = "선별 실거래 상세 내역";
+      document.getElementById('list-subtitle').textContent = "5개년 역대 신고가 경신 및 거래량 집중 단지만 선별하여 표출합니다.";
+
+      // 메트릭 복원
+      document.getElementById('metric-title-1').textContent = "해당 월 수집 거래량";
+      document.getElementById('metric-val-1').textContent = mData.totalTrades || (mData.transactions.length * 6);
+      document.getElementById('metric-unit-1').textContent = "건";
+      document.getElementById('metric-sub-1').textContent = `${mData.label} 국토부 집계`;
+
+      document.getElementById('metric-title-2').textContent = "신고가 경신 (ATH)";
+      document.getElementById('metric-val-2').textContent = mData.athCount || mData.transactions.filter(t => t.dealType === 'ath').length;
+      document.getElementById('metric-sub-2').textContent = "5개년 최고가 돌파 단지";
+
+      document.getElementById('metric-title-3').textContent = "선별 큐레이션 단지";
+      document.getElementById('metric-val-3').textContent = mData.transactions.length;
 
       currentTransactions = mData.transactions;
-      document.getElementById('metric-total-trades').textContent = mData.totalTrades || (currentTransactions.length * 6);
-      document.getElementById('metric-ath-count').textContent = mData.athCount || currentTransactions.filter(t => t.dealType === 'ath').length;
-      document.getElementById('metric-curated-count').textContent = currentTransactions.length;
-      document.getElementById('metric-period-label').textContent = `${mData.label} 국토부 집계`;
-
       renderTransactions();
       updateCharts(mData);
     };
 
-    // 5. 카드 리스트 렌더링
+    // 5. 5개년 전고점 전용 탭 선택 시
+    window.selectBenchmarkTab = function() {
+      activeTab = "benchmark";
+
+      // 탭 스타일 갱신
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === 'benchmark') {
+          btn.className = "tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 bg-amber-600 text-white shadow-lg shadow-amber-600/30";
+        } else {
+          btn.className = "tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-slate-400 hover:text-white";
+        }
+      });
+
+      // 헤더 및 안내 변경
+      document.getElementById('current-tab-heading').textContent = `5개년 역대 최고가(전고점) 벤치마크 DB`;
+      document.getElementById('tab-mode-desc').textContent = `2022~2026년 수도권 25개 구역 단지·평형별 최고 실거래가 기준표입니다.`;
+      
+      // 차트는 숨기고 벤치마크 탐색 모드로 전환
+      document.getElementById('visualizations-section').classList.add('hidden');
+      document.getElementById('type-filter-group').classList.add('hidden');
+      document.getElementById('list-title').textContent = "25개 권역 5개년 역대 최고가 기준 단지";
+      document.getElementById('list-subtitle').textContent = "거래 발생 여부와 관계없이 지난 5년간 수립된 각 단지별 최고가(ATH)입니다.";
+
+      // 메트릭 갱신
+      document.getElementById('metric-title-1').textContent = "총 벤치마크 단지";
+      document.getElementById('metric-val-1').textContent = benchmarkList.length;
+      document.getElementById('metric-unit-1').textContent = "개";
+      document.getElementById('metric-sub-1').textContent = "25개 구역 누적 단지";
+
+      document.getElementById('metric-title-2').textContent = "수도권 최고가 단지";
+      const maxPriceApt = benchmarkList.length > 0 ? benchmarkList[0].athPrice : 0;
+      document.getElementById('metric-val-2').textContent = maxPriceApt;
+      document.getElementById('metric-unit-2').textContent = "억원";
+      document.getElementById('metric-sub-2').textContent = benchmarkList[0]?.complexName || "최고가 랜드마크";
+
+      document.getElementById('metric-title-3').textContent = "표본 누적 거래수";
+      document.getElementById('metric-val-3').textContent = benchmarkList.reduce((acc, cur) => acc + cur.tradeCount, 0);
+      document.getElementById('metric-unit-3').textContent = "건";
+      document.getElementById('metric-sub-3').textContent = "정제 체결 데이터 표본";
+
+      renderBenchmarkCards();
+    };
+
+    // 6. 카드 리스트 렌더링 (월별 모드)
     function renderTransactions() {
       const container = document.getElementById('transactions-container');
       const emptyState = document.getElementById('empty-state');
@@ -424,6 +545,11 @@
         const badgeText = isATH ? '역대신고가' : '거래 집중';
         const diffColor = isATH ? 'text-rose-400' : 'text-emerald-400';
 
+        // 전고점 회복률 계산 (기준가 대비)
+        const histATH = tx.previousHigh || tx.dealPrice;
+        const recoveryRatio = Math.min(Math.round((tx.dealPrice / (histATH || 1)) * 100), 120);
+        const gaugeColor = recoveryRatio >= 100 ? 'bg-rose-500' : (recoveryRatio >= 90 ? 'bg-indigo-500' : 'bg-emerald-500');
+
         return `
           <div class="glass-card glass-card-hover rounded-2xl p-5 border border-slate-800 transition duration-200 cursor-pointer flex flex-col justify-between"
                onclick="openDetailModal('${tx.id}')">
@@ -444,10 +570,23 @@
                   <div class="text-xl font-bold text-white mono">${(tx.dealPrice || 0).toFixed(1)}<span class="text-sm font-normal text-slate-400 ml-1">억</span></div>
                 </div>
                 <div class="text-right">
-                  <span class="text-xs text-slate-400">종전/직전대비</span>
+                  <span class="text-xs text-slate-400">종전/전고점대비</span>
                   <div class="text-sm font-bold ${diffColor} mono">
                     +${(tx.diff || 0).toFixed(1)}억 (${tx.diffPercent || 0}%)
                   </div>
+                </div>
+              </div>
+
+              <!-- [신규] 전고점 회복률 게이지 바 -->
+              <div class="mt-3 bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/60">
+                <div class="flex items-center justify-between text-[11px] mb-1.5">
+                  <span class="text-slate-400 flex items-center gap-1">
+                    <i class="fa-solid fa-gauge text-indigo-400"></i>5개년 전고점 회복률
+                  </span>
+                  <span class="font-bold mono ${recoveryRatio >= 100 ? 'text-rose-400' : 'text-slate-200'}">${recoveryRatio}%</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                  <div class="${gaugeColor} h-1.5 rounded-full transition-all duration-500" style="width: ${Math.min(recoveryRatio, 100)}%"></div>
                 </div>
               </div>
 
@@ -457,7 +596,7 @@
               </div>
 
               <p class="mt-2.5 text-xs text-slate-300 leading-relaxed line-clamp-2 bg-slate-900/40 p-2 rounded-lg border border-slate-800/50">
-                ${tx.description || '최근 실거래 흐름에서 가격 변곡점을 형성한 주요 단지입니다.'}
+                ${tx.description || '5개년 실거래 기준선과 대비하여 가격 흐름을 정밀 분석한 단지입니다.'}
               </p>
             </div>
 
@@ -474,7 +613,84 @@
       }).join('');
     }
 
-    // 6. 상세 팝업 모달
+    // 7. 카드 리스트 렌더링 (5개년 전고점 벤치마크 모드)
+    function renderBenchmarkCards() {
+      const container = document.getElementById('transactions-container');
+      const emptyState = document.getElementById('empty-state');
+      const countBadge = document.getElementById('filtered-count-badge');
+
+      const filtered = benchmarkList.filter(item => {
+        const matchesRegion = (currentRegionFilter === 'all') || (item.regionCategory === currentRegionFilter);
+        const matchesSearch = (item.complexName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              (item.regionName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              (item.area || "").includes(searchQuery);
+
+        return matchesRegion && matchesSearch;
+      });
+
+      countBadge.textContent = `${filtered.length}개 기준단지 표출`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      container.innerHTML = filtered.map(bm => {
+        const isHighLiquidity = bm.tradeCount >= 5;
+        return `
+          <div class="glass-card glass-card-hover rounded-2xl p-5 border border-slate-800 transition duration-200 cursor-pointer flex flex-col justify-between"
+               onclick="openBenchmarkModal('${bm.id}')">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="text-xs text-slate-400 font-medium">${bm.regionName}</span>
+                  <h4 class="text-base font-bold text-white transition">${bm.complexName}</h4>
+                </div>
+                <div class="flex items-center gap-1">
+                  ${isHighLiquidity ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold badge-liquidity flex items-center gap-1"><i class="fa-solid fa-fire-flame-curved"></i>환금성우수</span>` : ''}
+                  <span class="px-2 py-0.5 rounded-full text-xs font-bold badge-benchmark flex items-center gap-1">
+                    <i class="fa-solid fa-crown text-[10px]"></i>역대 ATH
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-3 flex items-baseline justify-between border-y border-slate-800/80 py-2.5">
+                <div>
+                  <span class="text-xs text-slate-400">5개년 역대 최고가</span>
+                  <div class="text-2xl font-bold text-amber-400 mono">${bm.athPrice.toFixed(1)}<span class="text-sm font-normal text-slate-400 ml-1">억</span></div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs text-slate-400">최고가 달성 층수</span>
+                  <div class="text-sm font-bold text-slate-300 mono">${bm.athFloor}</div>
+                </div>
+              </div>
+
+              <div class="mt-2.5 flex items-center justify-between text-xs text-slate-400">
+                <span class="mono">${bm.area} (전용)</span>
+                <span class="text-slate-500">최고가 체결일: ${bm.athDate}</span>
+              </div>
+
+              <div class="mt-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-800 text-xs text-slate-300 leading-relaxed flex items-center justify-between">
+                <span>누적 검증 표본:</span>
+                <span class="font-bold text-indigo-300 mono">${bm.tradeCount}회 체결 기반</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+              <span class="text-[10px] bg-slate-800 text-amber-300 px-2 py-0.5 rounded border border-slate-700">#2022~2026누적기준</span>
+              <span class="text-xs text-amber-400 font-medium flex items-center gap-1">
+                기준표 확인 <i class="fa-solid fa-angle-right text-[10px]"></i>
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 8. 상세 팝업 모달 (월별 실거래)
     window.openDetailModal = function(id) {
       const tx = currentTransactions.find(t => t.id === id);
       if (!tx) return;
@@ -482,6 +698,10 @@
       const modal = document.getElementById('detail-modal');
       const content = document.getElementById('modal-content');
       const prices = tx.recentPrices || [tx.dealPrice];
+
+      const histATH = tx.previousHigh || tx.dealPrice;
+      const recoveryRatio = Math.round((tx.dealPrice / (histATH || 1)) * 100);
+      const gapToAth = (histATH - tx.dealPrice).toFixed(1);
 
       content.innerHTML = `
         <div class="space-y-4">
@@ -499,6 +719,22 @@
             <div>
               <span class="text-xs text-slate-400">종전/전고점 대비</span>
               <div class="text-xl font-bold text-rose-400 mono mt-0.5">+${tx.diff || 0}억 (${tx.diffPercent || 0}%)</div>
+            </div>
+          </div>
+
+          <!-- 5개년 회복률 및 남은 갭 분석 -->
+          <div class="p-3.5 bg-indigo-950/30 rounded-xl border border-indigo-500/30 space-y-2 text-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-indigo-300 font-medium flex items-center gap-1.5">
+                <i class="fa-solid fa-gauge"></i>5개년 전고점 대비 회복률
+              </span>
+              <span class="text-sm font-bold text-white mono">${recoveryRatio}%</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-400 border-t border-indigo-500/20 pt-2">
+              <span>전고점(${histATH}억)까지 남은 갭:</span>
+              <span class="font-bold mono ${tx.dealPrice >= histATH ? 'text-rose-400' : 'text-amber-400'}">
+                ${tx.dealPrice >= histATH ? '전고점 돌파 완료 (신고가)' : `${gapToAth}억원 남음`}
+              </span>
             </div>
           </div>
 
@@ -531,6 +767,57 @@
       modal.classList.remove('hidden');
     };
 
+    // 9. 상세 팝업 모달 (5개년 벤치마크)
+    window.openBenchmarkModal = function(id) {
+      const bm = benchmarkList.find(b => b.id === id);
+      if (!bm) return;
+
+      const modal = document.getElementById('detail-modal');
+      const content = document.getElementById('modal-content');
+
+      content.innerHTML = `
+        <div class="space-y-4">
+          <div>
+            <span class="text-xs text-amber-400 font-semibold">${bm.regionName}</span>
+            <h3 class="text-xl font-bold text-white">${bm.complexName}</h3>
+            <p class="text-xs text-slate-400">${bm.area} (전용면적) | 5개년 누적 최고가 벤치마크</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-500/40 grid grid-cols-2 gap-3 text-center">
+            <div>
+              <span class="text-xs text-slate-400">역대 최고 실거래가</span>
+              <div class="text-2xl font-bold text-amber-400 mono mt-0.5">${bm.athPrice}억원</div>
+            </div>
+            <div>
+              <span class="text-xs text-slate-400">최고가 달성 층수</span>
+              <div class="text-2xl font-bold text-white mono mt-0.5">${bm.athFloor}</div>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-slate-800/50 rounded-xl border border-slate-700 space-y-2 text-xs text-slate-300">
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">최고가 달성 계약일자:</span>
+              <span class="font-bold mono text-white">${bm.athDate}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">권역 분류:</span>
+              <span class="font-bold text-indigo-300">${bm.regionCategory}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">5개년 누적 체결 표본:</span>
+              <span class="font-bold mono text-emerald-400">${bm.tradeCount}건</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-400 leading-relaxed bg-slate-900 p-3 rounded-lg border border-slate-800">
+            💡 본 수치는 2022년 1월부터 축적된 실거래가 중 직거래 및 해제거래를 원천 배제한 신뢰도 높은 전고점 벤치마크입니다. 향후 체결되는 거래의 지지선/저항선으로 활용됩니다.
+          </p>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    };
+
     function setupModalCloseEvents() {
       const modal = document.getElementById('detail-modal');
       document.getElementById('close-modal-btn').addEventListener('click', () => modal.classList.add('hidden'));
@@ -542,7 +829,7 @@
       });
     }
 
-    // 7. 차트 렌더링
+    // 10. 차트 렌더링
     function updateCharts(mData) {
       const gapCanvas = document.getElementById('gapTrackingChart');
       if (gapCanvas) {
@@ -607,7 +894,7 @@
       }
     }
 
-    // 8. 필터 및 새로고침 이벤트 바인딩
+    // 11. 필터 이벤트 바인딩
     function setupFilterEvents() {
       document.querySelectorAll('.type-filter').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -618,7 +905,7 @@
           e.currentTarget.classList.add('bg-indigo-600', 'text-white');
           e.currentTarget.classList.remove('text-slate-400');
           currentTypeFilter = e.currentTarget.getAttribute('data-type');
-          renderTransactions();
+          if (activeTab === "monthly") renderTransactions();
         });
       });
 
@@ -631,7 +918,8 @@
           e.currentTarget.classList.add('bg-slate-800', 'text-indigo-400');
           e.currentTarget.classList.remove('text-slate-400');
           currentRegionFilter = e.currentTarget.getAttribute('data-region');
-          renderTransactions();
+          if (activeTab === "monthly") renderTransactions();
+          else renderBenchmarkCards();
         });
       });
     }
@@ -642,13 +930,14 @@
         clearTimeout(timer);
         timer = setTimeout(() => {
           searchQuery = e.target.value.trim();
-          renderTransactions();
+          if (activeTab === "monthly") renderTransactions();
+          else renderBenchmarkCards();
         }, 200);
       });
     }
 
     function setupRefreshButton() {
-      document.getElementById('refresh-btn').addEventListener('click', loadRealData);
+      document.getElementById('refresh-btn').addEventListener('click', loadAllData);
     }
   </script>
 </body>
