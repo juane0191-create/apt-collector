@@ -1,0 +1,33 @@
+name: Daily Real Estate Collector
+
+on:
+  schedule:
+    - cron: '0 15 * * *' # 매일 밤 12시 (한국시간) 자동 실행
+  workflow_dispatch:      # 수동 실행 버튼 활성화
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 파이썬 준비
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 필요한 도구 설치
+        run: pip install PublicDataReader pandas
+
+      - name: 데이터 수집 실행
+        env:
+          MOLIT_KEY: ${{ secrets.MOLIT_KEY }}
+        run: python collector.py
+
+      - name: 수집된 파일 깃허브에 저장
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "actions@github.com"
+          git add data/
+          git commit -m "chore: 실거래가 최신화" || exit 0
+          git push
