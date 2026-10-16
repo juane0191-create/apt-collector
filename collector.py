@@ -1,9 +1,11 @@
 """
 수도권 핵심 25개 구역 아파트 실거래가 고속 자동 수집 파이프라인
-- 주요 개선:
-  1. 병렬 멀티스레딩(ThreadPool)으로 수집 속도 극대화 (1~2분 내 완료)
+- 주요 기능:
+  1. 병렬 멀티스레딩(ThreadPool)으로 25개 구역 초고속 수집 (1~2분 소요)
   2. 실시간 콘솔 출력 (flush=True)으로 진행 상태 실시간 확인
-  3. 타임아웃 및 결측치 예외 처리 강화로 멈춤(Hang) 현상 원천 차단
+  3. 최근 2개월치(당월+전월) 조회를 통한 실거래 누락 방지
+  4. 단지별 신고가(ATH) 및 거래량 급증 특이거래 자동 큐레이션
+  5. data/all_trades_{YYYYMM}.csv 및 data/daily_briefing_data.json 자동 출력
 """
 
 import os
@@ -72,59 +74,50 @@ def fetch_single_region(ts, code, info, query_months):
                 results.append(df)
         except Exception as e:
             print(f"⚠️ [{info['name']}] 조회 중 예외 발생: {e}", flush=True)
-    
+
     count = sum(len(d) for d in results)
-    print(f"✅ 수집 완료: {info['name']} ({count}건)", flush=True)
-    return results
+    return results, count, info["name"]
 
 def collect_all_regions_parallel(service_key: str) -> pd.DataFrame:
-    """25개 권역을 멀티스레드로 병렬 수집하여 소요 시간을 1/4로 단축합니다."""
+    """25개 권역을 멀티스레드로 병렬 수집합니다."""
     ts = TransactionPrice(service_key)
     now = datetime.now()
     current_ym = now.strftime("%Y%m")
 
-    # 30일 이내 신고 기한 보정을 위해 당월 + 전월 조회
-    query_months = [current_ym]
-    if now.day <= 10:
-        prev_month = (now.replace(day=1) - timedelta(days=1)).strftime("%Y%m")
-        query_months.append(prev_month)
+    # 신고 기한(30일)을 감안하여 항상 당월 + 전월 데이터를 함께 조회
+    prev_month = (now.replace(day=1) - timedelta(days=1)).strftime("%Y%m")
+    query_months = [prev_month, current_ym]
 
-    print(f"[{now.strftime('%Y-%m-%d %H:%M:%S')}] 🚀 25개 구역 고속 병렬 수집 시작...", flush=True)
+    print(f"[{now.strftime('%Y-%m-%d %H:%M:%S')}] 🚀 25개 구역 실거래 수집 시작 (조회 대상: {query_months})...", flush=True)
 
     all_dfs = []
-    # 공공데이터포털 서버 부하를 고려해 4개 스레드로 안전하게 병렬 처리
     with ThreadPoolExecutor(max_workers=4) as executor:
-        future_to_region = {
-            executor.submit(fetch_single_region, ts, code, info, query_months): info['name']
+        futures = [
+            executor.submit(fetch_single_region, ts, code, info, query_months)
             for code, info in TARGET_REGIONS.items()
-        }
+        ]
 
-        for idx, future in enumerate(as_completed(future_to_region), 1):
-            region_name = future_to_region[future]
+        for idx, future in enumerate(as_completed(futures), 1):
             try:
-                dfs = future.result()
+                dfs, count, region_name = future.result()
                 all_dfs.extend(dfs)
-                print(f"  👉 진행률: [{idx}/25] ({region_name} 완료)", flush=True)
+                print(f"  [{idx}/25] ✅ {region_name} 수집 완료 ({count}건)", flush=True)
             except Exception as e:
-                print(f"❌ [{region_name}] 작업 실패: {e}", flush=True)
+                print(f"❌ 작업 실패: {e}", flush=True)
 
     if not all_dfs:
-        print("[경고] 수집된 데이터가 없습니다.", flush=True)
+        print("⚠️ 수집된 데이터가 없습니다.", flush=True)
         return pd.DataFrame()
 
     combined_df = pd.concat(all_dfs, ignore_index=True)
-    # 중복 거래건(동일 계약) 제거
-    if {"아파트", "전용면적", "층", "거래금액", "년", "월", "일"}.issubset(combined_df.columns):
-        combined_df = combined_df.drop_duplicates(subset=["아파트", "전용면적", "층", "거래금액", "년", "월", "일"])
-
     return combined_df
 
 def clean_and_normalize(df: pd.DataFrame) -> pd.DataFrame:
-    """취소 거래 필터링, 이상치 정제 및 가격 단위 표준화 (구/신버전 컬럼명 자동 호환)"""
+    """취소 거래 필터링 및 가격 단위 표준화 (구/신버전 컬럼명 호환)"""
     if df.empty:
         return df
 
-    # 컬럼명 표준화 매핑 (신버전 -> 구버전 통일)
+    # 컬럼명 표준화 (신버전 -> 공통 컬럼명)
     col_map = {
         "단지명": "아파트",
         "단지": "아파트",
@@ -144,7 +137,7 @@ def clean_and_normalize(df: pd.DataFrame) -> pd.DataFrame:
     if "해제여부" in df.columns:
         df = df[df["해제여부"] != "O"]
 
-    # 2. 거래금액(만원) -> 억 단위 float 변환
+    # 2. 거래금액(만원) -> 억원 단위 변환
     def parse_price(val):
         try:
             if pd.isna(val):
@@ -159,7 +152,7 @@ def clean_and_normalize(df: pd.DataFrame) -> pd.DataFrame:
     else:
         df["거래금액_억"] = 0.0
 
-    # 3. 계약일자 포맷 통일 (결측치 방어)
+    # 3. 계약일자 포맷 통일 (YYYY-MM-DD)
     def format_date(r):
         try:
             y = int(float(r.get("년", 0)))
@@ -185,10 +178,15 @@ def clean_and_normalize(df: pd.DataFrame) -> pd.DataFrame:
     else:
         df["층"] = "고층"
 
+    # 중복 계약 제거
+    dedup_cols = [c for c in ["아파트", "전용면적", "층", "거래금액_억", "계약일자"] if c in df.columns]
+    if dedup_cols:
+        df = df.drop_duplicates(subset=dedup_cols)
+
     return df
 
 def extract_curated_insights(df: pd.DataFrame) -> list:
-    """단지별 신고가(ATH) 및 주요 거래 핀셋 선별 (결측치 안전 방어)"""
+    """단지별 신고가(ATH) 및 거래량 집중 핀셋 선별"""
     if df.empty or "아파트" not in df.columns:
         return []
 
@@ -241,7 +239,7 @@ def extract_curated_insights(df: pd.DataFrame) -> list:
                 "recentPrices": prices[-5:]
             })
 
-        # 2. 거래량 집중
+        # 2. 거래량 집중 단지
         elif len(sorted_g) >= 2:
             first_price = prices[0]
             diff = round(latest_price - first_price, 2)
@@ -259,13 +257,13 @@ def extract_curated_insights(df: pd.DataFrame) -> list:
                 "diffPercent": round((diff / (first_price or 1)) * 100, 2),
                 "date": latest.get("계약일자", ""),
                 "tags": ["거래량급증", "손바뀜활발"],
-                "description": f"최근 단기간에 체결 건수가 집중되며 매수세가 유입된 단지입니다.",
+                "description": f"최근 단기간에 거래가 집중되며 매수세가 유입된 단지입니다.",
                 "recentPrices": prices[-5:]
             })
 
-    # 만약 엄격한 조건(신고가/거래량집중)을 만족하는 건이 적을 경우, 최신 체결 주요 거래 20건을 자동 보충
-    if len(curated) < 10 and not valid_df.empty:
-        latest_sorted = valid_df.sort_values(by="계약일자", ascending=False).head(25)
+    # 선별 건수가 적을 경우, 최신 정상 거래 상위 건으로 자동 보충
+    if len(curated) < 12 and not valid_df.empty:
+        latest_sorted = valid_df.sort_values(by="계약일자", ascending=False).head(30)
         for _, row in latest_sorted.iterrows():
             if any(c["complexName"] == row["아파트"] for c in curated):
                 continue
@@ -287,6 +285,48 @@ def extract_curated_insights(df: pd.DataFrame) -> list:
                 "recentPrices": [row["거래금액_억"]]
             })
 
-    # 최신 날짜 기준 상위 21개 선별
+    # 최신 체결일 기준 정렬
     curated = sorted(curated, key=lambda x: x["date"], reverse=True)
-    return curated[:21]
+    return curated[:24]
+
+def main():
+    service_key = os.environ.get("MOLIT_KEY")
+    if not service_key:
+        print("❌ [오류] GitHub Secrets에 MOLIT_KEY가 설정되지 않았습니다.", flush=True)
+        sys.exit(1)
+
+    now = datetime.now()
+    os.makedirs("data", exist_ok=True)
+
+    # 1. 25개 구역 데이터 수집
+    raw_df = collect_all_regions_parallel(service_key)
+    if raw_df.empty:
+        print("⚠️ 수집된 거래 데이터가 없습니다.", flush=True)
+        sys.exit(0)
+
+    print(f"📊 수집된 원시 데이터: 총 {len(raw_df)}건", flush=True)
+
+    # 2. 데이터 정제
+    clean_df = clean_and_normalize(raw_df)
+
+    # 3. CSV 원본 저장
+    csv_filename = f"data/real_estate_trades_{now.strftime('%Y%m')}.csv"
+    clean_df.to_csv(csv_filename, index=False, encoding="utf-8-sig")
+    print(f"💾 [저장 완료] 전체 실거래 원본: {csv_filename} ({len(clean_df)}건)", flush=True)
+
+    # 4. JSON 선별 데이터 저장
+    curated_list = extract_curated_insights(clean_df)
+    json_payload = {
+        "updatedAt": now.strftime("%Y-%m-%d %H:%M:%S"),
+        "totalTradeCount": len(clean_df),
+        "curatedCount": len(curated_list),
+        "curatedTransactions": curated_list
+    }
+
+    json_filename = "data/daily_briefing_data.json"
+    with open(json_filename, "w", encoding="utf-8") as f:
+        json.dump(json_payload, f, ensure_ascii=False, indent=2)
+    print(f"✨ [저장 완료] 웹 대시보드 데이터: {json_filename} (선별 {len(curated_list)}건)", flush=True)
+
+if __name__ == "__main__":
+    main()
