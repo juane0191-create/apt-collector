@@ -2,14 +2,19 @@ name: Daily Real Estate Collector
 
 on:
   schedule:
-    - cron: '0 15 * * *' # 매일 밤 12시 (한국시간) 자동 실행
-  workflow_dispatch:      # 수동 실행 버튼 활성화
+    - cron: '0 21 * * *' # 매일 아침 6시 (한국시간 기준, UTC 21:00) 자동 실행
+  workflow_dispatch:      # 수동 즉시 실행 버튼 활성화
+
+# 봇에게 저장소 쓰기(Push) 권한을 명시적으로 부여 (403 에러 원천 차단)
+permissions:
+  contents: write
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: 저장소 코드 체크아웃
+        uses: actions/checkout@v4
 
       - name: 파이썬 준비
         uses: actions/setup-python@v5
@@ -29,5 +34,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "actions@github.com"
           git add data/
-          git commit -m "chore: 실거래가 최신화" || exit 0
+          git commit -m "chore: 실거래가 최신화 [skip ci]" || exit 0
           git push
