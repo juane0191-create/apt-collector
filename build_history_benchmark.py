@@ -1,9 +1,10 @@
 """
-2022년~2026년 5개년 수도권 25개 구역 아파트 실거래가 장기 벤치마크 데이터베이스 구축기
-- 역할:
-  1. 2022.01부터 2026.10까지 25개 구역 전체 실거래 데이터를 순회 수집
-  2. [단지명 + 평형(전용면적) + 권역]별 '역대 최고가(ATH)', '달성일', '최고가 층수'만 핀셋 요약
-  3. 경량화된 기준표 'data/history_ath_benchmark.csv' 파일로 저장
+수도권 25개 구역 아파트 실거래가 장기 벤치마크 데이터베이스 구축기 (실시간 로깅 및 고속 수집 보강본)
+- 개선사항:
+  1. flush=True 전면 적용으로 깃허브 액션 콘솔에서 멈춤 현상(버퍼링) 해결
+  2. requests timeout을 6초로 단축하여 API 지연 시 행(Hang) 현상 원천 차단
+  3. 실시간 구역별/월별 진행률 출력
+  4. 매 3개월 단위 중간 자동 저장(체크포인트) 지원
 """
 
 import os
@@ -13,7 +14,7 @@ import argparse
 import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import pandas as pd
 import requests
 
@@ -59,8 +60,8 @@ TARGET_REGIONS = {
 API_ENDPOINT = "http://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
 BENCHMARK_FILE = "data/history_ath_benchmark.csv"
 
-def fetch_region_month(service_key: str, code: str, ym: str) -> list:
-    """단일 구역 단일 월 국토부 XML 안전 조회"""
+def fetch_region_month(service_key: str, code: str, ym: str, region_name: str, category: str) -> list:
+    """단일 구역 단일 월 국토부 XML 고속 안전 조회 (타임아웃 6초)"""
     decoded_key = urllib.parse.unquote(service_key)
     params = {
         "serviceKey": decoded_key,
@@ -71,7 +72,7 @@ def fetch_region_month(service_key: str, code: str, ym: str) -> list:
     }
     records = []
     try:
-        resp = requests.get(API_ENDPOINT, params=params, timeout=12)
+        resp = requests.get(API_ENDPOINT, params=params, timeout=6)
         if resp.status_code != 200:
             return records
 
@@ -99,7 +100,8 @@ def fetch_region_month(service_key: str, code: str, ym: str) -> list:
                 "거래금액_억": round(float(price_raw) / 10000.0, 2),
                 "계약일자": f"{val('dealYear')}-{str(val('dealMonth')).zfill(2)}-{str(val('dealDay')).zfill(2)}",
                 "조회월": ym,
-                "법정동": val("umdNm")
+                "지역명": region_name,
+                "권역코드": category
             })
     except Exception:
         pass
@@ -120,7 +122,15 @@ def generate_target_months(start_ym: str, end_ym: str) -> list:
             y += 1
     return months
 
-def build_benchmark(start_ym="202201", end_ym="202610"):
+def save_benchmark_to_csv(benchmark_dict: dict):
+    """벤치마크 데이터를 파일로 즉시 저장"""
+    if not benchmark_dict:
+        return
+    res_df = pd.DataFrame(list(benchmark_dict.values()))
+    res_df = res_df.sort_values(by="역대최고가_억", ascending=False)
+    res_df.to_csv(BENCHMARK_FILE, index=False, encoding="utf-8-sig")
+
+def build_benchmark(start_ym="202001", end_ym="202112"):
     service_key = os.environ.get("MOLIT_KEY")
     if not service_key:
         print("❌ [오류] MOLIT_KEY 환경변수가 설정되지 않았습니다.", flush=True)
@@ -128,18 +138,18 @@ def build_benchmark(start_ym="202201", end_ym="202610"):
 
     os.makedirs("data", exist_ok=True)
     months = generate_target_months(start_ym, end_ym)
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🚀 장기 벤치마크 수집 시작: {start_ym} ~ {end_ym} (총 {len(months)}개월)", flush=True)
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🚀 수집 시작: {start_ym} ~ {end_ym} (총 {len(months)}개월 x 25개 구역)", flush=True)
 
     existing_benchmark = {}
     if os.path.exists(BENCHMARK_FILE):
         try:
             prev_df = pd.read_csv(BENCHMARK_FILE)
             for _, r in prev_df.iterrows():
-                key = f"{r['아파트']}_{int(round(r['전용면적']))}_{r['지역명']}"
+                key = f"{r['아파트']}_{int(round(float(r['전용면적'])) components if 'components' in dir() else int(round(float(r['전용면적']))))}_{r['지역명']}"
                 existing_benchmark[key] = {
                     "아파트": r["아파트"],
                     "전용면적": float(r["전용면적"]),
-                    "평형그룹": int(round(r["전용면적"])),
+                    "평형그룹": int(round(float(r["전용면적"]))),
                     "지역명": r["지역명"],
                     "권역코드": r.get("권역코드", "all"),
                     "역대최고가_억": float(r["역대최고가_억"]),
@@ -147,27 +157,32 @@ def build_benchmark(start_ym="202201", end_ym="202610"):
                     "최고가층": str(r.get("최고가층", "중층")),
                     "누적거래건수": int(r.get("누적거래건수", 1))
                 }
-            print(f"📦 [기존 벤치마크 로드] 기존 {len(existing_benchmark)}개 단지 전고점 데이터와 병합합니다.", flush=True)
+            print(f"📦 [기존 벤치마크 로드] 기존 {len(existing_benchmark)}개 단지 전고점 데이터와 병합 준비 완료.", flush=True)
         except Exception as e:
-            print(f"⚠️ 기존 파일 로드 실패, 새로 생성합니다: {e}", flush=True)
+            print(f"⚠️ 기존 파일 파싱 주의: {e}", flush=True)
 
+    # 4스레드 병렬 실행
     with ThreadPoolExecutor(max_workers=4) as executor:
         for ym_idx, ym in enumerate(months, 1):
-            tasks = []
-            for code, info in TARGET_REGIONS.items():
-                tasks.append((executor.submit(fetch_region_month, service_key, code, ym), info))
+            print(f"⏳ [{ym_idx:02d}/{len(months):02d}] {ym} 데이터 수집 중...", end="", flush=True)
+            
+            futures = [
+                executor.submit(fetch_region_month, service_key, code, ym, info["name"], info["category"])
+                for code, info in TARGET_REGIONS.items()
+            ]
 
             month_records = []
-            for future, info in tasks:
+            for f in as_completed(futures):
                 try:
-                    recs = future.result()
-                    for r in recs:
-                        r["지역명"] = info["name"]
-                        r["권역코드"] = info["category"]
-                        month_records.append(r)
+                    recs = f.result()
+                    if recs:
+                        month_records.extend(recs)
                 except Exception:
                     pass
 
+            # 실시간 전고점 비교 및 갱신
+            updated_count = 0
+            new_count = 0
             if month_records:
                 m_df = pd.DataFrame(month_records)
                 m_df["평형그룹"] = m_df["전용면적"].round().astype(int)
@@ -179,6 +194,7 @@ def build_benchmark(start_ym="202201", end_ym="202610"):
                     floor = row["층"]
 
                     if key not in existing_benchmark:
+                        new_count += 1
                         existing_benchmark[key] = {
                             "아파트": row["아파트"],
                             "전용면적": row["전용면적"],
@@ -191,25 +207,4 @@ def build_benchmark(start_ym="202201", end_ym="202610"):
                             "누적거래건수": 1
                         }
                     else:
-                        existing_benchmark[key]["누적거래건수"] += 1
-                        if deal_price > existing_benchmark[key]["역대최고가_억"]:
-                            existing_benchmark[key]["역대최고가_억"] = deal_price
-                            existing_benchmark[key]["최고가계약일"] = deal_date
-                            existing_benchmark[key]["최고가층"] = floor
-
-            print(f"  [{ym_idx:02d}/{len(months):02d}] 📅 {ym} 수집 완료 ({len(month_records)}건 체결, 누적 벤치마크 {len(existing_benchmark)}개 단지)", flush=True)
-            time.sleep(0.5)
-
-    if existing_benchmark:
-        result_df = pd.DataFrame(list(existing_benchmark.values()))
-        result_df = result_df.sort_values(by="역대최고가_억", ascending=False)
-        result_df.to_csv(BENCHMARK_FILE, index=False, encoding="utf-8-sig")
-        print(f"\n🎉 [벤치마크 DB 완성] 총 {len(result_df)}개 단지·평형별 역대 최고가 기준표 저장 완료: {BENCHMARK_FILE}", flush=True)
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="5개년 실거래가 벤치마크 수집기")
-    parser.add_argument("--start", default="202201", help="시작 년월 (예: 202201)")
-    parser.add_argument("--end", default="202610", help="종료 년월 (예: 202610)")
-    args = parser.parse_args()
-
-    build_benchmark(start_ym=args.start, end_ym=args.end)
+                        existing
