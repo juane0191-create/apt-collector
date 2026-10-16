@@ -1,8 +1,8 @@
 """
 수도권 핵심 25개 구역 아파트 실거래가 고속 자동 수집 파이프라인 (5개년 벤치마크 비교 엔진 탑재)
 - 주요 기능:
-  1. 당월 및 전월 실거래가 고속 수집
-  2. 'data/history_ath_benchmark.csv'(5개년 전고점 DB)가 있으면 자동 로드하여 전고점 대조
+  1. 당월 및 전월 실거래가 고속 수집 (직거래 및 해제거래 원천 배제)
+  2. 'data/history_ath_benchmark.csv'(5개년 전고점 DB) 자동 로드 및 실시간 대조
   3. 역대 신고가(전고점 돌파) 여부 및 '전고점 대비 회복률(%)' 정밀 계산
   4. 신규 역대 최고가 발생 시 벤치마크 DB 자동 갱신
   5. 웹 대시보드(index.html)와 100% 호환되는 JSON 내보내기
@@ -63,7 +63,7 @@ API_ENDPOINT = "http://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDat
 BENCHMARK_FILE = "data/history_ath_benchmark.csv"
 
 def fetch_region_xml(service_key: str, code: str, ym: str) -> list:
-    """10초 타임아웃 및 안전 파싱 적용 API 호출"""
+    """10초 타임아웃 및 안전 파싱 적용 API 호출 (해제 및 직거래 원천 차단)"""
     decoded_key = urllib.parse.unquote(service_key)
     
     params = {
