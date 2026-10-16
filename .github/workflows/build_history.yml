@@ -1,7 +1,7 @@
 name: Build 5-Year History Benchmark DB
 
 on:
-workflow_dispatch: # 깃허브 웹 화면에서 [Run workflow] 버튼을 누르면 즉시 실행
+workflow_dispatch:
 
 permissions:
 contents: write
