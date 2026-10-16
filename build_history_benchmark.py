@@ -1,10 +1,10 @@
 """
-수도권 25개 구역 아파트 실거래가 장기 벤치마크 데이터베이스 구축기 (실시간 로깅 및 고속 수집 보강본)
+수도권 25개 구역 아파트 실거래가 장기 벤치마크 데이터베이스 구축기 (문법 에러 수정 완료본)
 - 개선사항:
-  1. flush=True 전면 적용으로 깃허브 액션 콘솔에서 멈춤 현상(버퍼링) 해결
-  2. requests timeout을 6초로 단축하여 API 지연 시 행(Hang) 현상 원천 차단
-  3. 실시간 구역별/월별 진행률 출력
-  4. 매 3개월 단위 중간 자동 저장(체크포인트) 지원
+  1. f-string 키 생성 문법 에러(SyntaxError) 수정
+  2. 실시간 로깅(flush=True) 적용으로 깃허브 액션 콘솔 멈춤 현상 방지
+  3. requests timeout 6초 설정으로 지연 원천 차단
+  4. 매 4개월 단위 중간 자동 저장(체크포인트) 지원
 """
 
 import os
@@ -145,11 +145,12 @@ def build_benchmark(start_ym="202001", end_ym="202112"):
         try:
             prev_df = pd.read_csv(BENCHMARK_FILE)
             for _, r in prev_df.iterrows():
-                key = f"{r['아파트']}_{int(round(float(r['전용면적'])) components if 'components' in dir() else int(round(float(r['전용면적']))))}_{r['지역명']}"
+                area_int = int(round(float(r['전용면적'])))
+                key = f"{r['아파트']}_{area_int}_{r['지역명']}"
                 existing_benchmark[key] = {
                     "아파트": r["아파트"],
                     "전용면적": float(r["전용면적"]),
-                    "평형그룹": int(round(float(r["전용면적"]))),
+                    "평형그룹": area_int,
                     "지역명": r["지역명"],
                     "권역코드": r.get("권역코드", "all"),
                     "역대최고가_억": float(r["역대최고가_억"]),
@@ -165,7 +166,7 @@ def build_benchmark(start_ym="202001", end_ym="202112"):
     with ThreadPoolExecutor(max_workers=4) as executor:
         for ym_idx, ym in enumerate(months, 1):
             print(f"⏳ [{ym_idx:02d}/{len(months):02d}] {ym} 데이터 수집 중...", end="", flush=True)
-            
+
             futures = [
                 executor.submit(fetch_region_month, service_key, code, ym, info["name"], info["category"])
                 for code, info in TARGET_REGIONS.items()
@@ -207,4 +208,31 @@ def build_benchmark(start_ym="202001", end_ym="202112"):
                             "누적거래건수": 1
                         }
                     else:
-                        existing
+                        existing_benchmark[key]["누적거래건수"] += 1
+                        # 더 높은 금액 발견 시 전고점 갱신
+                        if deal_price > existing_benchmark[key]["역대최고가_억"]:
+                            existing_benchmark[key]["역대최고가_억"] = deal_price
+                            existing_benchmark[key]["최고가계약일"] = deal_date
+                            existing_benchmark[key]["최고가층"] = floor
+                            updated_count += 1
+
+            print(f" 완료! (체결 {len(month_records)}건 | 신규 {new_count}개 | 최고가갱신 {updated_count}건)", flush=True)
+
+            # 매 4개월마다 중간 안전 저장
+            if ym_idx % 4 == 0:
+                save_benchmark_to_csv(existing_benchmark)
+                print(f"  💾 [중간 저장] 누적 {len(existing_benchmark)}개 단지 저장 완료", flush=True)
+
+            time.sleep(0.3)
+
+    # 최종 결과 저장
+    save_benchmark_to_csv(existing_benchmark)
+    print(f"\n🎉 [완료] 총 {len(existing_benchmark)}개 단지 전고점 벤치마크 병합 완료: {BENCHMARK_FILE}", flush=True)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="실거래가 벤치마크 수집기")
+    parser.add_argument("--start", default="202001", help="시작 년월 (예: 202001)")
+    parser.add_argument("--end", default="202112", help="종료 년월 (예: 202112)")
+    args = parser.parse_args()
+
+    build_benchmark(start_ym=args.start, end_ym=args.end)
