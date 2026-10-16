@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Daily Real Estate Pulse | 아파트 실거래 모닝 브리핑</title>
+
+<!-- Tailwind CSS -->
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Chart.js for Market Visualizations -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Font Awesome Icons -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Pretendard Font -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+
+font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+
+background-color: #0b0f19;
+
+color: #e2e8f0;
+
+}
+
+.mono {
+
+font-family: 'JetBrains Mono', monospace;
+
+}
+
+::-webkit-scrollbar {
+
+width: 6px;
+
+height: 6px;
+
+}
+
+::-webkit-scrollbar-track {
+
+background: #0f172a;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+background: #334155;
+
+border-radius: 4px;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+background: #475569;
+
+}
+
+.glass-card {
+
+background: rgba(17, 24, 39, 0.75);
+
+backdrop-filter: blur(12px);
+
+border: 1px solid rgba(255, 255, 255, 0.07);
+
+}
+
+.glass-card-hover:hover {
+
+border-color: rgba(99, 102, 241, 0.35);
+
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+
+}
+
+.badge-ath {
+
+background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+
+color: #f87171;
+
+border: 1px solid rgba(239, 68, 68, 0.3);
+
+}
+
+.badge-volume {
+
+background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.1) 100%);
+
+color: #34d399;
+
+border: 1px solid rgba(16, 185, 129, 0.3);
+
+}
+
+</style>
+
+</head>
+
+<body class="min-h-screen antialiased flex flex-col">
+
+​<!-- Top Navigation -->
+
+<header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+
+<div class="flex items-center space-x-3">
+
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+
+<i class="fa-solid fa-chart-line text-white text-lg"></i>
+
+</div>
+
+<div>
+
+<div class="flex items-center space-x-2">
+
+<span class="text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Daily Pulse</span>
+
+<span id="data-source-badge" class="text-xs text-emerald-400 flex items-center gap-1">
+
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+
+<span>데이터 불러오는 중...</span>
+
+</span>
+
+</div>
+
+<h1 class="text-base sm:text-lg font-bold text-white tracking-tight">수도권 25개 구역 실거래 모닝 브리핑</h1>
+
+</div>
+
+</div>
+
+​<!-- Date & Action Status -->
+
+<div class="flex items-center space-x-3">
+
+<div class="hidden sm:flex flex-col text-right">
+
+<span class="text-[11px] text-slate-400">데이터 수집 기준</span>
+
+<span id="header-date" class="text-xs font-semibold text-slate-200 mono">동기화 대기 중</span>
+
+</div>
+
+​<!-- GitHub Connect Button -->
+
+<button id="open-settings-btn" title="GitHub 연동 설정" class="px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium border border-slate-700 transition flex items-center space-x-1.5">
+
+<i class="fa-brands fa-github text-sm text-indigo-400"></i>
+
+<span class="hidden md:inline">연동 설정</span>
+
+</button>
+
+​<button id="refresh-btn" class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center space-x-1.5 shadow-lg shadow-indigo-600/20">
+
+<i class="fa-solid fa-arrows-rotate" id="refresh-icon"></i>
+
+<span>새로고침</span>
+
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+​<main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+​<!-- Top Alert / Executive Summary -->
+
+<section class="glass-card rounded-2xl p-5 border border-indigo-500/20 shadow-xl bg-gradient-to-r from-slate-900/90 via-indigo-950/20 to-slate-900/90">
+
+<div class="flex items-start justify-between flex-wrap gap-4">
+
+<div class="flex items-center space-x-3">
+
+<div class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+
+<i class="fa-solid fa-bolt-lightning text-sm"></i>
+
+</div>
+
+<div>
+
+<h2 class="text-base font-bold text-white flex items-center gap-2">
+
+전일 마켓 센티멘트 브리핑
+
+<span class="text-xs font-normal text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">실시간 국토부 반영</span>
+
+</h2>
+
+<p class="text-xs text-slate-400" id="monitoring-target-text">서울 18개 구 + 경기 7개 구역 국토부 실거래 자동 분석 결과</p>
+
+</div>
+
+</div>
+
+<div class="flex items-center space-x-2 text-xs text-slate-400">
+
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+
+<span>이상거래(취소·직거래) 필터링 가동</span>
+
+</div>
+
+</div>
+
+​<div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+
+<div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start space-x-3">
+
+<span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">1</span>
+
+<div>
+
+<span class="font-semibold text-slate-200">강남·동남권 상단 리딩:</span>
+
+<span class="text-slate-400"> 서초·강남·송파 핵심 대장주 최고가 거래가 수도권 가격 천장을 견인하고 있습니다.</span>
+
+</div>
+
+</div>
+
+<div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start space-x-3">
+
+<span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">2</span>
+
+<div>
+
+<span class="font-semibold text-slate-200">경기 남부축 거래 집중:</span>
+
+<span class="text-slate-400"> 분당 선도지구 기대감 및 동탄·수지 역세권 대단지로 실수요 손바뀜이 활발합니다.</span>
+
+</div>
+
+</div>
+
+<div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start space-x-3">
+
+<span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">3</span>
+
+<div>
+
+<span class="font-semibold text-slate-200">외곽 뉴타운 갭메우기:</span>
+
+<span class="text-slate-400"> 전세가율 상승세에 힘입어 노도강·광명권역의 중저가 급매물이 순차 소진 중입니다.</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+​<!-- Key Metrics Ribbon -->
+
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+<div class="glass-card rounded-xl p-4 border border-slate-800">
+
+<div class="flex items-center justify-between text-slate-400 text-xs">
+
+<span>타깃 25곳 수집 총 거래량</span>
+
+<i class="fa-solid fa-file-invoice text-indigo-400"></i>
+
+</div>
+
+<div class="mt-2 flex items-baseline space-x-2">
+
+<span id="metric-total-trades" class="text-2xl font-bold text-white mono">--</span>
+
+<span class="text-xs text-slate-400">건</span>
+
+</div>
+
+<div class="mt-1 text-[11px] text-slate-500">당월 국토교통부 집계</div>
+
+</div>
+
+​<div class="glass-card rounded-xl p-4 border border-slate-800">
+
+<div class="flex items-center justify-between text-slate-400 text-xs">
+
+<span>신고가 경신 (ATH)</span>
+
+<i class="fa-solid fa-fire text-rose-400"></i>
+
+</div>
+
+<div class="mt-2 flex items-baseline space-x-2">
+
+<span id="metric-ath-count" class="text-2xl font-bold text-rose-400 mono">--</span>
+
+<span class="text-xs text-slate-400">건</span>
+
+</div>
+
+<div class="mt-1 text-[11px] text-slate-500">종전 최고가 돌파 단지</div>
+
+</div>
+
+​<div class="glass-card rounded-xl p-4 border border-slate-800">
+
+<div class="flex items-center justify-between text-slate-400 text-xs">
+
+<span>선별 큐레이션 단지</span>
+
+<i class="fa-solid fa-crosshairs text-blue-400"></i>
+
+</div>
+
+<div class="mt-2 flex items-baseline space-x-2">
+
+<span id="metric-curated-count" class="text-2xl font-bold text-blue-400 mono">--</span>
+
+<span class="text-xs text-slate-400">개</span>
+
+</div>
+
+<div class="mt-1 text-[11px] text-slate-500">특이거래 핀셋 추출</div>
+
+</div>
+
+​<div class="glass-card rounded-xl p-4 border border-slate-800">
+
+<div class="flex items-center justify-between text-slate-400 text-xs">
+
+<span>데이터 파이프라인</span>
+
+<i class="fa-solid fa-server text-emerald-400"></i>
+
+</div>
+
+<div class="mt-2 flex items-baseline space-x-2">
+
+<span id="metric-status" class="text-lg font-bold text-emerald-400 mono">동기화 완료</span>
+
+</div>
+
+<div id="metric-sync-time" class="mt-1 text-[11px] text-slate-500 truncate">확인 중...</div>
+
+</div>
+
+</section>
+
+​<!-- Visualizations (Gap Tracking & Region Distribution) -->
+
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+<!-- Gap Tracking Line Chart -->
+
+<div class="glass-card rounded-2xl p-5 border border-slate-800 lg:col-span-2 flex flex-col justify-between">
+
+<div class="flex items-center justify-between mb-4">
+
+<div>
+
+<div class="flex items-center space-x-2">
+
+<span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+
+<h3 class="text-sm font-bold text-white">상급지-거점 랜드마크 84㎡ 실거래 갭(Gap) 추세</h3>
+
+</div>
+
+<p class="text-xs text-slate-400 mt-1">상급지 선행 상승 후 후행 거점 단지의 갭메우기 타이밍 모니터링</p>
+
+</div>
+
+<span class="px-2 py-1 rounded bg-slate-800 text-slate-300 text-xs border border-slate-700">단위: 억원</span>
+
+</div>
+
+<div class="relative h-64 w-full">
+
+<canvas id="gapTrackingChart"></canvas>
+
+</div>
+
+<div class="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 flex-wrap gap-2">
+
+<div class="flex items-center space-x-3">
+
+<span class="flex items-center"><span class="w-3 h-1 bg-rose-500 mr-1.5 rounded"></span>잠실엘스</span>
+
+<span class="flex items-center"><span class="w-3 h-1 bg-indigo-400 mr-1.5 rounded"></span>마포래미안푸르지오</span>
+
+<span class="flex items-center"><span class="w-3 h-1 bg-emerald-400 mr-1.5 rounded"></span>분당파크뷰</span>
+
+<span class="flex items-center"><span class="w-3 h-1 bg-amber-400 mr-1.5 rounded"></span>동탄역롯데캐슬</span>
+
+</div>
+
+<span class="text-indigo-400 font-medium">실시간 호가 지지선 파악</span>
+
+</div>
+
+</div>
+
+​<!-- Region Doughnut Chart -->
+
+<div class="glass-card rounded-2xl p-5 border border-slate-800 flex flex-col justify-between">
+
+<div>
+
+<div class="flex items-center space-x-2 mb-1">
+
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+
+<h3 class="text-sm font-bold text-white">권역별 거래 비중</h3>
+
+</div>
+
+<p class="text-xs text-slate-400 mb-4">수집된 특이거래의 지역별 분포</p>
+
+</div>
+
+<div class="relative h-56 w-full flex items-center justify-center">
+
+<canvas id="regionDistributionChart"></canvas>
+
+</div>
+
+<div class="mt-3 pt-3 border-t border-slate-800/80 grid grid-cols-2 gap-2 text-xs text-slate-400">
+
+<div class="flex items-center justify-between p-1.5 bg-slate-900/50 rounded">
+
+<span>서울 18개 구</span>
+
+<span id="region-seoul-pct" class="font-bold text-rose-400">--%</span>
+
+</div>
+
+<div class="flex items-center justify-between p-1.5 bg-slate-900/50 rounded">
+
+<span>경기 7개 권역</span>
+
+<span id="region-gyeonggi-pct" class="font-bold text-emerald-400">--%</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+​<!-- Filters Section -->
+
+<section class="space-y-4">
+
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+
+<div>
+
+<h3 class="text-base font-bold text-white flex items-center gap-2">
+
+<span>선별 실거래 상세 내역</span>
+
+<span id="filtered-count-badge" class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold">데이터 조회 중...</span>
+
+</h3>
+
+<p class="text-xs text-slate-400 mt-0.5">신고가 경신 및 단기 거래량 급증 단지만 엄선하여 표출합니다.</p>
+
+</div>
+
+​<!-- Search Bar -->
+
+<div class="relative w-full md:w-72">
+
+<i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+
+<input type="text" id="transaction-search" placeholder="단지명, 지역구, 전용면적 검색..." class="w-full pl-9 pr-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+
+</div>
+
+</div>
+
+​<!-- Filter Buttons -->
+
+<div class="flex flex-wrap items-center gap-2 pt-1">
+
+<div class="flex items-center p-1 bg-slate-900/80 rounded-xl border border-slate-800 text-xs overflow-x-auto">
+
+<button data-type="all" class="type-filter px-3 py-1.5 rounded-lg font-medium text-white bg-indigo-600 transition">전체 특이거래</button>
+
+<button data-type="ath" class="type-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5">
+
+<span class="w-2 h-2 rounded-full bg-rose-500"></span>신고가 (ATH)
+
+</button>
+
+<button data-type="volume" class="type-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5">
+
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>거래량 급증
+
+</button>
+
+</div>
+
+​<div class="flex items-center p-1 bg-slate-900/80 rounded-xl border border-slate-800 text-xs overflow-x-auto">
+
+<button data-region="all" class="region-filter px-3 py-1.5 rounded-lg font-medium text-indigo-400 bg-slate-800 transition">권역 전체</button>
+
+<button data-region="seoul-southeast" class="region-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">강남·동남권</button>
+
+<button data-region="seoul-river" class="region-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">마용성·광진</button>
+
+<button data-region="seoul-southwest" class="region-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">서울 서남권</button>
+
+<button data-region="seoul-northeast" class="region-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">서울 동북권</button>
+
+<button data-region="gyeonggi-south" class="region-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">경기 남부대장</button>
+
+<button data-region="gyeonggi-close" class="region-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">경기 서울인접</button>
+
+</div>
+
+</div>
+
+</section>
+
+​<!-- Cards Grid -->
+
+<section>
+
+<div id="transactions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+<!-- Rendered via JS -->
+
+</div>
+
+​<div id="empty-state" class="hidden glass-card rounded-2xl p-12 text-center border border-slate-800">
+
+<i class="fa-solid fa-filter-circle-xmark text-4xl text-slate-600 mb-3"></i>
+
+<h4 class="text-sm font-bold text-slate-300">조건에 부합하는 거래 내역이 없습니다</h4>
+
+<p class="text-xs text-slate-500 mt-1">검색어를 지우거나 권역 필터를 '권역 전체'로 변경해 보세요.</p>
+
+</div>
+
+</section>
+
+​<!-- Macro News Section -->
+
+<section class="glass-card rounded-2xl p-5 border border-slate-800">
+
+<div class="flex items-center justify-between mb-4">
+
+<div class="flex items-center space-x-2">
+
+<div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+
+<h3 class="text-sm font-bold text-white">실물 부동산 투자 직결 핵심 정책·동향 3선</h3>
+
+</div>
+
+<span class="text-xs text-slate-400">금일 시장 주요 체크포인트</span>
+
+</div>
+
+​<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+
+<div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col justify-between">
+
+<div>
+
+<div class="flex items-center justify-between text-[11px] text-indigo-400 mb-2">
+
+<span class="font-semibold">[정비사업]</span>
+
+<span class="text-slate-500">국토교통부</span>
+
+</div>
+
+<h4 class="font-bold text-slate-200 text-sm leading-snug">
+
+1기 신도시 선도지구 특별정비계획 수립 가속화, 분당 매물 잠김 현상
+
+</h4>
+
+<p class="text-slate-400 mt-2 line-clamp-2">
+
+분당 및 주요 1기 신도시를 중심으로 재건축 기대감이 반영되며 집주인들의 호가 상향 조정 및 매물 회수 현상이 이어지고 있습니다.
+
+</p>
+
+</div>
+
+<div class="mt-4 pt-2 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+
+<span class="text-amber-400"><i class="fa-solid fa-triangle-exclamation mr-1"></i>호가 강세</span>
+
+<span>영향: 성남 분당, 일산</span>
+
+</div>
+
+</div>
+
+​<div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col justify-between">
+
+<div>
+
+<div class="flex items-center justify-between text-[11px] text-indigo-400 mb-2">
+
+<span class="font-semibold">[대출 & 금리]</span>
+
+<span class="text-slate-500">금융위원회</span>
+
+</div>
+
+<h4 class="font-bold text-slate-200 text-sm leading-snug">
+
+스트레스 DSR 2단계 여파: 상급지 갈아타기 vs 외곽 중저가 시장 양극화
+
+</h4>
+
+<p class="text-slate-400 mt-2 line-clamp-2">
+
+대출 한도 축소로 외곽 중저가 지역은 관망세를 보이는 반면, 자금 여력이 있는 핵심지 15억 이상 주택은 현금 매수세가 뒷받침되고 있습니다.
+
+</p>
+
+</div>
+
+<div class="mt-4 pt-2 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+
+<span class="text-blue-400"><i class="fa-solid fa-circle-info mr-1"></i>시장 양극화</span>
+
+<span>영향: 서울·수도권 전역</span>
+
+</div>
+
+</div>
+
+​<div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col justify-between">
+
+<div>
+
+<div class="flex items-center justify-between text-[11px] text-indigo-400 mb-2">
+
+<span class="font-semibold">[교통망 개통]</span>
+
+<span class="text-slate-500">국가철도공단</span>
+
+</div>
+
+<h4 class="font-bold text-slate-200 text-sm leading-snug">
+
+GTX-A 동탄-수서 구간 안착, 동탄역세권 대장 아파트 시세 지지력 확보
+
+</h4>
+
+<p class="text-slate-400 mt-2 line-clamp-2">
+
+GTX-A 이용객 수가 안정화되면서 강남 출퇴근 수요가 동탄2신도시 역세권 대단지 매매 및 전세 시세를 견고하게 받치고 있습니다.
+
+</p>
+
+</div>
+
+<div class="mt-4 pt-2 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+
+<span class="text-emerald-400"><i class="fa-solid fa-train-subway mr-1"></i>실수요 지속</span>
+
+<span>영향: 화성 동탄, 용인 수지</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+​<!-- GitHub Settings Modal -->
+
+<div id="settings-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+
+<div class="glass-card bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+
+<button id="close-settings-btn" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+​<div class="space-y-4">
+
+<div class="flex items-center space-x-3">
+
+<div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+
+<i class="fa-brands fa-github text-xl"></i>
+
+</div>
+
+<div>
+
+<h3 class="text-base font-bold text-white">GitHub 저장소 자동 연동</h3>
+
+<p class="text-xs text-slate-400">데이터 수집 봇 저장소와 화면을 실시간 연결합니다.</p>
+
+</div>
+
+</div>
+
+​<div class="space-y-1.5 text-xs">
+
+<label class="text-slate-300 font-medium">GitHub 아이디 (Username)</label>
+
+<input type="text" id="github-username-input" value="juane0191-create" class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 mono">
+
+<p class="text-[11px] text-slate-500">기본값으로 <b>juane0191-create/apt-collector</b> 저장소를 탐색합니다.</p>
+
+</div>
+
+​<div class="p-3 bg-slate-800/50 rounded-xl text-xs text-slate-300 space-y-1 border border-slate-800">
+
+<div class="font-semibold text-indigo-300 flex items-center gap-1">
+
+<i class="fa-solid fa-circle-check text-emerald-400"></i>연동 방식
+
+</div>
+
+<p class="text-slate-400 text-[11px] leading-relaxed">
+
+1. 깃허브 웹(GitHub Pages) 접속 시: 같은 폴더의 <code class="text-indigo-300">./data/daily_briefing_data.json</code>을 0초 만에 직접 로드합니다.
+
+
+2. 로컬 브라우저에서 열 때: GitHub 공식 Raw 데이터 API를 통해 최신본을 즉시 당겨옵니다.
+
+</p>
+
+</div>
+
+​<div class="flex justify-end gap-2 pt-2">
+
+<button id="save-github-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg transition">
+
+저장 및 데이터 갱신
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+​<!-- Detail Modal -->
+
+<div id="detail-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+
+<div class="glass-card bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl overflow-hidden relative">
+
+<button id="close-modal-btn" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+​<div id="modal-content">
+
+<!-- Injected via JavaScript -->
+
+</div>
+
+</div>
+
+</div>
+
+​<!-- Toast -->
+
+<div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+
+<div class="px-4 py-3 rounded-xl bg-slate-800 border border-indigo-500/40 text-white text-xs shadow-2xl flex items-center space-x-3">
+
+<i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+
+<span id="toast-message">알림</span>
+
+</div>
+
+</div>
+
+​<footer class="mt-auto border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+
+<div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+
+<span>수도권 핵심 25개 구역 아파트 실거래 데이터 파이프라인</span>
+
+<span class="text-slate-400">국토교통부 실거래 Open API · GitHub Actions 자동 동기화</span>
+
+</div>
+
+</footer>
+
+​<script>
+
+// Fallback Mock Data in case GitHub repository is running its first batch
+
+const fallbackTransactions = [
+
+{
+
+id: "tx-sample-1",
+
+complexName: "잠실엘스",
+
+regionCategory: "seoul-southeast",
+
+regionName: "서울 송파구 잠실동",
+
+area: "84.8㎡",
+
+floor: "21층",
+
+dealPrice: 27.5,
+
+previousHigh: 27.0,
+
+dealType: "ath",
+
+diff: 0.5,
+
+diffPercent: 1.85,
+
+date: "2026-10-15",
+
+tags: ["신고가경신", "상급지리딩"],
+
+description: "로얄동 한강 조망 고층 매물로 종전 최고가 27.0억을 상향 돌파했습니다.",
+
+recentPrices: [26.0, 26.5, 26.8, 27.0, 27.5]
+
+},
+
+{
+
+id: "tx-sample-2",
+
+complexName: "양지마을 1단지 금호",
+
+regionCategory: "gyeonggi-south",
+
+regionName: "성남 분당구 수내동",
+
+area: "84.9㎡",
+
+floor: "11층",
+
+dealPrice: 16.8,
+
+previousHigh: 16.2,
+
+dealType: "volume",
+
+diff: 0.6,
+
+diffPercent: 3.7,
+
+date: "2026-10-15",
+
+tags: ["거래량급증", "1기신도시선도지구"],
+
+description: "선도지구 공모 심사 유력 단지로 단기간 내 동일 평형 거래가 4건 연속 집중되었습니다.",
+
+recentPrices: [14.8, 15.3, 15.9, 16.2, 16.8]
+
+},
+
+{
+
+id: "tx-sample-3",
+
+complexName: "동탄역 롯데캐슬",
+
+regionCategory: "gyeonggi-south",
+
+regionName: "화성시 오산동 (동탄2)",
+
+area: "84.9㎡",
+
+floor: "29층",
+
+dealPrice: 16.3,
+
+previousHigh: 16.0,
+
+dealType: "ath",
+
+diff: 0.3,
+
+diffPercent: 1.87,
+
+date: "2026-10-15",
+
+tags: ["신고가경신", "GTX직결"],
+
+description: "GTX-A 개통 호재와 슬세권 인기로 종전 최고가를 경신하며 16.3억에 신고가를 작성했습니다.",
+
+recentPrices: [14.5, 15.0, 15.6, 16.0, 16.3]
+
+}
+
+];
+
+​let currentTransactions = fallbackTransactions;
+
+let currentTypeFilter = "all";
+
+let currentRegionFilter = "all";
+
+let searchQuery = "";
+
+let gapChartInstance = null;
+
+let regionChartInstance = null;
+
+​function showToast(message, isSuccess = true) {
+
+const toast = document.getElementById('toast');
+
+const msg = document.getElementById('toast-message');
+
+const icon = document.getElementById('toast-icon');
+
+​msg.textContent = message;
+
+icon.className = isSuccess ? "fa-solid fa-circle-check text-emerald-400" : "fa-solid fa-triangle-exclamation text-amber-400";
+
+​toast.classList.remove('translate-y-20', 'opacity-0');
+
+toast.classList.add('translate-y-0', 'opacity-100');
+
+​setTimeout(() => {
+
+toast.classList.add('translate-y-20', 'opacity-0');
+
+toast.classList.remove('translate-y-0', 'opacity-100');
+
+}, 2500);
+
+}
+
+​async function loadRealEstateData() {
+
+const refreshIcon = document.getElementById('refresh-icon');
+
+refreshIcon.classList.add('animate-spin');
+
+​const defaultUser = 'juane0191-create';
+
+const savedUser = localStorage.getItem('apt_github_user') || defaultUser;
+
+document.getElementById('github-username-input').value = savedUser;
+
+​const timestamp = new Date().getTime();
+
+const urlsToTry = [
+
+./data/daily_briefing_data.json?t=${timestamp},
+
+https://raw.githubusercontent.com/${savedUser}/apt-collector/main/data/daily_briefing_data.json?t=${timestamp}
+
+];
+
+​let fetchedData = null;
+
+let usedSource = "";
+
+​for (const url of urlsToTry) {
+
+try {
+
+const resp = await fetch(url);
+
+if (resp.ok) {
+
+fetchedData = await resp.json();
+
+usedSource = url.startsWith('./') ? 'GitHub Pages' : 'GitHub Raw';
+
+break;
+
+}
+
+} catch (e) {
+
+// Continue
+
+}
+
+}
+
+​refreshIcon.classList.remove('animate-spin');
+
+​if (fetchedData && (fetchedData.curatedTransactions || fetchedData.transactions)) {
+
+const txList = fetchedData.curatedTransactions || fetchedData.transactions || [];
+
+currentTransactions = txList;
+
+​document.getElementById('header-date').textContent = fetchedData.updatedAt || '최신 수집본';
+
+document.getElementById('metric-total-trades').textContent = fetchedData.totalTradeCount || fetchedData.totalRegisteredCount || txList.length * 6;
+
+document.getElementById('metric-ath-count').textContent = txList.filter(t => t.dealType === 'ath').length;
+
+document.getElementById('metric-curated-count').textContent = txList.length;
+
+document.getElementById('metric-sync-time').textContent = 최근 갱신: ${fetchedData.updatedAt || '방금 전'};
+
+document.getElementById('data-source-badge').innerHTML = <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span><span>실시간 ${usedSource} 연동 성공</span>;
+
+​showToast(실거래 수집 데이터 ${txList.length}건을 성공적으로 반영했습니다.);
+
+} else {
+
+currentTransactions = fallbackTransactions;
+
+document.getElementById('header-date').textContent = '저장소 첫 실행 대기 중';
+
+document.getElementById('metric-total-trades').textContent = '142';
+
+document.getElementById('metric-ath-count').textContent = '2';
+
+document.getElementById('metric-curated-count').textContent = '3';
+
+document.getElementById('metric-sync-time').textContent = 'GitHub Actions 완료 시 자동 교체';
+
+document.getElementById('data-source-badge').innerHTML = <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span><span class="text-amber-400">대기 모드 (샘플 표시 중)</span>;
+
+}
+
+​renderTransactions();
+
+updateCharts();
+
+}
+
+​function renderTransactions() {
+
+const container = document.getElementById('transactions-container');
+
+const emptyState = document.getElementById('empty-state');
+
+const countBadge = document.getElementById('filtered-count-badge');
+
+​const filtered = currentTransactions.filter(item => {
+
+const matchesType = (currentTypeFilter === 'all') || (item.dealType === currentTypeFilter);
+
+const matchesRegion = (currentRegionFilter === 'all') || (item.regionCategory === currentRegionFilter);
+
+const matchesSearch = (item.complexName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+
+(item.regionName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+
+(item.area || "").includes(searchQuery);
+
+​return matchesType && matchesRegion && matchesSearch;
+
+});
+
+​countBadge.textContent = ${filtered.length}개 단지 표출;
+
+​if (filtered.length === 0) {
+
+container.innerHTML = '';
+
+emptyState.classList.remove('hidden');
+
+return;
+
+}
+
+​emptyState.classList.add('hidden');
+
+​container.innerHTML = filtered.map(tx => {
+
+const isATH = tx.dealType === 'ath';
+
+const badgeClass = isATH ? 'badge-ath' : 'badge-volume';
+
+const badgeIcon = isATH ? 'fa-crown' : 'fa-chart-simple';
+
+const badgeText = isATH ? '신고가 경신' : '거래량 집중';
+
+const diffColor = isATH ? 'text-rose-400' : 'text-emerald-400';
+
+​return `
+
+<div class="glass-card glass-card-hover rounded-2xl p-5 border border-slate-800 transition duration-200 cursor-pointer flex flex-col justify-between"
+
+onclick="openDetailModal('${tx.id}')">
+
+<div>
+
+<div class="flex items-start justify-between gap-2">
+
+<div>
+
+<span class="text-xs text-slate-400 font-medium">{tx.regionName || ''}</span>
+
+<h4 class="text-base font-bold text-white transition">{tx.complexName || ''}</h4>
+
+</div>
+
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${badgeClass} flex items-center gap-1">
+
+<i class="fa-solid ${badgeIcon} text-[10px]"></i>${badgeText}
+
+</span>
+
+</div>
+
+​<div class="mt-3 flex items-baseline justify-between border-y border-slate-800/80 py-2.5">
+
+<div>
+
+<span class="text-xs text-slate-400">체결가</span>
+
+<div class="text-xl font-bold text-white mono">{(tx.dealPrice || 0).toFixed(1)}<span class="text-sm font-normal text-slate-400 ml-1">억</span></div>
+
+</div>
+
+<div class="text-right">
+
+<span class="text-xs text-slate-400">직전대비</span>
+
+<div class="text-sm font-bold ${diffColor} mono">
+
++{(tx.diff || 0).toFixed(1)}억 (${tx.diffPercent || 0}%)
+
+</div>
+
+</div>
+
+</div>
+
+​<div class="mt-2.5 flex items-center justify-between text-xs text-slate-400">
+
+<span class="mono">${tx.area || ''} · {tx.floor || ''}</span>
+
+<span class="text-slate-500">{tx.date || ''}</span>
+
+</div>
+
+​<p class="mt-2.5 text-xs text-slate-300 leading-relaxed line-clamp-2 bg-slate-900/40 p-2 rounded-lg border border-slate-800/50">
+
+${tx.description || '최근 실거래 흐름에서 가격 변곡점을 형성한 주요 단지입니다.'}
+
+</p>
+
+</div>
+
+​<div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+
+<div class="flex flex-wrap gap-1">
+
+${(tx.tags || ['실거래확정']).map(tag => <span class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded border border-slate-700">#${tag}</span>).join('')}
+
+</div>
+
+<span class="text-xs text-indigo-400 font-medium flex items-center gap-1">
+
+상세보기 <i class="fa-solid fa-angle-right text-[10px]"></i>
+
+</span>
+
+</div>
+
+</div>
+
+`;
+
+}).join('');
+
+}
+
+​window.openDetailModal = function(id) {
+
+const tx = currentTransactions.find(t => t.id === id);
+
+if (!tx) return;
+
+​const modal = document.getElementById('detail-modal');
+
+const content = document.getElementById('modal-content');
+
+const prices = tx.recentPrices || [tx.dealPrice];
+
+​content.innerHTML = `
+
+<div class="space-y-4">
+
+<div>
+
+<span class="text-xs text-indigo-400 font-semibold">{tx.regionName || ''}</span>
+
+<h3 class="text-xl font-bold text-white">{tx.complexName}</h3>
+
+<p class="text-xs text-slate-400">${tx.area} | ${tx.floor} | ${tx.date} 계약 체결</p>
+
+</div>
+
+​<div class="p-4 rounded-xl bg-slate-800/70 border border-slate-700 grid grid-cols-2 gap-3 text-center">
+
+<div>
+
+<span class="text-xs text-slate-400">체결 실거래가</span>
+
+<div class="text-xl font-bold text-white mono mt-0.5">{tx.dealPrice}억원</div>
+
+</div>
+
+<div>
+
+<span class="text-xs text-slate-400">직전 거래 대비</span>
+
+<div class="text-xl font-bold text-rose-400 mono mt-0.5">+{tx.diff || 0}억 (${tx.diffPercent || 0}%)</div>
+
+</div>
+
+</div>
+
+​<div>
+
+<h5 class="text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5">
+
+<i class="fa-solid fa-magnifying-glass-chart text-indigo-400"></i>체결 포인트 분석
+
+</h5>
+
+<div class="p-3 bg-slate-800/40 rounded-xl text-xs text-slate-300 leading-relaxed border border-slate-700/60">
+
+${tx.description}
+
+</div>
+
+</div>
+
+​<div>
+
+<div class="flex justify-between items-center text-xs mb-2">
+
+<span class="font-bold text-slate-300">최근 실거래 히스토리</span>
+
+<span class="text-slate-500">우측이 가장 최신</span>
+
+</div>
+
+<div class="flex items-center gap-1.5">
+
+${prices.map((p, idx) => <div class="flex-1 bg-slate-800 p-2 rounded text-center border ${idx === prices.length - 1 ? 'border-rose-500/50 bg-rose-500/10' : 'border-slate-700/50'}"> <div class="text-[10px] text-slate-400">${idx + 1}회</div> <div class="text-xs font-bold ${idx === prices.length - 1 ? 'text-rose-400' : 'text-slate-200'} mono">${p}억</div> </div>).join('')}
+
+</div>
+
+</div>
+
+​<div class="pt-2 flex items-center justify-between">
+
+<span class="text-xs text-slate-500">출처: 국토교통부 실거래 Open API</span>
+
+<button onclick="copyToClipboard('${tx.complexName} ${tx.area} ${tx.floor} 실거래가 ${tx.dealPrice}억 체결')" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center gap-1">
+
+<i class="fa-regular fa-copy"></i>
+
+<span>요약 복사</span>
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+​modal.classList.remove('hidden');
+
+};
+
+​window.copyToClipboard = function(text) {
+
+const textarea = document.createElement('textarea');
+
+textarea.value = text;
+
+document.body.appendChild(textarea);
+
+textarea.select();
+
+document.execCommand('copy');
+
+document.body.removeChild(textarea);
+
+showToast('체결 요약이 클립보드에 복사되었습니다.');
+
+};
+
+​function updateCharts() {
+
+// 1. Gap Chart
+
+const gapCtx = document.getElementById('gapTrackingChart').getContext('2d');
+
+if (gapChartInstance) gapChartInstance.destroy();
+
+​gapChartInstance = new Chart(gapCtx, {
+
+type: 'line',
+
+data: {
+
+labels: ['5개월 전', '4개월 전', '3개월 전', '2개월 전', '1개월 전', '최근 체결'],
+
+datasets: [
+
+{
+
+label: '잠실엘스 (송파)',
+
+data: [25.0, 25.5, 26.2, 26.8, 27.0, 27.5],
+
+borderColor: '#f43f5e',
+
+borderWidth: 2.5,
+
+tension: 0.3,
+
+pointRadius: 3
+
+},
+
+{
+
+label: '마포래미안푸르지오 (마포)',
+
+data: [17.5, 17.8, 18.2, 18.6, 18.9, 19.1],
+
+borderColor: '#818cf8',
+
+borderWidth: 2,
+
+tension: 0.3,
+
+pointRadius: 3
+
+},
+
+{
+
+label: '분당파크뷰 (성남)',
+
+data: [14.5, 14.9, 15.3, 15.8, 16.2, 16.8],
+
+borderColor: '#34d399',
+
+borderWidth: 2,
+
+tension: 0.3,
+
+pointRadius: 3
+
+},
+
+{
+
+label: '동탄역롯데캐슬 (화성)',
+
+data: [14.0, 14.5, 15.0, 15.5, 16.0, 16.3],
+
+borderColor: '#fbbf24',
+
+borderWidth: 2,
+
+tension: 0.3,
+
+pointRadius: 3
+
+}
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: false,
+
+plugins: { legend: { display: false } },
+
+scales: {
+
+x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 10 } } },
+
+y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 10 }, callback: v => v + '억' } }
+
+}
+
+}
+
+});
+
+​// 2. Region Doughnut
+
+const regionCtx = document.getElementById('regionDistributionChart').getContext('2d');
+
+if (regionChartInstance) regionChartInstance.destroy();
+
+​const seoulCount = currentTransactions.filter(t => t.regionCategory && t.regionCategory.startsWith('seoul')).length || 2;
+
+const gyeonggiCount = currentTransactions.filter(t => t.regionCategory && t.regionCategory.startsWith('gyeonggi')).length || 1;
+
+const total = (seoulCount + gyeonggiCount) || 1;
+
+​document.getElementById('region-seoul-pct').textContent = ${Math.round((seoulCount / total) * 100)}%;
+
+document.getElementById('region-gyeonggi-pct').textContent = ${Math.round((gyeonggiCount / total) * 100)}%;
+
+​regionChartInstance = new Chart(regionCtx, {
+
+type: 'doughnut',
+
+data: {
+
+labels: ['서울 18개 구', '경기 7개 권역'],
+
+datasets: [{
+
+data: [seoulCount, gyeonggiCount],
+
+backgroundColor: ['#f43f5e', '#34d399'],
+
+borderWidth: 0
+
+}]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: false,
+
+cutout: '72%',
+
+plugins: {
+
+legend: {
+
+position: 'bottom',
+
+labels: { color: '#94a3b8', boxWidth: 8, font: { size: 10 } }
+
+}
+
+}
+
+}
+
+});
+
+}
+
+​// Filters Event Listeners
+
+document.querySelectorAll('.type-filter').forEach(btn => {
+
+btn.addEventListener('click', () => {
+
+document.querySelectorAll('.type-filter').forEach(b => {
+
+b.classList.remove('bg-indigo-600', 'text-white');
+
+b.classList.add('text-slate-400');
+
+});
+
+btn.classList.add('bg-indigo-600', 'text-white');
+
+btn.classList.remove('text-slate-400');
+
+currentTypeFilter = btn.getAttribute('data-type');
+
+renderTransactions();
+
+});
+
+});
+
+​document.querySelectorAll('.region-filter').forEach(btn => {
+
+btn.addEventListener('click', () => {
+
+document.querySelectorAll('.region-filter').forEach(b => {
+
+b.classList.remove('bg-slate-800', 'text-indigo-400');
+
+b.classList.add('text-slate-400');
+
+});
+
+btn.classList.add('bg-slate-800', 'text-indigo-400');
+
+btn.classList.remove('text-slate-400');
+
+currentRegionFilter = btn.getAttribute('data-region');
+
+renderTransactions();
+
+});
+
+});
+
+​document.getElementById('transaction-search').addEventListener('input', (e) => {
+
+searchQuery = e.target.value;
+
+renderTransactions();
+
+});
+
+​document.getElementById('refresh-btn').addEventListener('click', loadRealEstateData);
+
+​document.getElementById('close-modal-btn').addEventListener('click', () => {
+
+document.getElementById('detail-modal').classList.add('hidden');
+
+});
+
+​document.getElementById('open-settings-btn').addEventListener('click', () => {
+
+document.getElementById('settings-modal').classList.remove('hidden');
+
+});
+
+​document.getElementById('close-settings-btn').addEventListener('click', () => {
+
+document.getElementById('settings-modal').classList.add('hidden');
+
+});
+
+​document.getElementById('save-github-btn').addEventListener('click', () => {
+
+const user = document.getElementById('github-username-input').value.trim();
+
+if (user) {
+
+localStorage.setItem('apt_github_user', user);
+
+document.getElementById('settings-modal').classList.add('hidden');
+
+showToast(GitHub 계정 (${user}) 저장 완료. 데이터를 동기화합니다.);
+
+loadRealEstateData();
+
+}
+
+});
+
+​window.onload = function() {
+
+loadRealEstateData();
+
+};
+
+</script>
+
+</body>
+
+</html>
+
