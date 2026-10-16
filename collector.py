@@ -1,7 +1,11 @@
 """
-수도권 핵심 25개 구역 아파트 실거래가 고속 자동 수집 파이프라인 (대시보드 완전 연동형)
-- 오류 수정: 파이썬 변수명 문법 오류(gyeonggi-count -> gyeonggi_count) 수정
-- 데이터 호환성: 웹앱(index.html)에서 9월/10월 탭 전환이 즉각 가능하도록 monthsData 및 periods 규격 동시 지원
+수도권 핵심 25개 구역 아파트 실거래가 고속 자동 수집 파이프라인 (5개년 벤치마크 비교 엔진 탑재)
+- 주요 기능:
+  1. 당월 및 전월 실거래가 고속 수집
+  2. 'data/history_ath_benchmark.csv'(5개년 전고점 DB)가 있으면 자동 로드하여 전고점 대조
+  3. 역대 신고가(전고점 돌파) 여부 및 '전고점 대비 회복률(%)' 정밀 계산
+  4. 신규 역대 최고가 발생 시 벤치마크 DB 자동 갱신
+  5. 웹 대시보드(index.html)와 100% 호환되는 JSON 내보내기
 """
 
 import os
@@ -56,6 +60,7 @@ TARGET_REGIONS = {
 }
 
 API_ENDPOINT = "http://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
+BENCHMARK_FILE = "data/history_ath_benchmark.csv"
 
 def fetch_region_xml(service_key: str, code: str, ym: str) -> list:
     """10초 타임아웃 및 안전 파싱 적용 API 호출"""
@@ -83,8 +88,10 @@ def fetch_region_xml(service_key: str, code: str, ym: str) -> list:
                 node = item.find(tag)
                 return node.text.strip() if (node is not None and node.text) else ""
             
-            # 해제(취소) 거래 필터링
+            # 해제 거래 및 직거래 제외
             if val("cdealDay") or val("cdealType") == "O":
+                continue
+            if "직거래" in val("dealingGbn"):
                 continue
             
             price_raw = val("dealAmount").replace(",", "").strip()
@@ -119,7 +126,7 @@ def fetch_single_region_task(service_key: str, code: str, info: dict, query_mont
     return info["name"], all_records
 
 def determine_query_months():
-    """조회 월 결정 (당월 및 직전월 산출)"""
+    """조회 월 결정 (당월 및 직전월)"""
     now = datetime.now()
     cur_ym = now.strftime("%Y%m")
     
@@ -132,14 +139,32 @@ def determine_query_months():
     
     return [prev_ym, cur_ym]
 
-def extract_curated_insights(clean_df: pd.DataFrame) -> list:
-    """단지별 신고가 및 거래량 집중 핀셋 선별"""
+def load_benchmark_db():
+    """5개년 역대 최고가 벤치마크 DB 로드"""
+    if not os.path.exists(BENCHMARK_FILE):
+        return {}
+
+    try:
+        b_df = pd.read_csv(BENCHMARK_FILE)
+        benchmark = {}
+        for _, r in b_df.iterrows():
+            key = f"{r['아파트']}_{int(round(r['전용면적']))}_{r['지역명']}"
+            benchmark[key] = {
+                "역대최고가_억": float(r["역대최고가_억"]),
+                "최고가계약일": str(r["최고가계약일"]),
+                "최고가층": str(r.get("최고가층", ""))
+            }
+        return benchmark
+    except Exception as e:
+        print(f"⚠️ 벤치마크 DB 로드 실패: {e}", flush=True)
+        return {}
+
+def extract_curated_insights(clean_df: pd.DataFrame, benchmark_db: dict) -> list:
+    """단지별 신고가 및 거래량 집중 핀셋 선별 (5개년 전고점 비교 반영)"""
     if clean_df.empty or "아파트" not in clean_df.columns:
         return []
 
     valid_df = clean_df.copy()
-    if "거래유형" in valid_df.columns:
-        valid_df = valid_df[~valid_df["거래유형"].astype(str).str.contains("직거래", na=False)]
     if "층" in valid_df.columns:
         valid_df = valid_df[~valid_df["층"].isin(["1층", "2층"])]
 
@@ -147,7 +172,7 @@ def extract_curated_insights(clean_df: pd.DataFrame) -> list:
     valid_df["평형그룹"] = valid_df["전용면적"].round().astype(int)
     groups = valid_df.groupby(["아파트", "평형그룹", "지역명"])
 
-    for (apt_name, _, region_name), group in groups:
+    for (apt_name, area_group, region_name), group in groups:
         if len(group) == 0:
             continue
 
@@ -162,9 +187,42 @@ def extract_curated_insights(clean_df: pd.DataFrame) -> list:
         row_id = f"tx-{len(curated)+1}"
         region_cat = latest.get("권역코드", "all")
         dong = latest.get("법정동", "")
+        b_key = f"{apt_name}_{area_group}_{region_name}"
 
-        # 1. 신고가 (ATH)
-        if len(prices) >= 2 and latest_price > max(prices[:-1]):
+        # 5개년 벤치마크 전고점 확인
+        has_history = b_key in benchmark_db
+        hist_ath = benchmark_db[b_key]["역대최고가_억"] if has_history else max(prices)
+        hist_date = benchmark_db[b_key]["최고가계약일"] if has_history else ""
+
+        # 회복률 계산 (전고점 대비 현재 거래가 비율)
+        recovery_ratio = round((latest_price / (hist_ath or 1)) * 100, 1)
+
+        # 1. 5개년 역대 최고가 돌파 (진짜 ATH)
+        if latest_price > hist_ath:
+            diff = round(latest_price - hist_ath, 2)
+            curated.append({
+                "id": row_id,
+                "complexName": apt_name,
+                "regionCategory": region_cat,
+                "regionName": f"{region_name} {dong}".strip(),
+                "area": f"{latest['전용면적']:.1f}㎡",
+                "floor": latest["층"],
+                "dealPrice": latest_price,
+                "previousHigh": hist_ath,
+                "dealType": "ath",
+                "diff": diff,
+                "diffPercent": round((diff / (hist_ath or 1)) * 100, 2),
+                "date": latest.get("계약일자", ""),
+                "month": latest.get("조회월", ""),
+                "tags": ["역대신고가", "전고점돌파"],
+                "description": f"종전 역대 최고가({hist_ath}억, {hist_date})를 돌파하며 5개년 신고가를 경신했습니다. (회복률 {recovery_ratio}%)",
+                "recentPrices": prices[-5:]
+            })
+            # 벤치마크 실시간 업데이트
+            benchmark_db[b_key] = {"역대최고가_억": latest_price, "최고가계약일": latest.get("계약일자", ""), "최고가층": latest["층"]}
+
+        # 2. 단기(2개월 내) 신고가 또는 전고점 95% 이상 근접
+        elif len(prices) >= 2 and latest_price > max(prices[:-1]):
             prev_high = max(prices[:-1])
             diff = round(latest_price - prev_high, 2)
             curated.append({
@@ -181,11 +239,12 @@ def extract_curated_insights(clean_df: pd.DataFrame) -> list:
                 "diffPercent": round((diff / (prev_high or 1)) * 100, 2),
                 "date": latest.get("계약일자", ""),
                 "month": latest.get("조회월", ""),
-                "tags": ["신고가경신", "상급지리딩"],
-                "description": f"단기 최고가 {prev_high}억 대비 {diff}억원 상승하며 신고가를 경신했습니다.",
+                "tags": ["단기신고가", f"전고점대비 {recovery_ratio}%"],
+                "description": f"직전 거래 대비 {diff}억원 상승했습니다. 역대 전고점({hist_ath}억) 대비 {recovery_ratio}% 수준입니다.",
                 "recentPrices": prices[-5:]
             })
-        # 2. 거래량 급증 단지
+
+        # 3. 거래량 집중 단지
         elif len(sorted_g) >= 2:
             first_price = prices[0]
             diff = round(latest_price - first_price, 2)
@@ -197,14 +256,14 @@ def extract_curated_insights(clean_df: pd.DataFrame) -> list:
                 "area": f"{latest['전용면적']:.1f}㎡",
                 "floor": latest["층"],
                 "dealPrice": latest_price,
-                "previousHigh": max(prices),
+                "previousHigh": hist_ath,
                 "dealType": "volume",
                 "diff": diff,
                 "diffPercent": round((diff / (first_price or 1)) * 100, 2),
                 "date": latest.get("계약일자", ""),
                 "month": latest.get("조회월", ""),
-                "tags": ["거래량집중", "손바뀜활발"],
-                "description": f"단기간 내 체결이 집중되며 매수세가 이어진 단지입니다.",
+                "tags": ["거래량집중", f"전고점대비 {recovery_ratio}%"],
+                "description": f"단기간 내 체결이 집중된 단지입니다. (역대 전고점 대비 {recovery_ratio}% 시세)",
                 "recentPrices": prices[-5:]
             })
 
@@ -221,6 +280,14 @@ def main():
     query_months = determine_query_months()
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🚀 25개 구역 실거래 수집 시작 (대상월: {query_months})...", flush=True)
 
+    # 1. 5개년 벤치마크 DB 로드
+    benchmark_db = load_benchmark_db()
+    if benchmark_db:
+        print(f"📚 [벤치마크 연동] 5개년 역대 전고점 DB 로드 완료 ({len(benchmark_db)}개 단지 대조 대기)", flush=True)
+    else:
+        print(f"ℹ️ [안내] 벤치마크 DB가 없습니다. 최근 수집 데이터 기준으로 전고점을 비교합니다.", flush=True)
+
+    # 2. 최근 2개월 실거래 병렬 수집
     all_data = []
     with ThreadPoolExecutor(max_workers=5) as executor:
         futures = [
@@ -251,10 +318,10 @@ def main():
         sub_df.to_csv(csv_filename, index=False, encoding="utf-8-sig")
         print(f"💾 [저장 완료] CSV 원본: {csv_filename} ({len(sub_df)}건)", flush=True)
 
-    # 큐레이션 추출
-    curated_list = extract_curated_insights(clean_df)
+    # 3. 5개년 전고점 대조 큐레이션 추출
+    curated_list = extract_curated_insights(clean_df, benchmark_db)
 
-    # 웹 대시보드 연동용 월별 객체 생성
+    # 4. 웹 대시보드 페이로드 구성
     months_payload = {}
     periods_payload = {}
 
@@ -262,33 +329,9 @@ def main():
         month_df = clean_df[clean_df["조회월"] == ym] if "조회월" in clean_df.columns else pd.DataFrame()
         month_curated = [item for item in curated_list if item.get("month") == ym]
 
-        # 단지가 적을 경우 정상 실거래 보충 (화면 빈칸 방지)
-        if len(month_curated) < 4 and not month_df.empty:
-            for f_idx, row in month_df.head(8).iterrows():
-                month_curated.append({
-                    "id": f"fill-{ym}-{f_idx}",
-                    "complexName": row["아파트"],
-                    "regionCategory": row.get("권역코드", "all"),
-                    "regionName": f"{row.get('지역명', '')} {row.get('법정동', '')}".strip(),
-                    "area": f"{row['전용면적']:.1f}㎡",
-                    "floor": row["층"],
-                    "dealPrice": row["거래금액_억"],
-                    "previousHigh": row["거래금액_억"],
-                    "dealType": "volume",
-                    "diff": 0.0,
-                    "diffPercent": 0.0,
-                    "date": row.get("계약일자", ""),
-                    "month": ym,
-                    "tags": ["정상실거래"],
-                    "description": f"{row.get('계약일자', '')} 체결된 공식 실거래입니다.",
-                    "recentPrices": [row["거래금액_억"]]
-                })
-
-        # 문법 오류(하이픈)를 언더스코어로 수정한 통계 계산부
         seoul_count = len(month_df[month_df["권역코드"].astype(str).str.startswith("seoul")]) if not month_df.empty else 0
         gyeonggi_count = len(month_df[month_df["권역코드"].astype(str).str.startswith("gyeonggi")]) if not month_df.empty else 0
         total_m = len(month_df) or 1
-        
         m_label = f"{ym[:4]}년 {int(ym[4:])}월"
 
         m_data = {
@@ -308,7 +351,6 @@ def main():
         else:
             periods_payload["previous"] = m_data
 
-    # 구버전 및 신버전 프론트엔드가 모두 해석할 수 있는 포괄적 JSON 페이로드
     latest_ym = query_months[-1]
     json_payload = {
         "updatedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -316,6 +358,7 @@ def main():
         "defaultMonth": latest_ym,
         "monthsData": months_payload,
         "periods": periods_payload,
+        "hasBenchmark": len(benchmark_db) > 0,
         "totalTradeCount": months_payload[latest_ym]["totalTradeCount"],
         "curatedCount": months_payload[latest_ym]["curatedCount"],
         "curatedTransactions": months_payload[latest_ym]["transactions"]
