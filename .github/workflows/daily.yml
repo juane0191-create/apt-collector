@@ -5,7 +5,7 @@ on:
     - cron: '0 21 * * *' # 매일 아침 6시 (한국시간 기준, UTC 21:00) 자동 실행
   workflow_dispatch:      # 수동 즉시 실행 버튼 활성화
 
-# 봇에게 저장소 쓰기(Push) 권한을 명시적으로 부여 (403 에러 원천 차단)
+# 봇에게 저장소 쓰기(Push) 권한 명시 부여 (403 에러 원천 차단)
 permissions:
   contents: write
 
@@ -21,8 +21,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 필요한 도구 설치
-        run: pip install PublicDataReader pandas
+      - name: 필요한 도구 설치 (requests, pandas)
+        run: pip install pandas requests
 
       - name: 데이터 수집 실행
         env:
