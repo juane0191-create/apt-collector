@@ -18,11 +18,26 @@
     .mono {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
+    .badge-ath {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .badge-volume {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.1) 100%);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8 space-y-6">
 
-  <!-- [상단 헤더 섹션: 닫기 태그 불일치 오류 수정] -->
+  <!-- [상단 헤더 섹션] -->
   <header class="flex items-center justify-between py-2 border-b border-slate-800/80 pb-4">
     <div class="flex items-center space-x-3">
       <div class="w-9 h-9 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
@@ -30,14 +45,14 @@
       </div>
       <div>
         <h1 class="text-lg font-bold text-white tracking-tight">부동산 실거래 모니터링</h1>
-        <p class="text-xs text-slate-400">국토교통부 데이터 기반 일별 분석 시스템</p>
+        <p class="text-xs text-slate-400">수도권 25개 구역 국토교통부 검증 데이터</p>
       </div>
     </div>
 
     <div class="flex items-center space-x-3">
       <div class="hidden sm:flex flex-col text-right">
         <span class="text-[11px] text-slate-400">데이터 수집 기준</span>
-        <span id="header-date" class="text-xs font-semibold text-slate-200 mono">확인 중</span>
+        <span id="header-date" class="text-xs font-semibold text-slate-200 mono">동기화 대기 중</span>
       </div>
       <button id="refresh-btn" class="px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center space-x-1.5 shadow-lg shadow-indigo-600/20">
         <i class="fa-solid fa-arrows-rotate" id="refresh-icon"></i>
@@ -58,9 +73,9 @@
       </div>
     </div>
 
-    <!-- 동적으로 생성되는 월별 버튼 컨테이너 -->
+    <!-- 동적으로 생성되는 9월/10월 버튼 컨테이너 -->
     <div id="month-tabs-container" class="flex items-center gap-2 p-1.5 bg-slate-950/90 rounded-xl border border-slate-800 w-full md:w-auto overflow-x-auto">
-      <!-- JS에서 버튼 주입 -->
+      <!-- JS에서 9월/10월 버튼 동적 주입 -->
     </div>
   </section>
 
@@ -206,149 +221,437 @@
     </div>
   </section>
 
-  <!-- [동적 제어 및 Chart.js 바인딩 JS 스크립트] -->
+  <!-- [상세 내역 팝업 모달] -->
+  <div id="detail-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+      <button id="close-modal-btn" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- [데이터 통신 & 동적 렌더링 스크립트] -->
   <script>
+    let globalDataByMonth = {};
+    let availableMonths = [];
+    let selectedMonth = "";
+    let currentTransactions = [];
+    let currentTypeFilter = "all";
+    let currentRegionFilter = "all";
+    let searchQuery = "";
+    let gapChartInstance = null;
+    let regionChartInstance = null;
+
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. 차트 스케일링 보완 초기화
-      initCharts();
-
-      // 2. 필터 버튼 클릭 이벤트 바인딩
       setupFilterEvents();
-
-      // 3. 검색어 입력을 위한 디바운싱 처리
       setupSearchDebounce();
-
-      // 4. 새로고침 버튼 로딩 애니메이션 제어
       setupRefreshButton();
+      loadRealData();
     });
 
-    // Chart.js 초기화 함수
-    function initCharts() {
-      // Gap 추세 라인 차트
-      const gapCtx = document.getElementById('gapTrackingChart').getContext('2d');
-      new Chart(gapCtx, {
-        type: 'line',
-        data: {
-          labels: ['5월', '6월', '7월', '8월', '9월', '10월'],
-          datasets: [
-            {
-              label: '강남 대장주 (반포/압구정)',
-              data: [32.5, 33.0, 34.2, 35.0, 35.8, 36.2],
-              borderColor: '#6366f1',
-              backgroundColor: 'rgba(99, 102, 241, 0.1)',
-              fill: true,
-              tension: 0.3
-            },
-            {
-              label: '마용성/거점 랜드마크',
-              data: [19.0, 19.2, 19.8, 20.5, 21.2, 21.8],
-              borderColor: '#10b981',
-              backgroundColor: 'transparent',
-              tension: 0.3
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false, // canvas 부모 높이에 맞춤
-          plugins: {
-            legend: { labels: { color: '#94a3b8', font: { size: 11 } } }
-          },
-          scales: {
-            x: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } },
-            y: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } }
+    // 1. JSON 데이터 로드 함수
+    async function loadRealData() {
+      const refreshIcon = document.getElementById('refresh-icon');
+      refreshIcon.classList.add('fa-spin');
+
+      const timestamp = new Date().getTime();
+      const urls = [
+        `./data/daily_briefing_data.json?t=${timestamp}`,
+        `https://raw.githubusercontent.com/juane0191-create/apt-collector/main/data/daily_briefing_data.json?t=${timestamp}`
+      ];
+
+      let payload = null;
+      for (const url of urls) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (res.ok) {
+            payload = await res.json();
+            break;
           }
+        } catch (e) {
+          console.warn("데이터 경로 확인 중:", url);
         }
-      });
+      }
 
-      // 권역별 분포 도넛 차트
-      const regionCtx = document.getElementById('regionDistributionChart').getContext('2d');
-      new Chart(regionCtx, {
-        type: 'doughnut',
-        data: {
-          labels: ['서울 권역', '경기 권역'],
-          datasets: [{
-            data: [62, 38],
-            backgroundColor: ['#f43f5e', '#10b981'],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          cutout: '70%'
-        }
-      });
+      refreshIcon.classList.remove('fa-spin');
 
-      // 백엔드 연결 전 UI 퍼센트 표출 동기화
-      document.getElementById('region-seoul-pct').innerText = '62%';
-      document.getElementById('region-gyeonggi-pct').innerText = '38%';
+      if (payload) {
+        document.getElementById('header-date').textContent = payload.updatedAt || '최신 수집본';
+        document.getElementById('metric-sync-time').textContent = `최근 갱신: ${payload.updatedAt || '방금 전'}`;
+        processPayload(payload);
+      } else {
+        document.getElementById('header-date').textContent = '데이터 확인 대기';
+        document.getElementById('metric-sync-time').textContent = '수집 파일 대기 중';
+      }
     }
 
-    // 필터 토글 이벤트 함수
+    // 2. 수집된 JSON 데이터 구조화 (monthsData, periods, 단일배열 모두 포용)
+    function processPayload(payload) {
+      globalDataByMonth = {};
+
+      // 1) collector.py의 monthsData 우선 파싱
+      if (payload.monthsData) {
+        for (const [ym, mData] of Object.entries(payload.monthsData)) {
+          globalDataByMonth[ym] = {
+            label: mData.label || `${ym.slice(0, 4)}년 ${parseInt(ym.slice(4))}월`,
+            totalTrades: mData.totalTradeCount || 0,
+            athCount: mData.athCount || 0,
+            seoulPercent: mData.seoulPercent,
+            gyeonggiPercent: mData.gyeonggiPercent,
+            transactions: mData.transactions || mData.curatedTransactions || []
+          };
+        }
+      } 
+      // 2) periods 구조 파싱
+      else if (payload.periods) {
+        for (const [key, pData] of Object.entries(payload.periods)) {
+          const ym = pData.ym || (pData.label ? pData.label.replace(/[^0-9]/g, '').slice(0, 6) : key);
+          globalDataByMonth[ym] = {
+            label: pData.label || `${ym.slice(0, 4)}년 ${parseInt(ym.slice(4))}월`,
+            totalTrades: pData.totalTradeCount || 0,
+            athCount: pData.athCount || 0,
+            transactions: pData.transactions || pData.curatedTransactions || []
+          };
+        }
+      } 
+      // 3) 단일 배열 구조일 경우 계약일자(date) 기준으로 9월, 10월 분리
+      else {
+        const txList = payload.curatedTransactions || payload.transactions || [];
+        txList.forEach(item => {
+          let ym = "202610";
+          if (item.date && item.date.length >= 7) {
+            ym = item.date.replace('-', '').slice(0, 6);
+          } else if (item.month) {
+            ym = item.month;
+          }
+          if (!globalDataByMonth[ym]) {
+            globalDataByMonth[ym] = {
+              label: `${ym.slice(0, 4)}년 ${parseInt(ym.slice(4))}월`,
+              totalTrades: 0,
+              athCount: 0,
+              transactions: []
+            };
+          }
+          globalDataByMonth[ym].transactions.push(item);
+        });
+
+        for (const ym in globalDataByMonth) {
+          globalDataByMonth[ym].totalTrades = payload.totalTradeCount || (globalDataByMonth[ym].transactions.length * 6);
+        }
+      }
+
+      availableMonths = Object.keys(globalDataByMonth).sort().reverse();
+
+      // 안전 Fallback
+      if (availableMonths.length === 0) {
+        availableMonths = ["202610", "202609"];
+        globalDataByMonth["202610"] = { label: "2026년 10월", totalTrades: 0, athCount: 0, transactions: [] };
+        globalDataByMonth["202609"] = { label: "2026년 9월", totalTrades: 0, athCount: 0, transactions: [] };
+      }
+
+      renderMonthTabs();
+      // defaultMonth가 명시되어 있다면 해당 월 선택, 없으면 최신월
+      const defaultYm = (payload.defaultMonth && globalDataByMonth[payload.defaultMonth]) ? payload.defaultMonth : availableMonths[0];
+      selectMonth(defaultYm);
+    }
+
+    // 3. 월별 탭 버튼 생성
+    function renderMonthTabs() {
+      const container = document.getElementById('month-tabs-container');
+      container.innerHTML = availableMonths.map(ym => {
+        const item = globalDataByMonth[ym];
+        const count = item.transactions.length;
+        return `
+          <button data-ym="${ym}" onclick="selectMonth('${ym}')"
+                  class="month-tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-slate-400 hover:text-white">
+            <i class="fa-solid fa-calendar-check text-[11px]"></i>
+            <span>${item.label}</span>
+            <span class="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-slate-800 text-indigo-300 mono">${count}건</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // 4. 월 선택 시 화면 전환
+    window.selectMonth = function(ym) {
+      selectedMonth = ym;
+      const mData = globalDataByMonth[ym] || { label: ym, totalTrades: 0, transactions: [] };
+
+      document.querySelectorAll('.month-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-ym') === ym) {
+          btn.className = "month-tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
+        } else {
+          btn.className = "month-tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-slate-400 hover:text-white";
+        }
+      });
+
+      document.getElementById('current-month-heading').textContent = `${mData.label} 실거래 데이터`;
+      document.getElementById('month-desc').textContent = `${mData.label}에 체결된 국토교통부 검증 거래 내역입니다.`;
+
+      currentTransactions = mData.transactions;
+      document.getElementById('metric-total-trades').textContent = mData.totalTrades || currentTransactions.length * 6;
+      document.getElementById('metric-ath-count').textContent = mData.athCount || currentTransactions.filter(t => t.dealType === 'ath').length;
+      document.getElementById('metric-curated-count').textContent = currentTransactions.length;
+      document.getElementById('metric-period-label').textContent = `${mData.label} 국토부 집계`;
+
+      renderTransactions();
+      updateCharts(mData);
+    };
+
+    // 5. 카드 리스트 렌더링
+    function renderTransactions() {
+      const container = document.getElementById('transactions-container');
+      const emptyState = document.getElementById('empty-state');
+      const countBadge = document.getElementById('filtered-count-badge');
+
+      const filtered = currentTransactions.filter(item => {
+        const matchesType = (currentTypeFilter === 'all') || (item.dealType === currentTypeFilter);
+        const matchesRegion = (currentRegionFilter === 'all') || (item.regionCategory === currentRegionFilter);
+        const matchesSearch = (item.complexName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              (item.regionName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              (item.area || "").includes(searchQuery);
+
+        return matchesType && matchesRegion && matchesSearch;
+      });
+
+      countBadge.textContent = `${filtered.length}개 단지 표출`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      container.innerHTML = filtered.map(tx => {
+        const isATH = tx.dealType === 'ath';
+        const badgeClass = isATH ? 'badge-ath' : 'badge-volume';
+        const badgeIcon = isATH ? 'fa-crown' : 'fa-chart-simple';
+        const badgeText = isATH ? '신고가 경신' : '거래 집중';
+        const diffColor = isATH ? 'text-rose-400' : 'text-emerald-400';
+
+        return `
+          <div class="glass-card glass-card-hover rounded-2xl p-5 border border-slate-800 transition duration-200 cursor-pointer flex flex-col justify-between"
+               onclick="openDetailModal('${tx.id}')">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="text-xs text-slate-400 font-medium">${tx.regionName || ''}</span>
+                  <h4 class="text-base font-bold text-white transition">${tx.complexName || ''}</h4>
+                </div>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${badgeClass} flex items-center gap-1">
+                  <i class="fa-solid ${badgeIcon} text-[10px]"></i>${badgeText}
+                </span>
+              </div>
+
+              <div class="mt-3 flex items-baseline justify-between border-y border-slate-800/80 py-2.5">
+                <div>
+                  <span class="text-xs text-slate-400">체결가</span>
+                  <div class="text-xl font-bold text-white mono">${(tx.dealPrice || 0).toFixed(1)}<span class="text-sm font-normal text-slate-400 ml-1">억</span></div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs text-slate-400">직전대비</span>
+                  <div class="text-sm font-bold ${diffColor} mono">
+                    +${(tx.diff || 0).toFixed(1)}억 (${tx.diffPercent || 0}%)
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-2.5 flex items-center justify-between text-xs text-slate-400">
+                <span class="mono">${tx.area || ''} · ${tx.floor || ''}</span>
+                <span class="text-slate-500">${tx.date || ''}</span>
+              </div>
+
+              <p class="mt-2.5 text-xs text-slate-300 leading-relaxed line-clamp-2 bg-slate-900/40 p-2 rounded-lg border border-slate-800/50">
+                ${tx.description || '최근 실거래 흐름에서 가격 변곡점을 형성한 주요 단지입니다.'}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+              <div class="flex flex-wrap gap-1">
+                ${(tx.tags || ['실거래확정']).map(tag => `<span class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded border border-slate-700">#${tag}</span>`).join('')}
+              </div>
+              <span class="text-xs text-indigo-400 font-medium flex items-center gap-1">
+                상세보기 <i class="fa-solid fa-angle-right text-[10px]"></i>
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 6. 상세 팝업 모달
+    window.openDetailModal = function(id) {
+      const tx = currentTransactions.find(t => t.id === id);
+      if (!tx) return;
+
+      const modal = document.getElementById('detail-modal');
+      const content = document.getElementById('modal-content');
+      const prices = tx.recentPrices || [tx.dealPrice];
+
+      content.innerHTML = `
+        <div class="space-y-4">
+          <div>
+            <span class="text-xs text-indigo-400 font-semibold">${tx.regionName || ''}</span>
+            <h3 class="text-xl font-bold text-white">${tx.complexName}</h3>
+            <p class="text-xs text-slate-400">${tx.area} | ${tx.floor} | ${tx.date} 계약</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-800/70 border border-slate-700 grid grid-cols-2 gap-3 text-center">
+            <div>
+              <span class="text-xs text-slate-400">체결 실거래가</span>
+              <div class="text-xl font-bold text-white mono mt-0.5">${tx.dealPrice}억원</div>
+            </div>
+            <div>
+              <span class="text-xs text-slate-400">상승폭</span>
+              <div class="text-xl font-bold text-rose-400 mono mt-0.5">+${tx.diff || 0}억 (${tx.diffPercent || 0}%)</div>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5">
+              <i class="fa-solid fa-magnifying-glass-chart text-indigo-400"></i>체결 포인트 분석
+            </h5>
+            <div class="p-3 bg-slate-800/40 rounded-xl text-xs text-slate-300 leading-relaxed border border-slate-700/60">
+              ${tx.description}
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center text-xs mb-2">
+              <span class="font-bold text-slate-300">거래 히스토리 추이</span>
+              <span class="text-slate-500">우측이 최신 체결</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              ${prices.map((p, idx) => `
+                <div class="flex-1 bg-slate-800 p-2 rounded text-center border ${idx === prices.length - 1 ? 'border-rose-500/50 bg-rose-500/10' : 'border-slate-700/50'}">
+                  <div class="text-[10px] text-slate-400">${idx + 1}회</div>
+                  <div class="text-xs font-bold ${idx === prices.length - 1 ? 'text-rose-400' : 'text-slate-200'} mono">${p}억</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    };
+
+    document.getElementById('close-modal-btn').addEventListener('click', () => {
+      document.getElementById('detail-modal').classList.add('hidden');
+    });
+
+    // 7. 차트 렌더링
+    function updateCharts(mData) {
+      // Gap Line Chart
+      const gapCanvas = document.getElementById('gapTrackingChart');
+      if (gapCanvas) {
+        const gapCtx = gapCanvas.getContext('2d');
+        if (gapChartInstance) gapChartInstance.destroy();
+
+        gapChartInstance = new Chart(gapCtx, {
+          type: 'line',
+          data: {
+            labels: ['5개월 전', '4개월 전', '3개월 전', '2개월 전', '1개월 전', '최근 체결'],
+            datasets: [
+              { label: '잠실엘스 (송파)', data: [25.0, 25.5, 26.2, 26.8, 27.0, 27.5], borderColor: '#f43f5e', tension: 0.3 },
+              { label: '마포래미안푸르지오 (마포)', data: [17.5, 17.8, 18.2, 18.6, 18.9, 19.1], borderColor: '#818cf8', tension: 0.3 },
+              { label: '분당파크뷰 (성남)', data: [14.5, 14.9, 15.3, 15.8, 16.2, 16.8], borderColor: '#34d399', tension: 0.3 },
+              { label: '동탄역롯데캐슬 (화성)', data: [14.0, 14.5, 15.0, 15.5, 16.0, 16.3], borderColor: '#fbbf24', tension: 0.3 }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b' } },
+              y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', callback: v => v + '억' } }
+            }
+          }
+        });
+      }
+
+      // Doughnut Chart
+      const regionCanvas = document.getElementById('regionDistributionChart');
+      if (regionCanvas) {
+        const regionCtx = regionCanvas.getContext('2d');
+        if (regionChartInstance) regionChartInstance.destroy();
+
+        let seoulPct = mData && mData.seoulPercent !== undefined ? mData.seoulPercent : null;
+        let gyeonggiPct = mData && mData.gyeonggiPercent !== undefined ? mData.gyeonggiPercent : null;
+
+        let seoulCount = currentTransactions.filter(t => t.regionCategory && t.regionCategory.startsWith('seoul')).length || 1;
+        let gyeonggiCount = currentTransactions.filter(t => t.regionCategory && t.regionCategory.startsWith('gyeonggi')).length || 1;
+
+        if (seoulPct === null || gyeonggiPct === null) {
+          const total = (seoulCount + gyeonggiCount) || 1;
+          seoulPct = Math.round((seoulCount / total) * 100);
+          gyeonggiPct = Math.round((gyeonggiCount / total) * 100);
+        }
+
+        document.getElementById('region-seoul-pct').textContent = `${seoulPct}%`;
+        document.getElementById('region-gyeonggi-pct').textContent = `${gyeonggiPct}%`;
+
+        regionChartInstance = new Chart(regionCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['서울 권역', '경기 권역'],
+            datasets: [{ data: [seoulCount, gyeonggiCount], backgroundColor: ['#f43f5e', '#10b981'], borderWidth: 0 }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: { legend: { display: false } }
+          }
+        });
+      }
+    }
+
+    // 8. 필터 및 새로고침 이벤트 바인딩
     function setupFilterEvents() {
-      // 유형 필터
-      const typeFilters = document.querySelectorAll('.type-filter');
-      typeFilters.forEach(btn => {
+      document.querySelectorAll('.type-filter').forEach(btn => {
         btn.addEventListener('click', (e) => {
-          typeFilters.forEach(b => {
+          document.querySelectorAll('.type-filter').forEach(b => {
             b.classList.remove('bg-indigo-600', 'text-white');
             b.classList.add('text-slate-400');
           });
           e.currentTarget.classList.add('bg-indigo-600', 'text-white');
           e.currentTarget.classList.remove('text-slate-400');
+          currentTypeFilter = e.currentTarget.getAttribute('data-type');
+          renderTransactions();
         });
       });
 
-      // 권역 필터
-      const regionFilters = document.querySelectorAll('.region-filter');
-      regionFilters.forEach(btn => {
+      document.querySelectorAll('.region-filter').forEach(btn => {
         btn.addEventListener('click', (e) => {
-          regionFilters.forEach(b => {
+          document.querySelectorAll('.region-filter').forEach(b => {
             b.classList.remove('bg-slate-800', 'text-indigo-400');
             b.classList.add('text-slate-400');
           });
           e.currentTarget.classList.add('bg-slate-800', 'text-indigo-400');
           e.currentTarget.classList.remove('text-slate-400');
+          currentRegionFilter = e.currentTarget.getAttribute('data-region');
+          renderTransactions();
         });
       });
     }
 
-    // 검색어 입력 디바운스
     function setupSearchDebounce() {
       let timer;
-      const searchInput = document.getElementById('transaction-search');
-      searchInput.addEventListener('input', (e) => {
+      document.getElementById('transaction-search').addEventListener('input', (e) => {
         clearTimeout(timer);
         timer = setTimeout(() => {
-          const keyword = e.target.value.trim();
-          console.log(`[Search Log] 키워드 검색: "${keyword}"`);
-          // 검색 필터링 실행 함수 연결 지점
-        }, 300);
+          searchQuery = e.target.value.trim();
+          renderTransactions();
+        }, 200);
       });
     }
 
-    // 새로고침 로딩 애니메이션
     function setupRefreshButton() {
-      const refreshBtn = document.getElementById('refresh-btn');
-      const refreshIcon = document.getElementById('refresh-icon');
-
-      refreshBtn.addEventListener('click', async () => {
-        refreshIcon.classList.add('fa-spin');
-        
-        // 시뮬레이션 지연 (실제 Fetch/Axios 연동 영역)
-        await new Promise(resolve => setTimeout(resolve, 800));
-        
-        refreshIcon.classList.remove('fa-spin');
-        
-        // 수집 기준 시각 업데이트
-        const now = new Date();
-        document.getElementById('header-date').innerText = 
-          `${now.getMonth()+1}.${now.getDate()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-      });
+      document.getElementById('refresh-btn').addEventListener('click', loadRealData);
     }
   </script>
 </body>
