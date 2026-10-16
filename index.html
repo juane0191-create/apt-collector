@@ -1,11 +1,9 @@
-  <!-- Date & Action Status -->
   <div class="flex items-center space-x-3">
     <div class="hidden sm:flex flex-col text-right">
       <span class="text-[11px] text-slate-400">데이터 수집 기준</span>
-      <span id="header-date" class="text-xs font-semibold text-slate-200 mono">동기화 대기 중</span>
+      <span id="header-date" class="text-xs font-semibold text-slate-200 mono">확인 중</span>
     </div>
-
-    <button id="refresh-btn" class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center space-x-1.5 shadow-lg shadow-indigo-600/20">
+    <button id="refresh-btn" class="px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center space-x-1.5 shadow-lg shadow-indigo-600/20">
       <i class="fa-solid fa-arrows-rotate" id="refresh-icon"></i>
       <span>새로고침</span>
     </button>
@@ -13,72 +11,21 @@
 </div>
 
 
-<!-- [기간 전환 탭: 9월 vs 10월 원클릭 토글 버튼] -->
-<section class="glass-card rounded-2xl p-4 border border-indigo-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 bg-gradient-to-r from-slate-900/90 via-indigo-950/40 to-slate-900/90 shadow-xl">
-  <div class="flex items-center space-x-2 text-xs">
-    <span class="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-pulse"></span>
-    <span class="text-slate-300 font-bold">조회 월 선택:</span>
-    <span class="text-indigo-300 font-semibold mono" id="selected-month-status">10월 실거래 데이터 표시 중</span>
-  </div>
-
-  <!-- Month Toggle Buttons -->
-  <div class="flex items-center p-1 bg-slate-950/90 rounded-xl border border-slate-800 text-xs w-full sm:w-auto shadow-inner">
-    <button id="btn-month-10" onclick="selectMonth('10')" class="flex-1 sm:flex-none px-5 py-2.5 rounded-lg font-bold transition flex items-center justify-center gap-2 bg-indigo-600 text-white shadow-lg shadow-indigo-600/30">
-      <i class="fa-solid fa-calendar-check text-xs"></i>
-      <span>2026년 10월 (당월 실거래)</span>
-      <span id="badge-count-10" class="text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/30 text-indigo-200">--</span>
-    </button>
-    <button id="btn-month-09" onclick="selectMonth('09')" class="flex-1 sm:flex-none px-5 py-2.5 rounded-lg font-medium text-slate-400 hover:text-white transition flex items-center justify-center gap-2">
-      <i class="fa-solid fa-clock-rotate-left text-xs"></i>
-      <span>2026년 9월 (전월 확정)</span>
-      <span id="badge-count-09" class="text-[10px] px-1.5 py-0.2 rounded bg-slate-800 text-slate-300">--</span>
-    </button>
-  </div>
-</section>
-
-<!-- Top Alert / Executive Summary -->
-<section class="glass-card rounded-2xl p-5 border border-indigo-500/20 shadow-xl bg-gradient-to-r from-slate-900/90 via-indigo-950/20 to-slate-900/90">
-  <div class="flex items-start justify-between flex-wrap gap-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-        <i class="fa-solid fa-bolt-lightning text-sm"></i>
-      </div>
-      <div>
-        <h2 class="text-base font-bold text-white flex items-center gap-2">
-          <span id="sentiment-title">수도권 25개 구역 마켓 센티멘트</span>
-          <span class="text-xs font-normal text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">국토교통부 실시간</span>
-        </h2>
-        <p class="text-xs text-slate-400">서울 18개 구 + 경기 7개 구역 국토교통부 실거래 검증 완료</p>
-      </div>
+<!-- [월별 전환 탭 섹션] -->
+<section class="glass-card rounded-2xl p-4 border border-indigo-500/30 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-slate-900/95 via-indigo-950/40 to-slate-900/95 shadow-xl">
+  <div class="flex items-center space-x-3 text-sm">
+    <div class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+      <i class="fa-solid fa-calendar-days"></i>
     </div>
-    <div class="flex items-center space-x-2 text-xs text-slate-400">
-      <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      <span>직거래·해제(취소) 거래 필터링 적용</span>
+    <div>
+      <span class="text-white font-bold block" id="current-month-heading">조회 월 선택</span>
+      <span class="text-slate-400 text-xs" id="month-desc">선택한 월의 국토부 실거래 데이터만 필터링하여 표시합니다.</span>
     </div>
   </div>
 
-  <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-    <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start space-x-3">
-      <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">1</span>
-      <div>
-        <span class="font-semibold text-slate-200">강남·동남권 상단 리딩:</span>
-        <span class="text-slate-400"> 서초·강남·송파 핵심 대장주 최고가 거래가 수도권 가격 천장을 견인하고 있습니다.</span>
-      </div>
-    </div>
-    <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start space-x-3">
-      <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">2</span>
-      <div>
-        <span class="font-semibold text-slate-200">경기 남부축 거래 집중:</span>
-        <span class="text-slate-400"> 분당 선도지구 기대감 및 동탄·수지 역세권 대단지로 실수요 손바뀜이 활발합니다.</span>
-      </div>
-    </div>
-    <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start space-x-3">
-      <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">3</span>
-      <div>
-        <span class="font-semibold text-slate-200">외곽 뉴타운 갭메우기:</span>
-        <span class="text-slate-400"> 전세가율 상승세에 힘입어 노도강·광명권역의 중저가 급매물이 순차 소진 중입니다.</span>
-      </div>
-    </div>
+  <!-- 동적으로 생성되는 9월/10월 버튼 컨테이너 -->
+  <div id="month-tabs-container" class="flex items-center gap-2 p-1.5 bg-slate-950/90 rounded-xl border border-slate-800 w-full md:w-auto overflow-x-auto">
+    <!-- JS에서 버튼 주입 -->
   </div>
 </section>
 
@@ -86,14 +33,14 @@
 <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
   <div class="glass-card rounded-xl p-4 border border-slate-800">
     <div class="flex items-center justify-between text-slate-400 text-xs">
-      <span>선택 월 표출 건수</span>
+      <span>해당 월 수집 거래량</span>
       <i class="fa-solid fa-file-invoice text-indigo-400"></i>
     </div>
     <div class="mt-2 flex items-baseline space-x-2">
-      <span id="metric-curated-count" class="text-2xl font-bold text-white mono">--</span>
+      <span id="metric-total-trades" class="text-2xl font-bold text-white mono">--</span>
       <span class="text-xs text-slate-400">건</span>
     </div>
-    <div id="metric-period-label" class="mt-1 text-[11px] text-slate-500">선택 월 실거래 기준</div>
+    <div id="metric-period-label" class="mt-1 text-[11px] text-slate-500">국토교통부 집계</div>
   </div>
 
   <div class="glass-card rounded-xl p-4 border border-slate-800">
@@ -110,14 +57,14 @@
 
   <div class="glass-card rounded-xl p-4 border border-slate-800">
     <div class="flex items-center justify-between text-slate-400 text-xs">
-      <span>거래 집중 단지</span>
+      <span>선별 큐레이션 단지</span>
       <i class="fa-solid fa-crosshairs text-blue-400"></i>
     </div>
     <div class="mt-2 flex items-baseline space-x-2">
-      <span id="metric-volume-count" class="text-2xl font-bold text-blue-400 mono">--</span>
+      <span id="metric-curated-count" class="text-2xl font-bold text-blue-400 mono">--</span>
       <span class="text-xs text-slate-400">개</span>
     </div>
-    <div class="mt-1 text-[11px] text-slate-500">매수세 유입 단지</div>
+    <div class="mt-1 text-[11px] text-slate-500">특이거래 핀셋 추출</div>
   </div>
 
   <div class="glass-card rounded-xl p-4 border border-slate-800">
@@ -128,11 +75,11 @@
     <div class="mt-2 flex items-baseline space-x-2">
       <span id="metric-status" class="text-lg font-bold text-emerald-400 mono">동기화 완료</span>
     </div>
-    <div id="metric-sync-time" class="mt-1 text-[11px] text-slate-500 truncate">최근 갱신 확인 중...</div>
+    <div id="metric-sync-time" class="mt-1 text-[11px] text-slate-500 truncate">확인 중...</div>
   </div>
 </section>
 
-<!-- Visualizations (Gap Tracking & Region Distribution) -->
+<!-- Visualizations -->
 <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
   <div class="glass-card rounded-2xl p-5 border border-slate-800 lg:col-span-2 flex flex-col justify-between">
     <div class="flex items-center justify-between mb-4">
@@ -148,60 +95,49 @@
     <div class="relative h-64 w-full">
       <canvas id="gapTrackingChart"></canvas>
     </div>
-    <div class="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 flex-wrap gap-2">
-      <div class="flex items-center space-x-3">
-        <span class="flex items-center"><span class="w-3 h-1 bg-rose-500 mr-1.5 rounded"></span>잠실엘스</span>
-        <span class="flex items-center"><span class="w-3 h-1 bg-indigo-400 mr-1.5 rounded"></span>마포래미안푸르지오</span>
-        <span class="flex items-center"><span class="w-3 h-1 bg-emerald-400 mr-1.5 rounded"></span>분당파크뷰</span>
-        <span class="flex items-center"><span class="w-3 h-1 bg-amber-400 mr-1.5 rounded"></span>동탄역롯데캐슬</span>
-      </div>
-      <span class="text-indigo-400 font-medium">실시간 호가 지지선 파악</span>
-    </div>
   </div>
 
   <div class="glass-card rounded-2xl p-5 border border-slate-800 flex flex-col justify-between">
     <div>
       <div class="flex items-center space-x-2 mb-1">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-        <h3 class="text-sm font-bold text-white">선택 월 권역별 거래 비중</h3>
+        <h3 class="text-sm font-bold text-white">해당 월 권역별 거래 비중</h3>
       </div>
-      <p class="text-xs text-slate-400 mb-4">현재 보고 있는 월의 지역별 분포</p>
+      <p class="text-xs text-slate-400 mb-4">선택한 월 특이거래의 지역별 분포</p>
     </div>
     <div class="relative h-56 w-full flex items-center justify-center">
       <canvas id="regionDistributionChart"></canvas>
     </div>
     <div class="mt-3 pt-3 border-t border-slate-800/80 grid grid-cols-2 gap-2 text-xs text-slate-400">
       <div class="flex items-center justify-between p-1.5 bg-slate-900/50 rounded">
-        <span>서울 18개 구</span>
+        <span>서울 권역</span>
         <span id="region-seoul-pct" class="font-bold text-rose-400">--%</span>
       </div>
       <div class="flex items-center justify-between p-1.5 bg-slate-900/50 rounded">
-        <span>경기 7개 권역</span>
+        <span>경기 권역</span>
         <span id="region-gyeonggi-pct" class="font-bold text-emerald-400">--%</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Filters Section -->
+<!-- Filters -->
 <section class="space-y-4">
   <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
       <h3 class="text-base font-bold text-white flex items-center gap-2">
         <span>선별 실거래 상세 내역</span>
-        <span id="filtered-count-badge" class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold">데이터 조회 중...</span>
+        <span id="filtered-count-badge" class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold">0개 단지</span>
       </h3>
-      <p class="text-xs text-slate-400 mt-0.5">상단 버튼으로 9월과 10월을 전환하며 단지별 흐름을 비교해 보세요.</p>
+      <p class="text-xs text-slate-400 mt-0.5">신고가 경신 및 거래 집중 단지만 선별하여 표출합니다.</p>
     </div>
-
-    <!-- Search Bar -->
     <div class="relative w-full md:w-72">
       <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-      <input type="text" id="transaction-search" placeholder="단지명, 지역구, 전용면적 검색..." class="w-full pl-9 pr-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+      <input type="text" id="transaction-search" placeholder="단지명, 지역구 검색..." class="w-full pl-9 pr-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
     </div>
   </div>
 
-  <!-- Filter Buttons -->
+  <!-- 유형 및 권역 필터 -->
   <div class="flex flex-wrap items-center gap-2 pt-1">
     <div class="flex items-center p-1 bg-slate-900/80 rounded-xl border border-slate-800 text-xs overflow-x-auto">
       <button data-type="all" class="type-filter px-3 py-1.5 rounded-lg font-medium text-white bg-indigo-600 transition">전체 특이거래</button>
@@ -209,7 +145,7 @@
         <span class="w-2 h-2 rounded-full bg-rose-500"></span>신고가 (ATH)
       </button>
       <button data-type="volume" class="type-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>거래 집중
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>거래량 집중
       </button>
     </div>
 
@@ -227,13 +163,10 @@
 
 <!-- Cards Grid -->
 <section>
-  <div id="transactions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <!-- Rendered via JS -->
-  </div>
-
+  <div id="transactions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   <div id="empty-state" class="hidden glass-card rounded-2xl p-12 text-center border border-slate-800">
     <i class="fa-solid fa-filter-circle-xmark text-4xl text-slate-600 mb-3"></i>
-    <h4 class="text-sm font-bold text-slate-300">해당 조건에 일치하는 거래가 없습니다</h4>
-    <p class="text-xs text-slate-500 mt-1">상단의 9월/10월 버튼을 바꾸거나 검색어를 지워보세요.</p>
+    <h4 class="text-sm font-bold text-slate-300">선택한 월에 조건에 부합하는 거래 내역이 없습니다</h4>
+    <p class="text-xs text-slate-500 mt-1">상단의 다른 월 버튼을 눌러보거나 검색어를 지워보세요.</p>
   </div>
 </section>
