@@ -67,9 +67,9 @@
       <div>
         <div class="flex items-center space-x-2">
           <h1 class="text-lg font-bold text-white tracking-tight">수도권 아파트 실거래 모니터링</h1>
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">5개년 ATH 엔진</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">2022~2024 기준 전고점 엔진</span>
         </div>
-        <p class="text-xs text-slate-400">25개 핵심 권역 국토부 실거래가 · 2022~2026 역대 전고점 정밀 비교 시스템</p>
+        <p class="text-xs text-slate-400">25개 핵심 권역 국토부 실거래가 · 2022~2024 역대 전고점 기준 정밀 회복률 분석</p>
       </div>
     </div>
 
@@ -93,13 +93,13 @@
       </div>
       <div>
         <span class="text-white font-bold block" id="current-tab-heading">데이터 뷰 선택</span>
-        <span class="text-slate-400 text-xs" id="tab-mode-desc">월별 최신 실거래 내역과 5개년 역대 전고점 기준표를 자유롭게 전환합니다.</span>
+        <span class="text-slate-400 text-xs" id="tab-mode-desc">월별 최신 실거래 내역과 2022~2024 역대 전고점 기준표를 자유롭게 전환합니다.</span>
       </div>
     </div>
 
     <!-- 월별 버튼 + 5개년 전고점 탭 통합 컨테이너 -->
     <div id="tabs-container" class="flex items-center gap-2 p-1.5 bg-slate-950/90 rounded-xl border border-slate-800 w-full md:w-auto overflow-x-auto">
-      <!-- 동적 월별 버튼 및 5개년 전고점 버튼 주입 -->
+      <!-- 동적 월별 버튼 및 2022~2024 전고점 버튼 주입 -->
     </div>
   </section>
 
@@ -126,7 +126,7 @@
         <span id="metric-val-2" class="text-2xl font-bold text-rose-400 mono">--</span>
         <span id="metric-unit-2" class="text-xs text-slate-400">건</span>
       </div>
-      <div id="metric-sub-2" class="mt-1 text-[11px] text-slate-500">5개년 최고가 돌파 단지</div>
+      <div id="metric-sub-2" class="mt-1 text-[11px] text-slate-500">2022~2024 전고점 돌파 단지</div>
     </div>
 
     <div class="glass-card rounded-xl p-4 border border-slate-800">
@@ -143,13 +143,13 @@
 
     <div class="glass-card rounded-xl p-4 border border-slate-800">
       <div class="flex items-center justify-between text-slate-400 text-xs">
-        <span id="metric-title-4">5개년 DB 연동 상태</span>
+        <span id="metric-title-4">기준 벤치마크 DB</span>
         <i class="fa-solid fa-database text-amber-400"></i>
       </div>
       <div class="mt-2 flex items-baseline space-x-2">
         <span id="metric-val-4" class="text-lg font-bold text-amber-400 mono">확인 중</span>
       </div>
-      <div id="metric-sub-4" class="mt-1 text-[11px] text-slate-500 truncate">역대 전고점 대조 활성</div>
+      <div id="metric-sub-4" class="mt-1 text-[11px] text-slate-500 truncate">2022~2024 전고점 연동</div>
     </div>
   </section>
 
@@ -203,7 +203,7 @@
           <span id="list-title">선별 실거래 상세 내역</span>
           <span id="filtered-count-badge" class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold">0개 단지</span>
         </h3>
-        <p class="text-xs text-slate-400 mt-0.5" id="list-subtitle">5개년 역대 신고가 경신 및 거래량 집중 단지만 선별하여 표출합니다.</p>
+        <p class="text-xs text-slate-400 mt-0.5" id="list-subtitle">2022~2024 역대 전고점 돌파 및 거래량 집중 단지를 선별하여 표출합니다.</p>
       </div>
       <div class="relative w-full md:w-72">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
@@ -328,7 +328,7 @@
       // 벤치마크 DB 상태 표시
       if (benchmarkList.length > 0) {
         document.getElementById('metric-val-4').textContent = `${benchmarkList.length}개 단지`;
-        document.getElementById('metric-sub-4').textContent = `5개년 ATH 기준표 연동 완료`;
+        document.getElementById('metric-sub-4').textContent = `2022~2024 기준표 연동 완료`;
       } else {
         document.getElementById('metric-val-4').textContent = `단기 연동`;
         document.getElementById('metric-sub-4').textContent = `벤치마크 DB 대기 중`;
@@ -351,6 +351,14 @@
       for (let i = 1; i < lines.length; i++) {
         const row = lines[i].split(',');
         if (row.length >= 6) {
+          const rawDate = row[6]?.trim() || '';
+          const dealYear = parseInt(rawDate.slice(0, 4)) || 0;
+
+          // [핵심] 최근 2년(2025~2026) 데이터는 제외하고 2022~2024년 데이터만 전고점 기준으로 채택
+          if (dealYear > 0 && dealYear > 2024) {
+            continue;
+          }
+
           records.push({
             id: `bm-${i}`,
             complexName: row[0]?.trim() || '',
@@ -359,7 +367,7 @@
             regionName: row[3]?.trim() || '',
             regionCategory: row[4]?.trim() || 'all',
             athPrice: parseFloat(row[5]) || 0,
-            athDate: row[6]?.trim() || '',
+            athDate: rawDate,
             athFloor: row[7]?.trim() || '중층',
             tradeCount: parseInt(row[8]) || 1
           });
@@ -418,7 +426,7 @@
         <button data-tab="benchmark" onclick="selectBenchmarkTab()"
                 class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 flex-shrink-0 text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30">
           <i class="fa-solid fa-crown text-amber-400 text-[11px]"></i>
-          <span>⭐ 5개년 전고점 벤치마크</span>
+          <span>⭐ 2022~2024 기준 전고점</span>
           <span class="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 mono">${benchmarkList.length}개</span>
         </button>
       `;
@@ -445,11 +453,11 @@
 
       // 안내 문구 및 차트 복원
       document.getElementById('current-tab-heading').textContent = `${mData.label} 실거래 데이터`;
-      document.getElementById('tab-mode-desc').textContent = `${mData.label}에 체결된 국토교통부 실거래 검증 데이터입니다.`;
+      document.getElementById('tab-mode-desc').textContent = `${mData.label} 체결 데이터와 2022~2024 역대 전고점 기준선을 대조합니다.`;
       document.getElementById('visualizations-section').classList.remove('hidden');
       document.getElementById('type-filter-group').classList.remove('hidden');
       document.getElementById('list-title').textContent = "선별 실거래 상세 내역";
-      document.getElementById('list-subtitle').textContent = "5개년 역대 신고가 경신 및 거래량 집중 단지만 선별하여 표출합니다.";
+      document.getElementById('list-subtitle').textContent = "2022~2024 역대 전고점 돌파 및 거래량 집중 단지를 선별하여 표출합니다.";
 
       // 메트릭 복원
       document.getElementById('metric-title-1').textContent = "해당 월 수집 거래량";
@@ -457,9 +465,9 @@
       document.getElementById('metric-unit-1').textContent = "건";
       document.getElementById('metric-sub-1').textContent = `${mData.label} 국토부 집계`;
 
-      document.getElementById('metric-title-2').textContent = "신고가 경신 (ATH)";
+      document.getElementById('metric-title-2').textContent = "전고점 돌파 (ATH)";
       document.getElementById('metric-val-2').textContent = mData.athCount || mData.transactions.filter(t => t.dealType === 'ath').length;
-      document.getElementById('metric-sub-2').textContent = "5개년 최고가 돌파 단지";
+      document.getElementById('metric-sub-2').textContent = "2022~2024 최고가 돌파 단지";
 
       document.getElementById('metric-title-3').textContent = "선별 큐레이션 단지";
       document.getElementById('metric-val-3').textContent = mData.transactions.length;
@@ -483,20 +491,20 @@
       });
 
       // 헤더 및 안내 변경
-      document.getElementById('current-tab-heading').textContent = `5개년 역대 최고가(전고점) 벤치마크 DB`;
-      document.getElementById('tab-mode-desc').textContent = `2022~2026년 수도권 25개 구역 단지·평형별 최고 실거래가 기준표입니다.`;
+      document.getElementById('current-tab-heading').textContent = `2022~2024 역대 최고가(전고점) 벤치마크 DB`;
+      document.getElementById('tab-mode-desc').textContent = `최근 2년을 제외한 2022~2024년 수도권 25개 구역 단지·평형별 최고 실거래가 기준표입니다.`;
       
       // 차트는 숨기고 벤치마크 탐색 모드로 전환
       document.getElementById('visualizations-section').classList.add('hidden');
       document.getElementById('type-filter-group').classList.add('hidden');
-      document.getElementById('list-title').textContent = "25개 권역 5개년 역대 최고가 기준 단지";
-      document.getElementById('list-subtitle').textContent = "거래 발생 여부와 관계없이 지난 5년간 수립된 각 단지별 최고가(ATH)입니다.";
+      document.getElementById('list-title').textContent = "25개 권역 2022~2024 역대 최고가 기준 단지";
+      document.getElementById('list-subtitle').textContent = "2022~2024년에 확정된 각 단지별 기준 전고점(Benchmark ATH)입니다.";
 
       // 메트릭 갱신
       document.getElementById('metric-title-1').textContent = "총 벤치마크 단지";
       document.getElementById('metric-val-1').textContent = benchmarkList.length;
       document.getElementById('metric-unit-1').textContent = "개";
-      document.getElementById('metric-sub-1').textContent = "25개 구역 누적 단지";
+      document.getElementById('metric-sub-1').textContent = "2022~2024 누적 단지";
 
       document.getElementById('metric-title-2').textContent = "수도권 최고가 단지";
       const maxPriceApt = benchmarkList.length > 0 ? benchmarkList[0].athPrice : 0;
@@ -507,7 +515,7 @@
       document.getElementById('metric-title-3').textContent = "표본 누적 거래수";
       document.getElementById('metric-val-3').textContent = benchmarkList.reduce((acc, cur) => acc + cur.tradeCount, 0);
       document.getElementById('metric-unit-3').textContent = "건";
-      document.getElementById('metric-sub-3').textContent = "정제 체결 데이터 표본";
+      document.getElementById('metric-sub-3').textContent = "2022~2024 정제 체결 데이터";
 
       renderBenchmarkCards();
     };
@@ -542,12 +550,14 @@
         const isATH = tx.dealType === 'ath';
         const badgeClass = isATH ? 'badge-ath' : 'badge-volume';
         const badgeIcon = isATH ? 'fa-crown' : 'fa-chart-simple';
-        const badgeText = isATH ? '역대신고가' : '거래 집중';
+        const badgeText = isATH ? '전고점 돌파' : '거래 집중';
         const diffColor = isATH ? 'text-rose-400' : 'text-emerald-400';
 
-        // 전고점 회복률 계산 (기준가 대비)
-        const histATH = tx.previousHigh || tx.dealPrice;
-        const recoveryRatio = Math.min(Math.round((tx.dealPrice / (histATH || 1)) * 100), 120);
+        // [핵심] 2022~2024 벤치마크 기준가 매칭 및 회복률 계산
+        const areaInt = Math.round(parseFloat(tx.area) || 84);
+        const matchedBM = benchmarkList.find(b => b.complexName === tx.complexName && b.areaGroup === areaInt);
+        const benchmarkAth = matchedBM ? matchedBM.athPrice : (tx.previousHigh || tx.dealPrice);
+        const recoveryRatio = Math.min(Math.round((tx.dealPrice / (benchmarkAth || 1)) * 100), 120);
         const gaugeColor = recoveryRatio >= 100 ? 'bg-rose-500' : (recoveryRatio >= 90 ? 'bg-indigo-500' : 'bg-emerald-500');
 
         return `
@@ -570,18 +580,18 @@
                   <div class="text-xl font-bold text-white mono">${(tx.dealPrice || 0).toFixed(1)}<span class="text-sm font-normal text-slate-400 ml-1">억</span></div>
                 </div>
                 <div class="text-right">
-                  <span class="text-xs text-slate-400">종전/전고점대비</span>
+                  <span class="text-xs text-slate-400">기준 전고점(${benchmarkAth}억) 대비</span>
                   <div class="text-sm font-bold ${diffColor} mono">
-                    +${(tx.diff || 0).toFixed(1)}억 (${tx.diffPercent || 0}%)
+                    ${tx.dealPrice >= benchmarkAth ? '+' : ''}${(tx.dealPrice - benchmarkAth).toFixed(1)}억 (${recoveryRatio}%)
                   </div>
                 </div>
               </div>
 
-              <!-- [신규] 전고점 회복률 게이지 바 -->
+              <!-- 2022~2024 기준 전고점 회복률 게이지 바 -->
               <div class="mt-3 bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/60">
                 <div class="flex items-center justify-between text-[11px] mb-1.5">
                   <span class="text-slate-400 flex items-center gap-1">
-                    <i class="fa-solid fa-gauge text-indigo-400"></i>5개년 전고점 회복률
+                    <i class="fa-solid fa-gauge text-indigo-400"></i>2022~2024 전고점 회복률
                   </span>
                   <span class="font-bold mono ${recoveryRatio >= 100 ? 'text-rose-400' : 'text-slate-200'}">${recoveryRatio}%</span>
                 </div>
@@ -596,13 +606,13 @@
               </div>
 
               <p class="mt-2.5 text-xs text-slate-300 leading-relaxed line-clamp-2 bg-slate-900/40 p-2 rounded-lg border border-slate-800/50">
-                ${tx.description || '5개년 실거래 기준선과 대비하여 가격 흐름을 정밀 분석한 단지입니다.'}
+                ${tx.description || '2022~2024년 기준 전고점과 대비하여 최근 회복 속도를 정밀 분석한 단지입니다.'}
               </p>
             </div>
 
             <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
               <div class="flex flex-wrap gap-1">
-                ${(tx.tags || ['5개년비교검증']).map(tag => `<span class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded border border-slate-700">#${tag}</span>`).join('')}
+                ${(tx.tags || ['2022~2024비교']).map(tag => `<span class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded border border-slate-700">#${tag}</span>`).join('')}
               </div>
               <span class="text-xs text-indigo-400 font-medium flex items-center gap-1">
                 상세보기 <i class="fa-solid fa-angle-right text-[10px]"></i>
@@ -613,7 +623,7 @@
       }).join('');
     }
 
-    // 7. 카드 리스트 렌더링 (5개년 전고점 벤치마크 모드)
+    // 7. 카드 리스트 렌더링 (2022~2024 전고점 벤치마크 모드)
     function renderBenchmarkCards() {
       const container = document.getElementById('transactions-container');
       const emptyState = document.getElementById('empty-state');
@@ -652,14 +662,14 @@
                 <div class="flex items-center gap-1">
                   ${isHighLiquidity ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold badge-liquidity flex items-center gap-1"><i class="fa-solid fa-fire-flame-curved"></i>환금성우수</span>` : ''}
                   <span class="px-2 py-0.5 rounded-full text-xs font-bold badge-benchmark flex items-center gap-1">
-                    <i class="fa-solid fa-crown text-[10px]"></i>역대 ATH
+                    <i class="fa-solid fa-crown text-[10px]"></i>2022~2024 ATH
                   </span>
                 </div>
               </div>
 
               <div class="mt-3 flex items-baseline justify-between border-y border-slate-800/80 py-2.5">
                 <div>
-                  <span class="text-xs text-slate-400">5개년 역대 최고가</span>
+                  <span class="text-xs text-slate-400">2022~2024 역대 최고가</span>
                   <div class="text-2xl font-bold text-amber-400 mono">${bm.athPrice.toFixed(1)}<span class="text-sm font-normal text-slate-400 ml-1">억</span></div>
                 </div>
                 <div class="text-right">
@@ -674,13 +684,13 @@
               </div>
 
               <div class="mt-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-800 text-xs text-slate-300 leading-relaxed flex items-center justify-between">
-                <span>누적 검증 표본:</span>
+                <span>2022~2024 체결 표본:</span>
                 <span class="font-bold text-indigo-300 mono">${bm.tradeCount}회 체결 기반</span>
               </div>
             </div>
 
             <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
-              <span class="text-[10px] bg-slate-800 text-amber-300 px-2 py-0.5 rounded border border-slate-700">#2022~2026누적기준</span>
+              <span class="text-[10px] bg-slate-800 text-amber-300 px-2 py-0.5 rounded border border-slate-700">#2022~2024기준표</span>
               <span class="text-xs text-amber-400 font-medium flex items-center gap-1">
                 기준표 확인 <i class="fa-solid fa-angle-right text-[10px]"></i>
               </span>
@@ -699,7 +709,11 @@
       const content = document.getElementById('modal-content');
       const prices = tx.recentPrices || [tx.dealPrice];
 
-      const histATH = tx.previousHigh || tx.dealPrice;
+      const areaInt = Math.round(parseFloat(tx.area) || 84);
+      const matchedBM = benchmarkList.find(b => b.complexName === tx.complexName && b.areaGroup === areaInt);
+      const histATH = matchedBM ? matchedBM.athPrice : (tx.previousHigh || tx.dealPrice);
+      const athDate = matchedBM ? matchedBM.athDate : '2022~2024';
+
       const recoveryRatio = Math.round((tx.dealPrice / (histATH || 1)) * 100);
       const gapToAth = (histATH - tx.dealPrice).toFixed(1);
 
@@ -717,30 +731,30 @@
               <div class="text-xl font-bold text-white mono mt-0.5">${tx.dealPrice}억원</div>
             </div>
             <div>
-              <span class="text-xs text-slate-400">종전/전고점 대비</span>
-              <div class="text-xl font-bold text-rose-400 mono mt-0.5">+${tx.diff || 0}억 (${tx.diffPercent || 0}%)</div>
+              <span class="text-xs text-slate-400">2022~2024 기준 전고점</span>
+              <div class="text-xl font-bold text-amber-400 mono mt-0.5">${histATH}억원</div>
             </div>
           </div>
 
-          <!-- 5개년 회복률 및 남은 갭 분석 -->
+          <!-- 2022~2024 회복률 및 남은 갭 분석 -->
           <div class="p-3.5 bg-indigo-950/30 rounded-xl border border-indigo-500/30 space-y-2 text-xs">
             <div class="flex items-center justify-between">
               <span class="text-indigo-300 font-medium flex items-center gap-1.5">
-                <i class="fa-solid fa-gauge"></i>5개년 전고점 대비 회복률
+                <i class="fa-solid fa-gauge"></i>2022~2024 전고점 대비 회복률
               </span>
               <span class="text-sm font-bold text-white mono">${recoveryRatio}%</span>
             </div>
             <div class="flex items-center justify-between text-slate-400 border-t border-indigo-500/20 pt-2">
-              <span>전고점(${histATH}억)까지 남은 갭:</span>
+              <span>기준 전고점(${histATH}억, ${athDate})까지 갭:</span>
               <span class="font-bold mono ${tx.dealPrice >= histATH ? 'text-rose-400' : 'text-amber-400'}">
-                ${tx.dealPrice >= histATH ? '전고점 돌파 완료 (신고가)' : `${gapToAth}억원 남음`}
+                ${tx.dealPrice >= histATH ? `전고점 돌파 (+${(tx.dealPrice - histATH).toFixed(1)}억)` : `${gapToAth}억원 남음`}
               </span>
             </div>
           </div>
 
           <div>
             <h5 class="text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5">
-              <i class="fa-solid fa-magnifying-glass-chart text-indigo-400"></i>5개년 벤치마크 분석
+              <i class="fa-solid fa-magnifying-glass-chart text-indigo-400"></i>2022~2024 벤치마크 진단
             </h5>
             <div class="p-3 bg-slate-800/40 rounded-xl text-xs text-slate-300 leading-relaxed border border-slate-700/60">
               ${tx.description}
@@ -767,7 +781,7 @@
       modal.classList.remove('hidden');
     };
 
-    // 9. 상세 팝업 모달 (5개년 벤치마크)
+    // 9. 상세 팝업 모달 (2022~2024 벤치마크)
     window.openBenchmarkModal = function(id) {
       const bm = benchmarkList.find(b => b.id === id);
       if (!bm) return;
@@ -780,12 +794,12 @@
           <div>
             <span class="text-xs text-amber-400 font-semibold">${bm.regionName}</span>
             <h3 class="text-xl font-bold text-white">${bm.complexName}</h3>
-            <p class="text-xs text-slate-400">${bm.area} (전용면적) | 5개년 누적 최고가 벤치마크</p>
+            <p class="text-xs text-slate-400">${bm.area} (전용면적) | 2022~2024 전고점 벤치마크</p>
           </div>
 
           <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-500/40 grid grid-cols-2 gap-3 text-center">
             <div>
-              <span class="text-xs text-slate-400">역대 최고 실거래가</span>
+              <span class="text-xs text-slate-400">2022~2024 역대 최고가</span>
               <div class="text-2xl font-bold text-amber-400 mono mt-0.5">${bm.athPrice}억원</div>
             </div>
             <div>
@@ -804,13 +818,13 @@
               <span class="font-bold text-indigo-300">${bm.regionCategory}</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-slate-400">5개년 누적 체결 표본:</span>
+              <span class="text-slate-400">2022~2024 누적 체결 표본:</span>
               <span class="font-bold mono text-emerald-400">${bm.tradeCount}건</span>
             </div>
           </div>
 
           <p class="text-xs text-slate-400 leading-relaxed bg-slate-900 p-3 rounded-lg border border-slate-800">
-            💡 본 수치는 2022년 1월부터 축적된 실거래가 중 직거래 및 해제거래를 원천 배제한 신뢰도 높은 전고점 벤치마크입니다. 향후 체결되는 거래의 지지선/저항선으로 활용됩니다.
+            💡 본 기준표는 최근 2년(2025~2026)의 단기 변동을 배제하고 2022년~2024년에 확정된 최고 실거래가만을 기준으로 산출되었습니다. 최근 체결되는 시세의 회복률 및 지지/저항선 판정 지표로 사용됩니다.
           </p>
         </div>
       `;
