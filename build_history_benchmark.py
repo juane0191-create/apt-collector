@@ -1,11 +1,9 @@
 """
 2022년~2026년 5개년 수도권 25개 구역 아파트 실거래가 장기 벤치마크 데이터베이스 구축기
 - 역할:
-  1. 2022.01부터 현재까지의 25개 구역 전체 실거래 데이터를 안전하게 순회 수집
-  2. 수십만 건의 대용량 데이터를 그대로 보관하지 않고, 
-     [단지명 + 평형(전용면적) + 권역]별 '역대 최고가(ATH)', '달성일', '최고가 층수'만 핀셋 요약
-  3. 경량화된 초고속 기준표 'data/history_ath_benchmark.csv' 파일로 저장
-  4. 일일 트래픽(1000회) 초과 방지를 위한 분할 수집(체크포인트) 지원
+  1. 2022.01부터 2026.10까지 25개 구역 전체 실거래 데이터를 순회 수집
+  2. [단지명 + 평형(전용면적) + 권역]별 '역대 최고가(ATH)', '달성일', '최고가 층수'만 핀셋 요약
+  3. 경량화된 기준표 'data/history_ath_benchmark.csv' 파일로 저장
 """
 
 import os
@@ -15,7 +13,7 @@ import argparse
 import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 import pandas as pd
 import requests
 
@@ -76,7 +74,7 @@ def fetch_region_month(service_key: str, code: str, ym: str) -> list:
         resp = requests.get(API_ENDPOINT, params=params, timeout=12)
         if resp.status_code != 200:
             return records
-        
+
         root = ET.fromstring(resp.content)
         items = root.findall(".//item")
         for item in items:
@@ -84,7 +82,7 @@ def fetch_region_month(service_key: str, code: str, ym: str) -> list:
                 node = item.find(tag)
                 return node.text.strip() if (node is not None and node.text) else ""
 
-            # 해제 거래 및 직거래는 대표 시세 왜곡 방지를 위해 제외
+            # 해제 거래 및 직거래 제외
             if val("cdealDay") or val("cdealType") == "O":
                 continue
             if "직거래" in val("dealingGbn"):
@@ -108,11 +106,11 @@ def fetch_region_month(service_key: str, code: str, ym: str) -> list:
     return records
 
 def generate_target_months(start_ym: str, end_ym: str) -> list:
-    """시작월(YYYYMM)부터 종료월까지 월별 리스트 생성"""
+    """시작월부터 종료월까지 월별 리스트 생성"""
     start_y, start_m = int(start_ym[:4]), int(start_ym[4:])
     end_y, end_m = int(end_ym[:4]), int(end_ym[4:])
     months = []
-    
+
     y, m = start_y, start_m
     while (y < end_y) or (y == end_y and m <= end_m):
         months.append(f"{y:04d}{m:02d}")
@@ -130,9 +128,8 @@ def build_benchmark(start_ym="202201", end_ym="202610"):
 
     os.makedirs("data", exist_ok=True)
     months = generate_target_months(start_ym, end_ym)
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🚀 장기 벤치마크 수집 시작: {start_ym} ~ {end_ym} (총 {len(months)}개월 x 25개 구역 = {len(months)*25}회 요청)", flush=True)
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🚀 장기 벤치마크 수집 시작: {start_ym} ~ {end_ym} (총 {len(months)}개월)", flush=True)
 
-    # 기존에 구축된 벤치마크가 있다면 로드 후 병합 준비
     existing_benchmark = {}
     if os.path.exists(BENCHMARK_FILE):
         try:
@@ -154,14 +151,11 @@ def build_benchmark(start_ym="202201", end_ym="202610"):
         except Exception as e:
             print(f"⚠️ 기존 파일 로드 실패, 새로 생성합니다: {e}", flush=True)
 
-    # 월별 순회 수집 (서버 과부하 및 차단 방지를 위해 max_workers=4)
-    total_calls = 0
     with ThreadPoolExecutor(max_workers=4) as executor:
         for ym_idx, ym in enumerate(months, 1):
             tasks = []
             for code, info in TARGET_REGIONS.items():
                 tasks.append((executor.submit(fetch_region_month, service_key, code, ym), info))
-                total_calls += 1
 
             month_records = []
             for future, info in tasks:
@@ -174,7 +168,6 @@ def build_benchmark(start_ym="202201", end_ym="202610"):
                 except Exception:
                     pass
 
-            # 실시간으로 최고가 갱신
             if month_records:
                 m_df = pd.DataFrame(month_records)
                 m_df["평형그룹"] = m_df["전용면적"].round().astype(int)
@@ -205,15 +198,13 @@ def build_benchmark(start_ym="202201", end_ym="202610"):
                             existing_benchmark[key]["최고가층"] = floor
 
             print(f"  [{ym_idx:02d}/{len(months):02d}] 📅 {ym} 수집 완료 ({len(month_records)}건 체결, 누적 벤치마크 {len(existing_benchmark)}개 단지)", flush=True)
-            time.sleep(0.5)  # 공공데이터포털 트래픽 보호용
+            time.sleep(0.5)
 
-    # 최종 벤치마크 파일 저장
     if existing_benchmark:
         result_df = pd.DataFrame(list(existing_benchmark.values()))
         result_df = result_df.sort_values(by="역대최고가_억", ascending=False)
         result_df.to_csv(BENCHMARK_FILE, index=False, encoding="utf-8-sig")
         print(f"\n🎉 [벤치마크 DB 완성] 총 {len(result_df)}개 단지·평형별 역대 최고가 기준표 저장 완료: {BENCHMARK_FILE}", flush=True)
-        print(f"   (예: 송파 잠실엘스 84㎡ 역대 최고가, 분당 파크뷰 84㎡ 역대 최고가 등)", flush=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="5개년 실거래가 벤치마크 수집기")
