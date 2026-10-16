@@ -1,10 +1,5 @@
 """
-수도권 핵심 25개 구역 아파트 실거래가 고속 자동 수집 파이프라인 (무한 대기 방지 엔진)
-- 주요 특징:
-  1. 공공데이터포털 국토교통부 아파트매매 실거래가 API 직접/안전 호출
-  2. 요청당 10초 타임아웃 강제 설정으로 무한 멈춤(Hang) 원천 방지
-  3. 실시간 터미널 출력(flush=True)으로 진행 상황 투명하게 확인
-  4. 단지별 신고가(ATH) 및 거래량 집중 핀셋 선별
+수도권 핵심 25개 구역 아파트 실거래가 고속 자동 수집 파이프라인 (대시보드 완전 연동형)
 """
 
 import os
@@ -61,8 +56,7 @@ TARGET_REGIONS = {
 API_ENDPOINT = "http://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
 
 def fetch_region_xml(service_key: str, code: str, ym: str) -> list:
-    """10초 타임아웃을 강제 적용한 직접 API 호출 (절대 멈추지 않음)"""
-    # Decoding 키 또는 Encoding 키 모두 대응
+    """10초 타임아웃 및 안전 파싱 적용 API 호출"""
     decoded_key = urllib.parse.unquote(service_key)
     
     params = {
@@ -79,7 +73,8 @@ def fetch_region_xml(service_key: str, code: str, ym: str) -> list:
         if resp.status_code != 200:
             return records
         
-        root = ET.fromstring(resp.text)
+        # XML 안전 파싱
+        root = ET.fromstring(resp.content)
         items = root.findall(".//item")
         
         for item in items:
@@ -101,17 +96,18 @@ def fetch_region_xml(service_key: str, code: str, ym: str) -> list:
                 "층": f"{val('floor')}층" if val('floor') else "중층",
                 "거래금액_억": round(float(price_raw) / 10000.0, 2),
                 "계약일자": f"{val('dealYear')}-{str(val('dealMonth')).zfill(2)}-{str(val('dealDay')).zfill(2)}",
+                "조회월": ym,
                 "법정동": val("umdNm"),
                 "거래유형": val("dealingGbn")
             })
     except Exception:
-        # 타임아웃 발생 시 에러 없이 즉시 빈 리스트 반환 (다음으로 스킵)
+        # API 오류/타임아웃 시 안전 스킵
         pass
         
     return records
 
 def fetch_single_region_task(service_key: str, code: str, info: dict, query_months: list):
-    """단일 구역 조회 작업 (스레드 실행 단위)"""
+    """단일 구역 조회 작업"""
     all_records = []
     for ym in query_months:
         records = fetch_region_xml(service_key, code, ym)
@@ -123,12 +119,10 @@ def fetch_single_region_task(service_key: str, code: str, info: dict, query_mont
     return info["name"], all_records
 
 def determine_query_months():
-    """시스템 시간에 상관없이 유효한 조회 월 결정 (당월 및 직전월)"""
+    """조회 월 결정 (당월 및 직전월)"""
     now = datetime.now()
     cur_ym = now.strftime("%Y%m")
     
-    # 2026년 등 미래 연도로 설정된 환경에서도 유효한 월 목록 생성
-    # 당월 및 전월
     m = now.month - 1
     y = now.year
     if m == 0:
@@ -139,11 +133,10 @@ def determine_query_months():
     return [prev_ym, cur_ym]
 
 def extract_curated_insights(clean_df: pd.DataFrame) -> list:
-    """단지별 신고가(ATH) 및 거래량 집중 핀셋 선별"""
+    """단지별 신고가 및 거래량 집중 핀셋 선별"""
     if clean_df.empty or "아파트" not in clean_df.columns:
         return []
 
-    # 직거래 및 1~2층 제외
     valid_df = clean_df.copy()
     if "거래유형" in valid_df.columns:
         valid_df = valid_df[~valid_df["거래유형"].astype(str).str.contains("직거래", na=False)]
@@ -170,7 +163,7 @@ def extract_curated_insights(clean_df: pd.DataFrame) -> list:
         region_cat = latest.get("권역코드", "all")
         dong = latest.get("법정동", "")
 
-        # 1. 신고가 (ATH)
+        # 1. 신고가 (Recent ATH)
         if len(prices) >= 2 and latest_price > max(prices[:-1]):
             prev_high = max(prices[:-1])
             diff = round(latest_price - prev_high, 2)
@@ -187,8 +180,9 @@ def extract_curated_insights(clean_df: pd.DataFrame) -> list:
                 "diff": diff,
                 "diffPercent": round((diff / (prev_high or 1)) * 100, 2),
                 "date": latest.get("계약일자", ""),
+                "month": latest.get("조회월", ""),
                 "tags": ["신고가경신", "상급지리딩"],
-                "description": f"종전 최고가 {prev_high}억 대비 {diff}억원 상승하며 최고가를 경신했습니다.",
+                "description": f"단기 최고가 {prev_high}억 대비 {diff}억원 상승하며 최고가를 경신했습니다.",
                 "recentPrices": prices[-5:]
             })
         # 2. 거래량 급증 단지
@@ -208,14 +202,14 @@ def extract_curated_insights(clean_df: pd.DataFrame) -> list:
                 "diff": diff,
                 "diffPercent": round((diff / (first_price or 1)) * 100, 2),
                 "date": latest.get("계약일자", ""),
+                "month": latest.get("조회월", ""),
                 "tags": ["거래량급증", "손바뀜활발"],
                 "description": f"단기간 내 거래가 집중되며 매수세가 유입된 단지입니다.",
                 "recentPrices": prices[-5:]
             })
 
-    # 최신 체결일 기준 정렬
     curated = sorted(curated, key=lambda x: x["date"], reverse=True)
-    return curated[:24]
+    return curated
 
 def main():
     service_key = os.environ.get("MOLIT_KEY")
@@ -228,7 +222,6 @@ def main():
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🚀 25개 구역 실거래 수집 시작 (대상월: {query_months})...", flush=True)
 
     all_data = []
-    # 5개 작업자 스레드로 병렬 실행 (각 요청 타임아웃 10초)
     with ThreadPoolExecutor(max_workers=5) as executor:
         futures = [
             executor.submit(fetch_single_region_task, service_key, code, info, query_months)
@@ -245,56 +238,50 @@ def main():
 
     print(f"\n📊 총 수집 완료: {len(all_data)}건", flush=True)
 
-    # DataFrame 생성 및 정제
     if all_data:
         clean_df = pd.DataFrame(all_data)
-        # 중복 제거
         clean_df = clean_df.drop_duplicates(subset=["아파트", "전용면적", "층", "거래금액_억", "계약일자"])
     else:
-        # 데이터가 0건일 경우(서버 점검 등) 파이프라인 중단 없이 안전 기본 데이터 생성
-        print("⚠️ 국토부 응답 건수가 0건입니다. 안전 구조체를 생성합니다.", flush=True)
-        clean_df = pd.DataFrame(columns=["아파트", "전용면적", "층", "거래금액_억", "계약일자", "지역명", "권역코드", "법정동"])
+        clean_df = pd.DataFrame(columns=["아파트", "전용면적", "층", "거래금액_억", "계약일자", "지역명", "권역코드", "법정동", "조회월"])
 
-    # 1. CSV 원본 저장
+    # CSV 원본 저장
     csv_filename = f"data/real_estate_trades_{query_months[-1]}.csv"
     clean_df.to_csv(csv_filename, index=False, encoding="utf-8-sig")
     print(f"💾 [저장 완료] CSV 원본: {csv_filename} ({len(clean_df)}건)", flush=True)
 
-    # 2. JSON 선별 데이터 저장
+    # 웹 대시보드 구조화 JSON 생성 (월별 데이터 분리 저장)
     curated_list = extract_curated_insights(clean_df)
     
-    # 선별 건수가 적을 경우 최신 거래로 보충
-    if len(curated_list) < 6 and not clean_df.empty:
-        for idx, row in clean_df.head(15).iterrows():
-            curated_list.append({
-                "id": f"tx-gen-{idx}",
-                "complexName": row["아파트"],
-                "regionCategory": row.get("권역코드", "all"),
-                "regionName": f"{row.get('지역명', '')} {row.get('법정동', '')}".strip(),
-                "area": f"{row['전용면적']:.1f}㎡",
-                "floor": row["층"],
-                "dealPrice": row["거래금액_억"],
-                "previousHigh": row["거래금액_억"],
-                "dealType": "volume",
-                "diff": 0.0,
-                "diffPercent": 0.0,
-                "date": row.get("계약일자", ""),
-                "tags": ["실거래확정"],
-                "description": f"{row.get('계약일자', '')} 체결된 최신 정상 실거래입니다.",
-                "recentPrices": [row["거래금액_억"]]
-            })
+    months_payload = {}
+    for ym in query_months:
+        month_df = clean_df[clean_df["조회월"] == ym] if "조회월" in clean_df.columns else pd.DataFrame()
+        month_curated = [item for item in curated_list if item.get("month") == ym]
+        
+        # 권역별 통계 계산
+        seoul_count = len(month_df[month_df["권역코드"].astype(str).str.startswith("seoul")]) if not month_df.empty else 0
+        gyeonggi-count = len(month_df[month_df["권역코드"].astype(str).str.startswith("gyeonggi")]) if not month_df.empty else 0
+        total_m = len(month_df) or 1
+        
+        months_payload[ym] = {
+            "totalTradeCount": len(month_df),
+            "athCount": len([i for i in month_curated if i["dealType"] == "ath"]),
+            "curatedCount": len(month_curated),
+            "seoulPercent": round((seoul_count / total_m) * 100, 1),
+            "gyeonggiPercent": round((gyeonggi-count / total_m) * 100, 1),
+            "curatedTransactions": month_curated
+        }
 
     json_payload = {
         "updatedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "totalTradeCount": len(clean_df),
-        "curatedCount": len(curated_list),
-        "curatedTransactions": curated_list
+        "availableMonths": query_months,
+        "defaultMonth": query_months[-1],
+        "monthsData": months_payload
     }
 
     json_filename = "data/daily_briefing_data.json"
     with open(json_filename, "w", encoding="utf-8") as f:
         json.dump(json_payload, f, ensure_ascii=False, indent=2)
-    print(f"✨ [저장 완료] 웹 대시보드 데이터: {json_filename} (선별 {len(curated_list)}건)", flush=True)
+    print(f"✨ [저장 완료] 웹 대시보드 데이터: {json_filename}", flush=True)
 
 if __name__ == "__main__":
     main()
