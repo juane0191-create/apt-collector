@@ -44,8 +44,8 @@
         <i class="fa-solid fa-chart-line text-lg"></i>
       </div>
       <div>
-        <h1 class="text-lg font-bold text-white tracking-tight">부동산 실거래 모니터링</h1>
-        <p class="text-xs text-slate-400">수도권 25개 구역 국토교통부 검증 데이터</p>
+        <h1 class="text-lg font-bold text-white tracking-tight">수도권 아파트 실거래 모니터링</h1>
+        <p class="text-xs text-slate-400">25개 핵심 권역 국토교통부 실거래가 · 5개년 전고점 벤치마크 엔진</p>
       </div>
     </div>
 
@@ -179,7 +179,7 @@
           <span>선별 실거래 상세 내역</span>
           <span id="filtered-count-badge" class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold">0개 단지</span>
         </h3>
-        <p class="text-xs text-slate-400 mt-0.5">신고가 경신 및 거래량 집중 단지만 선별하여 표출합니다.</p>
+        <p class="text-xs text-slate-400 mt-0.5">5개년 역대 신고가 경신 및 거래량 집중 단지만 선별하여 표출합니다.</p>
       </div>
       <div class="relative w-full md:w-72">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
@@ -223,7 +223,7 @@
 
   <!-- [상세 내역 팝업 모달] -->
   <div id="detail-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="glass-card bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+    <div class="glass-card bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative" id="modal-box">
       <button id="close-modal-btn" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -247,10 +247,11 @@
       setupFilterEvents();
       setupSearchDebounce();
       setupRefreshButton();
+      setupModalCloseEvents();
       loadRealData();
     });
 
-    // 1. JSON 데이터 로드 함수
+    // 1. JSON 데이터 로드 함수 (캐시 방지 및 복수 경로 탐색)
     async function loadRealData() {
       const refreshIcon = document.getElementById('refresh-icon');
       refreshIcon.classList.add('fa-spin');
@@ -286,11 +287,10 @@
       }
     }
 
-    // 2. 수집된 JSON 데이터 구조화 (monthsData, periods, 단일배열 모두 포용)
+    // 2. 수집된 JSON 데이터 구조화
     function processPayload(payload) {
       globalDataByMonth = {};
 
-      // 1) collector.py의 monthsData 우선 파싱
       if (payload.monthsData) {
         for (const [ym, mData] of Object.entries(payload.monthsData)) {
           globalDataByMonth[ym] = {
@@ -302,29 +302,22 @@
             transactions: mData.transactions || mData.curatedTransactions || []
           };
         }
-      } 
-      // 2) periods 구조 파싱
-      else if (payload.periods) {
+      } else if (payload.periods) {
         for (const [key, pData] of Object.entries(payload.periods)) {
           const ym = pData.ym || (pData.label ? pData.label.replace(/[^0-9]/g, '').slice(0, 6) : key);
           globalDataByMonth[ym] = {
             label: pData.label || `${ym.slice(0, 4)}년 ${parseInt(ym.slice(4))}월`,
             totalTrades: pData.totalTradeCount || 0,
             athCount: pData.athCount || 0,
+            seoulPercent: pData.seoulPercent,
+            gyeonggiPercent: pData.gyeonggiPercent,
             transactions: pData.transactions || pData.curatedTransactions || []
           };
         }
-      } 
-      // 3) 단일 배열 구조일 경우 계약일자(date) 기준으로 9월, 10월 분리
-      else {
+      } else {
         const txList = payload.curatedTransactions || payload.transactions || [];
         txList.forEach(item => {
-          let ym = "202610";
-          if (item.date && item.date.length >= 7) {
-            ym = item.date.replace('-', '').slice(0, 6);
-          } else if (item.month) {
-            ym = item.month;
-          }
+          let ym = item.month || (item.date ? item.date.replace('-', '').slice(0, 6) : "202610");
           if (!globalDataByMonth[ym]) {
             globalDataByMonth[ym] = {
               label: `${ym.slice(0, 4)}년 ${parseInt(ym.slice(4))}월`,
@@ -338,12 +331,12 @@
 
         for (const ym in globalDataByMonth) {
           globalDataByMonth[ym].totalTrades = payload.totalTradeCount || (globalDataByMonth[ym].transactions.length * 6);
+          globalDataByMonth[ym].athCount = globalDataByMonth[ym].transactions.filter(t => t.dealType === 'ath').length;
         }
       }
 
       availableMonths = Object.keys(globalDataByMonth).sort().reverse();
 
-      // 안전 Fallback
       if (availableMonths.length === 0) {
         availableMonths = ["202610", "202609"];
         globalDataByMonth["202610"] = { label: "2026년 10월", totalTrades: 0, athCount: 0, transactions: [] };
@@ -351,7 +344,6 @@
       }
 
       renderMonthTabs();
-      // defaultMonth가 명시되어 있다면 해당 월 선택, 없으면 최신월
       const defaultYm = (payload.defaultMonth && globalDataByMonth[payload.defaultMonth]) ? payload.defaultMonth : availableMonths[0];
       selectMonth(defaultYm);
     }
@@ -390,7 +382,7 @@
       document.getElementById('month-desc').textContent = `${mData.label}에 체결된 국토교통부 검증 거래 내역입니다.`;
 
       currentTransactions = mData.transactions;
-      document.getElementById('metric-total-trades').textContent = mData.totalTrades || currentTransactions.length * 6;
+      document.getElementById('metric-total-trades').textContent = mData.totalTrades || (currentTransactions.length * 6);
       document.getElementById('metric-ath-count').textContent = mData.athCount || currentTransactions.filter(t => t.dealType === 'ath').length;
       document.getElementById('metric-curated-count').textContent = currentTransactions.length;
       document.getElementById('metric-period-label').textContent = `${mData.label} 국토부 집계`;
@@ -429,7 +421,7 @@
         const isATH = tx.dealType === 'ath';
         const badgeClass = isATH ? 'badge-ath' : 'badge-volume';
         const badgeIcon = isATH ? 'fa-crown' : 'fa-chart-simple';
-        const badgeText = isATH ? '신고가 경신' : '거래 집중';
+        const badgeText = isATH ? '역대신고가' : '거래 집중';
         const diffColor = isATH ? 'text-rose-400' : 'text-emerald-400';
 
         return `
@@ -452,7 +444,7 @@
                   <div class="text-xl font-bold text-white mono">${(tx.dealPrice || 0).toFixed(1)}<span class="text-sm font-normal text-slate-400 ml-1">억</span></div>
                 </div>
                 <div class="text-right">
-                  <span class="text-xs text-slate-400">직전대비</span>
+                  <span class="text-xs text-slate-400">종전/직전대비</span>
                   <div class="text-sm font-bold ${diffColor} mono">
                     +${(tx.diff || 0).toFixed(1)}억 (${tx.diffPercent || 0}%)
                   </div>
@@ -471,7 +463,7 @@
 
             <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
               <div class="flex flex-wrap gap-1">
-                ${(tx.tags || ['실거래확정']).map(tag => `<span class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded border border-slate-700">#${tag}</span>`).join('')}
+                ${(tx.tags || ['5개년비교검증']).map(tag => `<span class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded border border-slate-700">#${tag}</span>`).join('')}
               </div>
               <span class="text-xs text-indigo-400 font-medium flex items-center gap-1">
                 상세보기 <i class="fa-solid fa-angle-right text-[10px]"></i>
@@ -496,7 +488,7 @@
           <div>
             <span class="text-xs text-indigo-400 font-semibold">${tx.regionName || ''}</span>
             <h3 class="text-xl font-bold text-white">${tx.complexName}</h3>
-            <p class="text-xs text-slate-400">${tx.area} | ${tx.floor} | ${tx.date} 계약</p>
+            <p class="text-xs text-slate-400">${tx.area} | ${tx.floor} | ${tx.date} 계약 체결</p>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-800/70 border border-slate-700 grid grid-cols-2 gap-3 text-center">
@@ -505,14 +497,14 @@
               <div class="text-xl font-bold text-white mono mt-0.5">${tx.dealPrice}억원</div>
             </div>
             <div>
-              <span class="text-xs text-slate-400">상승폭</span>
+              <span class="text-xs text-slate-400">종전/전고점 대비</span>
               <div class="text-xl font-bold text-rose-400 mono mt-0.5">+${tx.diff || 0}억 (${tx.diffPercent || 0}%)</div>
             </div>
           </div>
 
           <div>
             <h5 class="text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5">
-              <i class="fa-solid fa-magnifying-glass-chart text-indigo-400"></i>체결 포인트 분석
+              <i class="fa-solid fa-magnifying-glass-chart text-indigo-400"></i>5개년 벤치마크 분석
             </h5>
             <div class="p-3 bg-slate-800/40 rounded-xl text-xs text-slate-300 leading-relaxed border border-slate-700/60">
               ${tx.description}
@@ -539,13 +531,19 @@
       modal.classList.remove('hidden');
     };
 
-    document.getElementById('close-modal-btn').addEventListener('click', () => {
-      document.getElementById('detail-modal').classList.add('hidden');
-    });
+    function setupModalCloseEvents() {
+      const modal = document.getElementById('detail-modal');
+      document.getElementById('close-modal-btn').addEventListener('click', () => modal.classList.add('hidden'));
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) modal.classList.add('hidden');
+      });
+    }
 
     // 7. 차트 렌더링
     function updateCharts(mData) {
-      // Gap Line Chart
       const gapCanvas = document.getElementById('gapTrackingChart');
       if (gapCanvas) {
         const gapCtx = gapCanvas.getContext('2d');
@@ -573,14 +571,13 @@
         });
       }
 
-      // Doughnut Chart
       const regionCanvas = document.getElementById('regionDistributionChart');
       if (regionCanvas) {
         const regionCtx = regionCanvas.getContext('2d');
         if (regionChartInstance) regionChartInstance.destroy();
 
-        let seoulPct = mData && mData.seoulPercent !== undefined ? mData.seoulPercent : null;
-        let gyeonggiPct = mData && mData.gyeonggiPercent !== undefined ? mData.gyeonggiPercent : null;
+        let seoulPct = (mData && mData.seoulPercent !== undefined) ? mData.seoulPercent : null;
+        let gyeonggiPct = (mData && mData.gyeonggiPercent !== undefined) ? mData.gyeonggiPercent : null;
 
         let seoulCount = currentTransactions.filter(t => t.regionCategory && t.regionCategory.startsWith('seoul')).length || 1;
         let gyeonggiCount = currentTransactions.filter(t => t.regionCategory && t.regionCategory.startsWith('gyeonggi')).length || 1;
