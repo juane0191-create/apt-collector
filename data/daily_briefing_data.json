@@ -1,14 +1,14 @@
 {
-  "lastUpdated": "2026-10-17 14:10:49",
+  "lastUpdated": "2026-10-17 21:15:59",
   "availableMonths": [
     "202610",
     "202609"
   ],
   "monthsData": {
     "202610": {
-      "totalTradeCount": 762,
-      "seoulPercent": 56.4,
-      "gyeonggiPercent": 43.6,
+      "totalTradeCount": 769,
+      "seoulPercent": 56.8,
+      "gyeonggiPercent": 43.2,
       "curatedTransactions": [
         {
           "aptName": "나인원한남",
@@ -622,19 +622,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "송파시그니처롯데캐슬",
-          "area": 84.98,
-          "intArea": 84,
-          "floor": "24층",
-          "price": 21.0,
-          "tradeDate": "2026-10-13",
-          "regionName": "서울 송파구",
-          "category": "seoul-southeast",
-          "previousHigh": 22.3,
-          "previousHighDate": "2026-02-13",
-          "recoveryRatio": 94.2
-        },
-        {
           "aptName": "삼익대청아파트",
           "area": 51.12,
           "intArea": 51,
@@ -646,6 +633,19 @@
           "previousHigh": 21.5,
           "previousHighDate": "2026-04-06",
           "recoveryRatio": 97.7
+        },
+        {
+          "aptName": "송파시그니처롯데캐슬",
+          "area": 84.98,
+          "intArea": 84,
+          "floor": "24층",
+          "price": 21.0,
+          "tradeDate": "2026-10-13",
+          "regionName": "서울 송파구",
+          "category": "seoul-southeast",
+          "previousHigh": 22.3,
+          "previousHighDate": "2026-02-13",
+          "recoveryRatio": 94.2
         },
         {
           "aptName": "보라매에스케이뷰",
@@ -685,6 +685,19 @@
           "previousHigh": 21.4,
           "previousHighDate": "2026-09-21",
           "recoveryRatio": 95.3
+        },
+        {
+          "aptName": "보라매에스케이뷰",
+          "area": 84.98,
+          "intArea": 84,
+          "floor": "12층",
+          "price": 20.05,
+          "tradeDate": "2026-10-10",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 20.9,
+          "previousHighDate": "2026-10-06",
+          "recoveryRatio": 95.9
         },
         {
           "aptName": "아남",
@@ -1207,6 +1220,19 @@
           "recoveryRatio": 100.0
         },
         {
+          "aptName": "당산효성1차",
+          "area": 59.85,
+          "intArea": 59,
+          "floor": "10층",
+          "price": 16.4,
+          "tradeDate": "2026-10-07",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 16.6,
+          "previousHighDate": "2026-07-04",
+          "recoveryRatio": 98.8
+        },
+        {
           "aptName": "우장산힐스테이트",
           "area": 84.98,
           "intArea": 84,
@@ -1259,19 +1285,6 @@
           "recoveryRatio": 94.7
         },
         {
-          "aptName": "신동아4",
-          "area": 59.89,
-          "intArea": 59,
-          "floor": "13층",
-          "price": 16.0,
-          "tradeDate": "2026-10-10",
-          "regionName": "서울 동작구",
-          "category": "seoul-southwest",
-          "previousHigh": 16.25,
-          "previousHighDate": "2026-07-03",
-          "recoveryRatio": 98.5
-        },
-        {
           "aptName": "당산효성1차",
           "area": 59.85,
           "intArea": 59,
@@ -1283,6 +1296,19 @@
           "previousHigh": 16.6,
           "previousHighDate": "2026-07-04",
           "recoveryRatio": 96.4
+        },
+        {
+          "aptName": "신동아4",
+          "area": 59.89,
+          "intArea": 59,
+          "floor": "13층",
+          "price": 16.0,
+          "tradeDate": "2026-10-10",
+          "regionName": "서울 동작구",
+          "category": "seoul-southwest",
+          "previousHigh": 16.25,
+          "previousHighDate": "2026-07-03",
+          "recoveryRatio": 98.5
         },
         {
           "aptName": "장미마을(현대)",
@@ -2000,19 +2026,6 @@
           "recoveryRatio": 95.2
         },
         {
-          "aptName": "동작협성휴포레시그니처",
-          "area": 84.9464,
-          "intArea": 84,
-          "floor": "27층",
-          "price": 13.9,
-          "tradeDate": "2026-10-01",
-          "regionName": "서울 동작구",
-          "category": "seoul-southwest",
-          "previousHigh": 14.3,
-          "previousHighDate": "2026-09-15",
-          "recoveryRatio": 97.2
-        },
-        {
           "aptName": "두산",
           "area": 84.73,
           "intArea": 84,
@@ -2024,6 +2037,19 @@
           "previousHigh": 14.83,
           "previousHighDate": "2026-08-07",
           "recoveryRatio": 93.7
+        },
+        {
+          "aptName": "동작협성휴포레시그니처",
+          "area": 84.9464,
+          "intArea": 84,
+          "floor": "27층",
+          "price": 13.9,
+          "tradeDate": "2026-10-01",
+          "regionName": "서울 동작구",
+          "category": "seoul-southwest",
+          "previousHigh": 14.3,
+          "previousHighDate": "2026-09-15",
+          "recoveryRatio": 97.2
         },
         {
           "aptName": "동천센트럴자이",
@@ -2247,19 +2273,6 @@
           "recoveryRatio": 84.8
         },
         {
-          "aptName": "관악드림(동아)",
-          "area": 114.75,
-          "intArea": 114,
-          "floor": "11층",
-          "price": 13.35,
-          "tradeDate": "2026-10-08",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 14.5,
-          "previousHighDate": "2026-08-30",
-          "recoveryRatio": 92.1
-        },
-        {
           "aptName": "문래공원한신",
           "area": 58.96,
           "intArea": 58,
@@ -2271,6 +2284,19 @@
           "previousHigh": 13.35,
           "previousHighDate": "2026-10-02",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "관악드림(동아)",
+          "area": 114.75,
+          "intArea": 114,
+          "floor": "11층",
+          "price": 13.35,
+          "tradeDate": "2026-10-08",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 14.5,
+          "previousHighDate": "2026-08-30",
+          "recoveryRatio": 92.1
         },
         {
           "aptName": "동천마을동문굿모닝힐6차",
@@ -2299,19 +2325,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "광명역푸르지오",
-          "area": 84.9214,
-          "intArea": 84,
-          "floor": "12층",
-          "price": 13.2,
-          "tradeDate": "2026-10-09",
-          "regionName": "광명시",
-          "category": "gyeonggi-close",
-          "previousHigh": 14.7,
-          "previousHighDate": "2021-10-10",
-          "recoveryRatio": 89.8
-        },
-        {
           "aptName": "감일스윗시티10단지",
           "area": 74.9,
           "intArea": 74,
@@ -2323,6 +2336,19 @@
           "previousHigh": 13.2,
           "previousHighDate": "2026-10-07",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "광명역푸르지오",
+          "area": 84.9214,
+          "intArea": 84,
+          "floor": "12층",
+          "price": 13.2,
+          "tradeDate": "2026-10-09",
+          "regionName": "광명시",
+          "category": "gyeonggi-close",
+          "previousHigh": 14.7,
+          "previousHighDate": "2021-10-10",
+          "recoveryRatio": 89.8
         },
         {
           "aptName": "미사강변파밀리에",
@@ -2364,6 +2390,19 @@
           "recoveryRatio": 100.0
         },
         {
+          "aptName": "우림루미아트",
+          "area": 84.87,
+          "intArea": 84,
+          "floor": "14층",
+          "price": 13.0,
+          "tradeDate": "2026-10-16",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 11.95,
+          "previousHighDate": "2026-07-31",
+          "recoveryRatio": 108.8
+        },
+        {
           "aptName": "심곡마을광교힐스테이트",
           "area": 134.3218,
           "intArea": 134,
@@ -2403,19 +2442,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "영통아이파크캐슬1단지",
-          "area": 75.93,
-          "intArea": 75,
-          "floor": "14층",
-          "price": 12.95,
-          "tradeDate": "2026-10-12",
-          "regionName": "수원시 영통구",
-          "category": "gyeonggi-south",
-          "previousHigh": 12.95,
-          "previousHighDate": "2026-10-12",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "광명역파크자이",
           "area": 59.9678,
           "intArea": 59,
@@ -2426,6 +2452,19 @@
           "category": "gyeonggi-close",
           "previousHigh": 12.95,
           "previousHighDate": "2026-10-07",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "영통아이파크캐슬1단지",
+          "area": 75.93,
+          "intArea": 75,
+          "floor": "14층",
+          "price": 12.95,
+          "tradeDate": "2026-10-12",
+          "regionName": "수원시 영통구",
+          "category": "gyeonggi-south",
+          "previousHigh": 12.95,
+          "previousHighDate": "2026-10-12",
           "recoveryRatio": 100.0
         },
         {
@@ -2975,6 +3014,19 @@
           "recoveryRatio": 94.1
         },
         {
+          "aptName": "미사강변루나리움",
+          "area": 74.8,
+          "intArea": 74,
+          "floor": "1층",
+          "price": 11.9,
+          "tradeDate": "2026-10-06",
+          "regionName": "하남시",
+          "category": "gyeonggi-close",
+          "previousHigh": 12.8,
+          "previousHighDate": "2026-07-25",
+          "recoveryRatio": 93.0
+        },
+        {
           "aptName": "광교2차e편한세상",
           "area": 84.6861,
           "intArea": 84,
@@ -2999,19 +3051,6 @@
           "previousHigh": 11.95,
           "previousHighDate": "2026-09-18",
           "recoveryRatio": 99.6
-        },
-        {
-          "aptName": "미사강변루나리움",
-          "area": 74.8,
-          "intArea": 74,
-          "floor": "1층",
-          "price": 11.9,
-          "tradeDate": "2026-10-06",
-          "regionName": "하남시",
-          "category": "gyeonggi-close",
-          "previousHigh": 12.8,
-          "previousHighDate": "2026-07-25",
-          "recoveryRatio": 93.0
         },
         {
           "aptName": "월곡두산위브",
@@ -3129,6 +3168,19 @@
           "previousHigh": 12.5,
           "previousHighDate": "2021-11-24",
           "recoveryRatio": 92.3
+        },
+        {
+          "aptName": "보라매 신동아 파밀리에",
+          "area": 84.88,
+          "intArea": 84,
+          "floor": "7층",
+          "price": 11.5,
+          "tradeDate": "2026-10-16",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 12.0,
+          "previousHighDate": "2026-07-07",
+          "recoveryRatio": 95.8
         },
         {
           "aptName": "두산",
@@ -3430,19 +3482,6 @@
           "recoveryRatio": 92.4
         },
         {
-          "aptName": "두산위브트레지움",
-          "area": 84.97,
-          "intArea": 84,
-          "floor": "5층",
-          "price": 10.9,
-          "tradeDate": "2026-10-07",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 10.97,
-          "previousHighDate": "2026-07-18",
-          "recoveryRatio": 99.4
-        },
-        {
           "aptName": "매화마을공무원2",
           "area": 58.71,
           "intArea": 58,
@@ -3454,6 +3493,19 @@
           "previousHigh": 11.76,
           "previousHighDate": "2026-09-18",
           "recoveryRatio": 92.7
+        },
+        {
+          "aptName": "두산위브트레지움",
+          "area": 84.97,
+          "intArea": 84,
+          "floor": "5층",
+          "price": 10.9,
+          "tradeDate": "2026-10-07",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 10.97,
+          "previousHighDate": "2026-07-18",
+          "recoveryRatio": 99.4
         },
         {
           "aptName": "광교상현마을현대",
@@ -3950,19 +4002,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "상암월드컵파크10단지",
-          "area": 59.73,
-          "intArea": 59,
-          "floor": "1층",
-          "price": 10.0,
-          "tradeDate": "2026-10-01",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 10.45,
-          "previousHighDate": "2026-05-18",
-          "recoveryRatio": 95.7
-        },
-        {
           "aptName": "일성파크",
           "area": 84.96,
           "intArea": 84,
@@ -3974,6 +4013,19 @@
           "previousHigh": 10.57,
           "previousHighDate": "2026-06-17",
           "recoveryRatio": 94.6
+        },
+        {
+          "aptName": "상암월드컵파크10단지",
+          "area": 59.73,
+          "intArea": 59,
+          "floor": "1층",
+          "price": 10.0,
+          "tradeDate": "2026-10-01",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 10.45,
+          "previousHighDate": "2026-05-18",
+          "recoveryRatio": 95.7
         },
         {
           "aptName": "북한산아이파크5차",
@@ -4808,17 +4860,17 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "삼익그린뷰",
-          "area": 84.9941,
-          "intArea": 84,
-          "floor": "8층",
+          "aptName": "당산계룡리슈빌1단지",
+          "area": 47.25,
+          "intArea": 47,
+          "floor": "12층",
           "price": 9.0,
-          "tradeDate": "2026-10-06",
-          "regionName": "서울 동작구",
+          "tradeDate": "2026-10-09",
+          "regionName": "서울 영등포구",
           "category": "seoul-southwest",
-          "previousHigh": 9.1,
-          "previousHighDate": "2026-04-18",
-          "recoveryRatio": 98.9
+          "previousHigh": 9.0,
+          "previousHighDate": "2026-10-09",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "신림현대",
@@ -4834,17 +4886,17 @@
           "recoveryRatio": 90.0
         },
         {
-          "aptName": "당산계룡리슈빌1단지",
-          "area": 47.25,
-          "intArea": 47,
-          "floor": "12층",
+          "aptName": "삼익그린뷰",
+          "area": 84.9941,
+          "intArea": 84,
+          "floor": "8층",
           "price": 9.0,
-          "tradeDate": "2026-10-09",
-          "regionName": "서울 영등포구",
+          "tradeDate": "2026-10-06",
+          "regionName": "서울 동작구",
           "category": "seoul-southwest",
-          "previousHigh": 9.0,
-          "previousHighDate": "2026-10-09",
-          "recoveryRatio": 100.0
+          "previousHigh": 9.1,
+          "previousHighDate": "2026-04-18",
+          "recoveryRatio": 98.9
         },
         {
           "aptName": "삼성하나로",
@@ -5107,6 +5159,19 @@
           "recoveryRatio": 97.8
         },
         {
+          "aptName": "마포푸르지오더센트럴",
+          "area": 41.59,
+          "intArea": 41,
+          "floor": "10층",
+          "price": 8.7,
+          "tradeDate": "2026-10-12",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 8.5,
+          "previousHighDate": "2026-07-04",
+          "recoveryRatio": 102.4
+        },
+        {
           "aptName": "상계불암대림",
           "area": 114.81,
           "intArea": 114,
@@ -5146,19 +5211,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "광명한진타운",
-          "area": 59.93,
-          "intArea": 59,
-          "floor": "10층",
-          "price": 8.7,
-          "tradeDate": "2026-10-02",
-          "regionName": "광명시",
-          "category": "gyeonggi-close",
-          "previousHigh": 9.3,
-          "previousHighDate": "2026-10-08",
-          "recoveryRatio": 93.5
-        },
-        {
           "aptName": "부영",
           "area": 59.97,
           "intArea": 59,
@@ -5170,6 +5222,19 @@
           "previousHigh": 9.0,
           "previousHighDate": "2026-09-19",
           "recoveryRatio": 96.7
+        },
+        {
+          "aptName": "광명한진타운",
+          "area": 59.93,
+          "intArea": 59,
+          "floor": "10층",
+          "price": 8.7,
+          "tradeDate": "2026-10-02",
+          "regionName": "광명시",
+          "category": "gyeonggi-close",
+          "previousHigh": 9.3,
+          "previousHighDate": "2026-10-08",
+          "recoveryRatio": 93.5
         },
         {
           "aptName": "꽃메마을아이파크",
@@ -5237,19 +5302,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "다성리치빌",
-          "area": 84.94,
-          "intArea": 84,
-          "floor": "3층",
-          "price": 8.5,
-          "tradeDate": "2026-10-07",
-          "regionName": "서울 송파구",
-          "category": "seoul-southeast",
-          "previousHigh": 8.5,
-          "previousHighDate": "2026-10-07",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "동아하이빌아파트",
           "area": 59.98,
           "intArea": 59,
@@ -5260,6 +5312,19 @@
           "category": "seoul-southeast",
           "previousHigh": 8.5,
           "previousHighDate": "2026-09-09",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "다성리치빌",
+          "area": 84.94,
+          "intArea": 84,
+          "floor": "3층",
+          "price": 8.5,
+          "tradeDate": "2026-10-07",
+          "regionName": "서울 송파구",
+          "category": "seoul-southeast",
+          "previousHigh": 8.5,
+          "previousHighDate": "2026-10-07",
           "recoveryRatio": 100.0
         },
         {
@@ -5328,19 +5393,6 @@
           "recoveryRatio": 98.8
         },
         {
-          "aptName": "영통에듀파크(331동~337동)",
-          "area": 73.79,
-          "intArea": 73,
-          "floor": "3층",
-          "price": 8.5,
-          "tradeDate": "2026-10-03",
-          "regionName": "수원시 영통구",
-          "category": "gyeonggi-south",
-          "previousHigh": 8.5,
-          "previousHighDate": "2026-09-01",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "월드메르디앙",
           "area": 59.7,
           "intArea": 59,
@@ -5367,6 +5419,19 @@
           "recoveryRatio": 100.0
         },
         {
+          "aptName": "영통에듀파크(331동~337동)",
+          "area": 73.79,
+          "intArea": 73,
+          "floor": "3층",
+          "price": 8.5,
+          "tradeDate": "2026-10-03",
+          "regionName": "수원시 영통구",
+          "category": "gyeonggi-south",
+          "previousHigh": 8.5,
+          "previousHighDate": "2026-09-01",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "방배아크로타워",
           "area": 59.37,
           "intArea": 59,
@@ -5378,6 +5443,19 @@
           "previousHigh": 8.45,
           "previousHighDate": "2026-10-07",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "오목교벽산블루밍",
+          "area": 59.85,
+          "intArea": 59,
+          "floor": "9층",
+          "price": 8.4,
+          "tradeDate": "2026-10-12",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 8.5,
+          "previousHighDate": "2026-09-04",
+          "recoveryRatio": 98.8
         },
         {
           "aptName": "등촌7,8단지주공아파트",
@@ -5861,19 +5939,6 @@
           "recoveryRatio": 94.0
         },
         {
-          "aptName": "신동아",
-          "area": 59.88,
-          "intArea": 59,
-          "floor": "8층",
-          "price": 7.8,
-          "tradeDate": "2026-10-05",
-          "regionName": "서울 송파구",
-          "category": "seoul-southeast",
-          "previousHigh": 7.8,
-          "previousHighDate": "2026-10-05",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "대원",
           "area": 84.88,
           "intArea": 84,
@@ -5884,6 +5949,19 @@
           "category": "seoul-southeast",
           "previousHigh": 7.8,
           "previousHighDate": "2026-10-08",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "신동아",
+          "area": 59.88,
+          "intArea": 59,
+          "floor": "8층",
+          "price": 7.8,
+          "tradeDate": "2026-10-05",
+          "regionName": "서울 송파구",
+          "category": "seoul-southeast",
+          "previousHigh": 7.8,
+          "previousHighDate": "2026-10-05",
           "recoveryRatio": 100.0
         },
         {
@@ -6069,32 +6147,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "태영",
-          "area": 84.88,
-          "intArea": 84,
-          "floor": "10층",
-          "price": 7.5,
-          "tradeDate": "2026-10-13",
-          "regionName": "수원시 영통구",
-          "category": "gyeonggi-south",
-          "previousHigh": 8.17,
-          "previousHighDate": "2021-09-15",
-          "recoveryRatio": 91.8
-        },
-        {
-          "aptName": "주공12",
-          "area": 44.89,
-          "intArea": 44,
-          "floor": "15층",
-          "price": 7.5,
-          "tradeDate": "2026-10-03",
-          "regionName": "광명시",
-          "category": "gyeonggi-close",
-          "previousHigh": 7.8,
-          "previousHighDate": "2026-07-18",
-          "recoveryRatio": 96.2
-        },
-        {
           "aptName": "한솔리치빌(1단지)",
           "area": 84.8049,
           "intArea": 84,
@@ -6119,6 +6171,32 @@
           "previousHigh": 7.5,
           "previousHighDate": "2026-10-02",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "주공12",
+          "area": 44.89,
+          "intArea": 44,
+          "floor": "15층",
+          "price": 7.5,
+          "tradeDate": "2026-10-03",
+          "regionName": "광명시",
+          "category": "gyeonggi-close",
+          "previousHigh": 7.8,
+          "previousHighDate": "2026-07-18",
+          "recoveryRatio": 96.2
+        },
+        {
+          "aptName": "태영",
+          "area": 84.88,
+          "intArea": 84,
+          "floor": "10층",
+          "price": 7.5,
+          "tradeDate": "2026-10-13",
+          "regionName": "수원시 영통구",
+          "category": "gyeonggi-south",
+          "previousHigh": 8.17,
+          "previousHighDate": "2021-09-15",
+          "recoveryRatio": 91.8
         },
         {
           "aptName": "한일유앤아이",
@@ -6199,19 +6277,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "벽적골9단지주공",
-          "area": 59.39,
-          "intArea": 59,
-          "floor": "18층",
-          "price": 7.4,
-          "tradeDate": "2026-10-03",
-          "regionName": "수원시 영통구",
-          "category": "gyeonggi-south",
-          "previousHigh": 7.45,
-          "previousHighDate": "2026-09-16",
-          "recoveryRatio": 99.3
-        },
-        {
           "aptName": "한솔리치빌(1단지)",
           "area": 84.8049,
           "intArea": 84,
@@ -6223,6 +6288,19 @@
           "previousHigh": 7.65,
           "previousHighDate": "2026-04-10",
           "recoveryRatio": 96.7
+        },
+        {
+          "aptName": "벽적골9단지주공",
+          "area": 59.39,
+          "intArea": 59,
+          "floor": "18층",
+          "price": 7.4,
+          "tradeDate": "2026-10-03",
+          "regionName": "수원시 영통구",
+          "category": "gyeonggi-south",
+          "previousHigh": 7.45,
+          "previousHighDate": "2026-09-16",
+          "recoveryRatio": 99.3
         },
         {
           "aptName": "그린월드",
@@ -6407,19 +6485,6 @@
           "recoveryRatio": 87.3
         },
         {
-          "aptName": "벽적골9단지주공",
-          "area": 59.39,
-          "intArea": 59,
-          "floor": "11층",
-          "price": 7.2,
-          "tradeDate": "2026-10-03",
-          "regionName": "수원시 영통구",
-          "category": "gyeonggi-south",
-          "previousHigh": 7.45,
-          "previousHighDate": "2026-09-16",
-          "recoveryRatio": 96.6
-        },
-        {
           "aptName": "주공12",
           "area": 44.89,
           "intArea": 44,
@@ -6431,6 +6496,19 @@
           "previousHigh": 7.8,
           "previousHighDate": "2026-07-18",
           "recoveryRatio": 92.3
+        },
+        {
+          "aptName": "벽적골9단지주공",
+          "area": 59.39,
+          "intArea": 59,
+          "floor": "11층",
+          "price": 7.2,
+          "tradeDate": "2026-10-03",
+          "regionName": "수원시 영통구",
+          "category": "gyeonggi-south",
+          "previousHigh": 7.45,
+          "previousHighDate": "2026-09-16",
+          "recoveryRatio": 96.6
         },
         {
           "aptName": "마곡중앙하이츠아파트",
@@ -6524,6 +6602,19 @@
           "recoveryRatio": 96.6
         },
         {
+          "aptName": "영등포자이르네",
+          "area": 49.1,
+          "intArea": 49,
+          "floor": "16층",
+          "price": 7.1,
+          "tradeDate": "2026-10-05",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 7.0,
+          "previousHighDate": "2026-10-09",
+          "recoveryRatio": 101.4
+        },
+        {
           "aptName": "한진",
           "area": 59.95,
           "intArea": 59,
@@ -6576,6 +6667,19 @@
           "recoveryRatio": 94.9
         },
         {
+          "aptName": "영등포자이르네",
+          "area": 49.08,
+          "intArea": 49,
+          "floor": "4층",
+          "price": 7.0,
+          "tradeDate": "2026-10-09",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 7.0,
+          "previousHighDate": "2026-10-09",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "LIG대학마을(건영아파트3차)",
           "area": 69.17,
           "intArea": 69,
@@ -6600,19 +6704,6 @@
           "previousHigh": 8.3,
           "previousHighDate": "2021-09-27",
           "recoveryRatio": 84.3
-        },
-        {
-          "aptName": "영등포자이르네",
-          "area": 49.08,
-          "intArea": 49,
-          "floor": "4층",
-          "price": 7.0,
-          "tradeDate": "2026-10-09",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 7.0,
-          "previousHighDate": "2026-10-09",
-          "recoveryRatio": 100.0
         },
         {
           "aptName": "상계주공10(고층)",
@@ -6719,19 +6810,6 @@
           "recoveryRatio": 96.5
         },
         {
-          "aptName": "e편한세상영통2차(1단지)",
-          "area": 59.9158,
-          "intArea": 59,
-          "floor": "18층",
-          "price": 6.95,
-          "tradeDate": "2026-10-08",
-          "regionName": "수원시 영통구",
-          "category": "gyeonggi-south",
-          "previousHigh": 7.1,
-          "previousHighDate": "2026-10-08",
-          "recoveryRatio": 97.9
-        },
-        {
           "aptName": "하남덕풍역파크어울림",
           "area": 59.9634,
           "intArea": 59,
@@ -6756,6 +6834,19 @@
           "previousHigh": 6.95,
           "previousHighDate": "2026-08-19",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "e편한세상영통2차(1단지)",
+          "area": 59.9158,
+          "intArea": 59,
+          "floor": "18층",
+          "price": 6.95,
+          "tradeDate": "2026-10-08",
+          "regionName": "수원시 영통구",
+          "category": "gyeonggi-south",
+          "previousHigh": 7.1,
+          "previousHighDate": "2026-10-08",
+          "recoveryRatio": 97.9
         },
         {
           "aptName": "황골마을주공1",
@@ -6784,19 +6875,6 @@
           "recoveryRatio": 98.6
         },
         {
-          "aptName": "동부",
-          "area": 50.57,
-          "intArea": 50,
-          "floor": "5층",
-          "price": 6.9,
-          "tradeDate": "2026-10-15",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 6.9,
-          "previousHighDate": "2026-10-15",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "현대프라자",
           "area": 59.96,
           "intArea": 59,
@@ -6807,6 +6885,19 @@
           "category": "seoul-southwest",
           "previousHigh": 6.9,
           "previousHighDate": "2026-10-02",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "동부",
+          "area": 50.57,
+          "intArea": 50,
+          "floor": "5층",
+          "price": 6.9,
+          "tradeDate": "2026-10-15",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 6.9,
+          "previousHighDate": "2026-10-15",
           "recoveryRatio": 100.0
         },
         {
@@ -7460,19 +7551,6 @@
           "recoveryRatio": 96.2
         },
         {
-          "aptName": "벽적골9단지주공",
-          "area": 49.57,
-          "intArea": 49,
-          "floor": "8층",
-          "price": 6.25,
-          "tradeDate": "2026-10-13",
-          "regionName": "수원시 영통구",
-          "category": "gyeonggi-south",
-          "previousHigh": 6.25,
-          "previousHighDate": "2026-10-13",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "백조현대",
           "area": 49.98,
           "intArea": 49,
@@ -7484,6 +7562,19 @@
           "previousHigh": 6.45,
           "previousHighDate": "2026-09-17",
           "recoveryRatio": 96.9
+        },
+        {
+          "aptName": "벽적골9단지주공",
+          "area": 49.57,
+          "intArea": 49,
+          "floor": "8층",
+          "price": 6.25,
+          "tradeDate": "2026-10-13",
+          "regionName": "수원시 영통구",
+          "category": "gyeonggi-south",
+          "previousHigh": 6.25,
+          "previousHighDate": "2026-10-13",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "주공그린빌3",
@@ -7668,6 +7759,19 @@
           "recoveryRatio": 72.3
         },
         {
+          "aptName": "철산리버빌주공",
+          "area": 49.61,
+          "intArea": 49,
+          "floor": "18층",
+          "price": 6.0,
+          "tradeDate": "2026-10-02",
+          "regionName": "광명시",
+          "category": "gyeonggi-close",
+          "previousHigh": 6.0,
+          "previousHighDate": "2026-10-02",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "벽적골한신",
           "area": 59.84,
           "intArea": 59,
@@ -7744,19 +7848,6 @@
           "previousHigh": 6.35,
           "previousHighDate": "2021-10-02",
           "recoveryRatio": 94.5
-        },
-        {
-          "aptName": "철산리버빌주공",
-          "area": 49.61,
-          "intArea": 49,
-          "floor": "18층",
-          "price": 6.0,
-          "tradeDate": "2026-10-02",
-          "regionName": "광명시",
-          "category": "gyeonggi-close",
-          "previousHigh": 6.0,
-          "previousHighDate": "2026-10-02",
-          "recoveryRatio": 100.0
         },
         {
           "aptName": "주공2",
@@ -8032,19 +8123,6 @@
           "recoveryRatio": 96.3
         },
         {
-          "aptName": "기산그린",
-          "area": 76.08,
-          "intArea": 76,
-          "floor": "18층",
-          "price": 5.75,
-          "tradeDate": "2026-10-02",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.2,
-          "previousHighDate": "2021-08-31",
-          "recoveryRatio": 92.7
-        },
-        {
           "aptName": "정릉성원상떼빌",
           "area": 59.94,
           "intArea": 59,
@@ -8056,6 +8134,19 @@
           "previousHigh": 6.33,
           "previousHighDate": "2021-10-01",
           "recoveryRatio": 90.8
+        },
+        {
+          "aptName": "기산그린",
+          "area": 76.08,
+          "intArea": 76,
+          "floor": "18층",
+          "price": 5.75,
+          "tradeDate": "2026-10-02",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.2,
+          "previousHighDate": "2021-08-31",
+          "recoveryRatio": 92.7
         },
         {
           "aptName": "도덕파크타운2단지",
@@ -8162,6 +8253,19 @@
           "recoveryRatio": 90.6
         },
         {
+          "aptName": "주공1",
+          "area": 41.3,
+          "intArea": 41,
+          "floor": "15층",
+          "price": 5.6,
+          "tradeDate": "2026-10-06",
+          "regionName": "광명시",
+          "category": "gyeonggi-close",
+          "previousHigh": 6.2,
+          "previousHighDate": "2026-09-15",
+          "recoveryRatio": 90.3
+        },
+        {
           "aptName": "벽적골두산",
           "area": 59.84,
           "intArea": 59,
@@ -8199,19 +8303,6 @@
           "previousHigh": 5.68,
           "previousHighDate": "2021-10-20",
           "recoveryRatio": 98.6
-        },
-        {
-          "aptName": "주공1",
-          "area": 41.3,
-          "intArea": 41,
-          "floor": "15층",
-          "price": 5.6,
-          "tradeDate": "2026-10-06",
-          "regionName": "광명시",
-          "category": "gyeonggi-close",
-          "previousHigh": 6.2,
-          "previousHighDate": "2026-09-15",
-          "recoveryRatio": 90.3
         },
         {
           "aptName": "벽산아파트2",
@@ -8266,19 +8357,6 @@
           "recoveryRatio": 93.2
         },
         {
-          "aptName": "동문",
-          "area": 59.64,
-          "intArea": 59,
-          "floor": "8층",
-          "price": 5.5,
-          "tradeDate": "2026-10-12",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 5.95,
-          "previousHighDate": "2022-06-15",
-          "recoveryRatio": 92.4
-        },
-        {
           "aptName": "대우",
           "area": 59.98,
           "intArea": 59,
@@ -8290,6 +8368,19 @@
           "previousHigh": 6.0,
           "previousHighDate": "2021-08-07",
           "recoveryRatio": 91.7
+        },
+        {
+          "aptName": "동문",
+          "area": 59.64,
+          "intArea": 59,
+          "floor": "8층",
+          "price": 5.5,
+          "tradeDate": "2026-10-12",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 5.95,
+          "previousHighDate": "2022-06-15",
+          "recoveryRatio": 92.4
         },
         {
           "aptName": "벽적골한신",
@@ -9813,19 +9904,6 @@
           "recoveryRatio": 76.0
         },
         {
-          "aptName": "프라비다트라움",
-          "area": 14.06,
-          "intArea": 14,
-          "floor": "5층",
-          "price": 1.05,
-          "tradeDate": "2026-10-05",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 1.4,
-          "previousHighDate": "2022-06-18",
-          "recoveryRatio": 75.0
-        },
-        {
           "aptName": "훼미리하우스117",
           "area": 16.98,
           "intArea": 16,
@@ -9837,6 +9915,19 @@
           "previousHigh": 1.55,
           "previousHighDate": "2021-04-16",
           "recoveryRatio": 67.7
+        },
+        {
+          "aptName": "프라비다트라움",
+          "area": 14.06,
+          "intArea": 14,
+          "floor": "5층",
+          "price": 1.05,
+          "tradeDate": "2026-10-05",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 1.4,
+          "previousHighDate": "2022-06-18",
+          "recoveryRatio": 75.0
         },
         {
           "aptName": "로제리움2차",
@@ -9919,9 +10010,9 @@
       ]
     },
     "202609": {
-      "totalTradeCount": 3313,
-      "seoulPercent": 62.2,
-      "gyeonggiPercent": 37.8,
+      "totalTradeCount": 3314,
+      "seoulPercent": 62.3,
+      "gyeonggiPercent": 37.7,
       "curatedTransactions": [
         {
           "aptName": "신현대12차",
@@ -11588,6 +11679,19 @@
           "recoveryRatio": 79.5
         },
         {
+          "aptName": "올림픽파크포레온",
+          "area": 84.99,
+          "intArea": 84,
+          "floor": "11층",
+          "price": 30.0,
+          "tradeDate": "2026-09-23",
+          "regionName": "서울 강동구",
+          "category": "seoul-southeast",
+          "previousHigh": 32.0,
+          "previousHighDate": "2026-06-19",
+          "recoveryRatio": 93.8
+        },
+        {
           "aptName": "럭키(963)",
           "area": 124.1,
           "intArea": 124,
@@ -11612,19 +11716,6 @@
           "previousHigh": 31.85,
           "previousHighDate": "2026-01-26",
           "recoveryRatio": 94.2
-        },
-        {
-          "aptName": "올림픽파크포레온",
-          "area": 84.99,
-          "intArea": 84,
-          "floor": "11층",
-          "price": 30.0,
-          "tradeDate": "2026-09-23",
-          "regionName": "서울 강동구",
-          "category": "seoul-southeast",
-          "previousHigh": 32.0,
-          "previousHighDate": "2026-06-19",
-          "recoveryRatio": 93.8
         },
         {
           "aptName": "트리지움",
@@ -12472,19 +12563,6 @@
           "recoveryRatio": 91.6
         },
         {
-          "aptName": "공덕SK리더스뷰",
-          "area": 84.94,
-          "intArea": 84,
-          "floor": "7층",
-          "price": 25.0,
-          "tradeDate": "2026-09-14",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 25.2,
-          "previousHighDate": "2026-07-13",
-          "recoveryRatio": 99.2
-        },
-        {
           "aptName": "옥수파크힐스101동~116동",
           "area": 84.64,
           "intArea": 84,
@@ -12496,6 +12574,19 @@
           "previousHigh": 27.8,
           "previousHighDate": "2025-10-03",
           "recoveryRatio": 89.9
+        },
+        {
+          "aptName": "공덕SK리더스뷰",
+          "area": 84.94,
+          "intArea": 84,
+          "floor": "7층",
+          "price": 25.0,
+          "tradeDate": "2026-09-14",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 25.2,
+          "previousHighDate": "2026-07-13",
+          "recoveryRatio": 99.2
         },
         {
           "aptName": "롯데캐슬아이비",
@@ -12576,6 +12667,19 @@
           "recoveryRatio": 97.3
         },
         {
+          "aptName": "센트라스",
+          "area": 84.96,
+          "intArea": 84,
+          "floor": "7층",
+          "price": 24.8,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 성동구",
+          "category": "seoul-river",
+          "previousHigh": 24.9,
+          "previousHighDate": "2026-07-29",
+          "recoveryRatio": 99.6
+        },
+        {
           "aptName": "마포아이파크포레",
           "area": 84.901,
           "intArea": 84,
@@ -12589,17 +12693,17 @@
           "recoveryRatio": 92.5
         },
         {
-          "aptName": "센트라스",
-          "area": 84.96,
-          "intArea": 84,
+          "aptName": "당산삼성래미안4차",
+          "area": 115.78,
+          "intArea": 115,
           "floor": "7층",
           "price": 24.8,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 성동구",
-          "category": "seoul-river",
-          "previousHigh": 24.9,
-          "previousHighDate": "2026-07-29",
-          "recoveryRatio": 99.6
+          "tradeDate": "2026-09-08",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 26.67,
+          "previousHighDate": "2025-12-29",
+          "recoveryRatio": 93.0
         },
         {
           "aptName": "현대I-PARK3",
@@ -12641,19 +12745,6 @@
           "recoveryRatio": 99.6
         },
         {
-          "aptName": "두산위브1단지",
-          "area": 111.382,
-          "intArea": 111,
-          "floor": "7층",
-          "price": 24.5,
-          "tradeDate": "2026-09-11",
-          "regionName": "서울 강남구",
-          "category": "seoul-southeast",
-          "previousHigh": 24.5,
-          "previousHighDate": "2026-09-11",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "고덕그라시움",
           "area": 84.244,
           "intArea": 84,
@@ -12667,17 +12758,17 @@
           "recoveryRatio": 94.2
         },
         {
-          "aptName": "롯데캐슬리버파크시그니쳐",
-          "area": 84.99,
-          "intArea": 84,
-          "floor": "5층",
+          "aptName": "두산위브1단지",
+          "area": 111.382,
+          "intArea": 111,
+          "floor": "7층",
           "price": 24.5,
-          "tradeDate": "2026-09-16",
-          "regionName": "서울 광진구",
-          "category": "seoul-river",
-          "previousHigh": 25.9,
-          "previousHighDate": "2025-10-19",
-          "recoveryRatio": 94.6
+          "tradeDate": "2026-09-11",
+          "regionName": "서울 강남구",
+          "category": "seoul-southeast",
+          "previousHigh": 24.5,
+          "previousHighDate": "2026-09-11",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "옥수파크힐스117동~125동",
@@ -12691,6 +12782,19 @@
           "previousHigh": 25.25,
           "previousHighDate": "2025-10-18",
           "recoveryRatio": 97.0
+        },
+        {
+          "aptName": "롯데캐슬리버파크시그니쳐",
+          "area": 84.99,
+          "intArea": 84,
+          "floor": "5층",
+          "price": 24.5,
+          "tradeDate": "2026-09-16",
+          "regionName": "서울 광진구",
+          "category": "seoul-river",
+          "previousHigh": 25.9,
+          "previousHighDate": "2025-10-19",
+          "recoveryRatio": 94.6
         },
         {
           "aptName": "파크타운(삼익)",
@@ -12810,19 +12914,6 @@
           "recoveryRatio": 92.7
         },
         {
-          "aptName": "극동2",
-          "area": 84.55,
-          "intArea": 84,
-          "floor": "8층",
-          "price": 24.0,
-          "tradeDate": "2026-09-28",
-          "regionName": "서울 광진구",
-          "category": "seoul-river",
-          "previousHigh": 27.0,
-          "previousHighDate": "2025-10-15",
-          "recoveryRatio": 88.9
-        },
-        {
           "aptName": "옥수삼성",
           "area": 84.822,
           "intArea": 84,
@@ -12873,6 +12964,19 @@
           "previousHigh": 24.3,
           "previousHighDate": "2025-10-13",
           "recoveryRatio": 98.8
+        },
+        {
+          "aptName": "극동2",
+          "area": 84.55,
+          "intArea": 84,
+          "floor": "8층",
+          "price": 24.0,
+          "tradeDate": "2026-09-28",
+          "regionName": "서울 광진구",
+          "category": "seoul-river",
+          "previousHigh": 27.0,
+          "previousHighDate": "2025-10-15",
+          "recoveryRatio": 88.9
         },
         {
           "aptName": "푸른마을(벽산)",
@@ -13005,6 +13109,19 @@
           "recoveryRatio": 100.0
         },
         {
+          "aptName": "당산삼성래미안4차",
+          "area": 115.78,
+          "intArea": 115,
+          "floor": "5층",
+          "price": 23.5,
+          "tradeDate": "2026-09-30",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 26.67,
+          "previousHighDate": "2025-12-29",
+          "recoveryRatio": 88.1
+        },
+        {
           "aptName": "유원제일2차",
           "area": 145.68,
           "intArea": 145,
@@ -13109,19 +13226,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "이튼타워리버5차",
-          "area": 84.92,
-          "intArea": 84,
-          "floor": "13층",
-          "price": 23.2,
-          "tradeDate": "2026-09-21",
-          "regionName": "서울 광진구",
-          "category": "seoul-river",
-          "previousHigh": 23.3,
-          "previousHighDate": "2026-06-04",
-          "recoveryRatio": 99.6
-        },
-        {
           "aptName": "텐즈힐(2단지)",
           "area": 84.9,
           "intArea": 84,
@@ -13146,6 +13250,19 @@
           "previousHigh": 24.3,
           "previousHighDate": "2025-10-13",
           "recoveryRatio": 95.5
+        },
+        {
+          "aptName": "이튼타워리버5차",
+          "area": 84.92,
+          "intArea": 84,
+          "floor": "13층",
+          "price": 23.2,
+          "tradeDate": "2026-09-21",
+          "regionName": "서울 광진구",
+          "category": "seoul-river",
+          "previousHigh": 23.3,
+          "previousHighDate": "2026-06-04",
+          "recoveryRatio": 99.6
         },
         {
           "aptName": "한일",
@@ -13343,19 +13460,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "마포프레스티지자이",
-          "area": 59.9286,
-          "intArea": 59,
-          "floor": "13층",
-          "price": 22.7,
-          "tradeDate": "2026-09-11",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 24.0,
-          "previousHighDate": "2025-10-02",
-          "recoveryRatio": 94.6
-        },
-        {
           "aptName": "옥수삼성",
           "area": 84.822,
           "intArea": 84,
@@ -13379,6 +13483,19 @@
           "category": "seoul-river",
           "previousHigh": 24.0,
           "previousHighDate": "2026-01-23",
+          "recoveryRatio": 94.6
+        },
+        {
+          "aptName": "마포프레스티지자이",
+          "area": 59.9286,
+          "intArea": 59,
+          "floor": "13층",
+          "price": 22.7,
+          "tradeDate": "2026-09-11",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 24.0,
+          "previousHighDate": "2025-10-02",
           "recoveryRatio": 94.6
         },
         {
@@ -13499,19 +13616,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "대흥동태영아파트",
-          "area": 84.77,
-          "intArea": 84,
-          "floor": "15층",
-          "price": 22.3,
-          "tradeDate": "2026-09-03",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 22.3,
-          "previousHighDate": "2026-09-03",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "서울숲삼부아파트",
           "area": 122.01,
           "intArea": 122,
@@ -13523,6 +13627,19 @@
           "previousHigh": 24.3,
           "previousHighDate": "2026-07-13",
           "recoveryRatio": 91.8
+        },
+        {
+          "aptName": "대흥동태영아파트",
+          "area": 84.77,
+          "intArea": 84,
+          "floor": "15층",
+          "price": 22.3,
+          "tradeDate": "2026-09-03",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 22.3,
+          "previousHighDate": "2026-09-03",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "광교중흥에스클래스",
@@ -14019,19 +14136,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "아크로타워스퀘어",
-          "area": 84.75,
-          "intArea": 84,
-          "floor": "12층",
-          "price": 21.1,
-          "tradeDate": "2026-09-04",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 21.8,
-          "previousHighDate": "2026-08-04",
-          "recoveryRatio": 96.8
-        },
-        {
           "aptName": "두산위브트레지움",
           "area": 84.422,
           "intArea": 84,
@@ -14043,6 +14147,19 @@
           "previousHigh": 21.5,
           "previousHighDate": "2026-05-19",
           "recoveryRatio": 98.1
+        },
+        {
+          "aptName": "아크로타워스퀘어",
+          "area": 84.75,
+          "intArea": 84,
+          "floor": "12층",
+          "price": 21.1,
+          "tradeDate": "2026-09-04",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 21.8,
+          "previousHighDate": "2026-08-04",
+          "recoveryRatio": 96.8
         },
         {
           "aptName": "서초네이처힐4단지",
@@ -14448,6 +14565,19 @@
           "recoveryRatio": 96.0
         },
         {
+          "aptName": "두산위브트레지움2차",
+          "area": 84.8624,
+          "intArea": 84,
+          "floor": "8층",
+          "price": 20.4,
+          "tradeDate": "2026-09-18",
+          "regionName": "서울 동작구",
+          "category": "seoul-southwest",
+          "previousHigh": 20.5,
+          "previousHighDate": "2026-07-22",
+          "recoveryRatio": 99.5
+        },
+        {
           "aptName": "현대파크빌",
           "area": 59.55,
           "intArea": 59,
@@ -14472,19 +14602,6 @@
           "previousHigh": 20.9,
           "previousHighDate": "2026-10-06",
           "recoveryRatio": 97.6
-        },
-        {
-          "aptName": "두산위브트레지움2차",
-          "area": 84.8624,
-          "intArea": 84,
-          "floor": "8층",
-          "price": 20.4,
-          "tradeDate": "2026-09-18",
-          "regionName": "서울 동작구",
-          "category": "seoul-southwest",
-          "previousHigh": 20.5,
-          "previousHighDate": "2026-07-22",
-          "recoveryRatio": 99.5
         },
         {
           "aptName": "광교중흥에스클래스",
@@ -14604,19 +14721,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "도화동현대",
-          "area": 128.26,
-          "intArea": 128,
-          "floor": "10층",
-          "price": 20.0,
-          "tradeDate": "2026-09-15",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 20.0,
-          "previousHighDate": "2026-09-15",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "신금호파크자이",
           "area": 59.98,
           "intArea": 59,
@@ -14630,17 +14734,17 @@
           "recoveryRatio": 90.5
         },
         {
-          "aptName": "래미안에스티움",
-          "area": 84.93,
-          "intArea": 84,
-          "floor": "11층",
+          "aptName": "도화동현대",
+          "area": 128.26,
+          "intArea": 128,
+          "floor": "10층",
           "price": 20.0,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 20.2,
-          "previousHighDate": "2026-03-07",
-          "recoveryRatio": 99.0
+          "tradeDate": "2026-09-15",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 20.0,
+          "previousHighDate": "2026-09-15",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "래미안트윈파크",
@@ -14654,6 +14758,19 @@
           "previousHigh": 20.7,
           "previousHighDate": "2026-04-29",
           "recoveryRatio": 96.6
+        },
+        {
+          "aptName": "래미안에스티움",
+          "area": 84.93,
+          "intArea": 84,
+          "floor": "11층",
+          "price": 20.0,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 20.2,
+          "previousHighDate": "2026-03-07",
+          "recoveryRatio": 99.0
         },
         {
           "aptName": "판교원마을11단지(힐스테이트)",
@@ -14916,19 +15033,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "래미안공덕5차",
-          "area": 59.959,
-          "intArea": 59,
-          "floor": "8층",
-          "price": 19.5,
-          "tradeDate": "2026-09-18",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 20.4,
-          "previousHighDate": "2026-08-27",
-          "recoveryRatio": 95.6
-        },
-        {
           "aptName": "행당한진타운",
           "area": 84.71,
           "intArea": 84,
@@ -14940,6 +15044,19 @@
           "previousHigh": 19.5,
           "previousHighDate": "2026-06-27",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "래미안공덕5차",
+          "area": 59.959,
+          "intArea": 59,
+          "floor": "8층",
+          "price": 19.5,
+          "tradeDate": "2026-09-18",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 20.4,
+          "previousHighDate": "2026-08-27",
+          "recoveryRatio": 95.6
         },
         {
           "aptName": "당산푸르지오",
@@ -16099,19 +16216,6 @@
           "recoveryRatio": 89.1
         },
         {
-          "aptName": "상암월드컵파크4단지",
-          "area": 84.7,
-          "intArea": 84,
-          "floor": "21층",
-          "price": 18.0,
-          "tradeDate": "2026-09-20",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 18.0,
-          "previousHighDate": "2026-09-20",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "금호자이1차",
           "area": 59.98,
           "intArea": 59,
@@ -16123,6 +16227,19 @@
           "previousHigh": 18.9,
           "previousHighDate": "2026-07-11",
           "recoveryRatio": 95.2
+        },
+        {
+          "aptName": "상암월드컵파크4단지",
+          "area": 84.7,
+          "intArea": 84,
+          "floor": "21층",
+          "price": 18.0,
+          "tradeDate": "2026-09-20",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 18.0,
+          "previousHighDate": "2026-09-20",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "보라매에스케이뷰",
@@ -16255,32 +16372,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "힐스테이트클래시안",
-          "area": 59.91,
-          "intArea": 59,
-          "floor": "13층",
-          "price": 17.8,
-          "tradeDate": "2026-09-18",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 18.0,
-          "previousHighDate": "2026-08-08",
-          "recoveryRatio": 98.9
-        },
-        {
-          "aptName": "신길센트럴자이아파트",
-          "area": 59.98,
-          "intArea": 59,
-          "floor": "9층",
-          "price": 17.8,
-          "tradeDate": "2026-09-11",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 18.0,
-          "previousHighDate": "2026-09-19",
-          "recoveryRatio": 98.9
-        },
-        {
           "aptName": "이수자이",
           "area": 120.17,
           "intArea": 120,
@@ -16305,6 +16396,32 @@
           "previousHigh": 19.1,
           "previousHighDate": "2026-08-06",
           "recoveryRatio": 93.2
+        },
+        {
+          "aptName": "힐스테이트클래시안",
+          "area": 59.91,
+          "intArea": 59,
+          "floor": "13층",
+          "price": 17.8,
+          "tradeDate": "2026-09-18",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 18.0,
+          "previousHighDate": "2026-08-08",
+          "recoveryRatio": 98.9
+        },
+        {
+          "aptName": "신길센트럴자이아파트",
+          "area": 59.98,
+          "intArea": 59,
+          "floor": "9층",
+          "price": 17.8,
+          "tradeDate": "2026-09-11",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 18.0,
+          "previousHighDate": "2026-09-19",
+          "recoveryRatio": 98.9
         },
         {
           "aptName": "e편한세상염창",
@@ -16658,19 +16775,6 @@
           "recoveryRatio": 89.2
         },
         {
-          "aptName": "당산반도유보라팰리스",
-          "area": 84.99,
-          "intArea": 84,
-          "floor": "10층",
-          "price": 17.4,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 17.4,
-          "previousHighDate": "2026-09-22",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "래미안상도3차",
           "area": 84.96,
           "intArea": 84,
@@ -16682,6 +16786,19 @@
           "previousHigh": 18.0,
           "previousHighDate": "2026-08-27",
           "recoveryRatio": 96.7
+        },
+        {
+          "aptName": "당산반도유보라팰리스",
+          "area": 84.99,
+          "intArea": 84,
+          "floor": "10층",
+          "price": 17.4,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 17.4,
+          "previousHighDate": "2026-09-22",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "마곡힐스테이트",
@@ -16814,19 +16931,6 @@
           "recoveryRatio": 99.4
         },
         {
-          "aptName": "월성빌라트",
-          "area": 81.79,
-          "intArea": 81,
-          "floor": "1층",
-          "price": 17.2,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 강남구",
-          "category": "seoul-southeast",
-          "previousHigh": 17.2,
-          "previousHighDate": "2026-09-19",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "둔촌푸르지오",
           "area": 84.9,
           "intArea": 84,
@@ -16838,6 +16942,19 @@
           "previousHigh": 17.3,
           "previousHighDate": "2026-07-30",
           "recoveryRatio": 99.4
+        },
+        {
+          "aptName": "월성빌라트",
+          "area": 81.79,
+          "intArea": 81,
+          "floor": "1층",
+          "price": 17.2,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 강남구",
+          "category": "seoul-southeast",
+          "previousHigh": 17.2,
+          "previousHighDate": "2026-09-19",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "신공덕래미안2차",
@@ -16853,19 +16970,6 @@
           "recoveryRatio": 98.3
         },
         {
-          "aptName": "래미안파크스위트",
-          "area": 59.98,
-          "intArea": 59,
-          "floor": "9층",
-          "price": 17.2,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 광진구",
-          "category": "seoul-river",
-          "previousHigh": 17.4,
-          "previousHighDate": "2026-07-10",
-          "recoveryRatio": 98.9
-        },
-        {
           "aptName": "사당우성2",
           "area": 59.89,
           "intArea": 59,
@@ -16877,6 +16981,19 @@
           "previousHigh": 17.2,
           "previousHighDate": "2026-08-27",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "래미안파크스위트",
+          "area": 59.98,
+          "intArea": 59,
+          "floor": "9층",
+          "price": 17.2,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 광진구",
+          "category": "seoul-river",
+          "previousHigh": 17.4,
+          "previousHighDate": "2026-07-10",
+          "recoveryRatio": 98.9
         },
         {
           "aptName": "우장산힐스테이트",
@@ -17126,19 +17243,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "신공덕래미안2차",
-          "area": 84.73,
-          "intArea": 84,
-          "floor": "4층",
-          "price": 16.9,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 17.5,
-          "previousHighDate": "2026-07-28",
-          "recoveryRatio": 96.6
-        },
-        {
           "aptName": "왕십리자이",
           "area": 59.99,
           "intArea": 59,
@@ -17150,6 +17254,19 @@
           "previousHigh": 17.2,
           "previousHighDate": "2026-04-11",
           "recoveryRatio": 98.3
+        },
+        {
+          "aptName": "신공덕래미안2차",
+          "area": 84.73,
+          "intArea": 84,
+          "floor": "4층",
+          "price": 16.9,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 17.5,
+          "previousHighDate": "2026-07-28",
+          "recoveryRatio": 96.6
         },
         {
           "aptName": "힐스테이트광교",
@@ -17477,6 +17594,19 @@
           "recoveryRatio": 97.1
         },
         {
+          "aptName": "대림(169-8)",
+          "area": 84.91,
+          "intArea": 84,
+          "floor": "1층",
+          "price": 16.5,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 동작구",
+          "category": "seoul-southwest",
+          "previousHigh": 17.5,
+          "previousHighDate": "2026-02-07",
+          "recoveryRatio": 94.3
+        },
+        {
           "aptName": "e편한세상영등포아델포레",
           "area": 84.9571,
           "intArea": 84,
@@ -17516,17 +17646,17 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "대림(169-8)",
-          "area": 84.91,
-          "intArea": 84,
-          "floor": "1층",
+          "aptName": "강서힐스테이트",
+          "area": 128.81,
+          "intArea": 128,
+          "floor": "13층",
           "price": 16.5,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 동작구",
+          "tradeDate": "2026-09-02",
+          "regionName": "서울 강서구",
           "category": "seoul-southwest",
-          "previousHigh": 17.5,
-          "previousHighDate": "2026-02-07",
-          "recoveryRatio": 94.3
+          "previousHigh": 17.85,
+          "previousHighDate": "2026-08-12",
+          "recoveryRatio": 92.4
         },
         {
           "aptName": "e편한세상서울대입구2차",
@@ -17540,19 +17670,6 @@
           "previousHigh": 16.5,
           "previousHighDate": "2026-09-30",
           "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "강서힐스테이트",
-          "area": 128.81,
-          "intArea": 128,
-          "floor": "13층",
-          "price": 16.5,
-          "tradeDate": "2026-09-02",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 17.85,
-          "previousHighDate": "2026-08-12",
-          "recoveryRatio": 92.4
         },
         {
           "aptName": "한솔마을(6단지)(주공)",
@@ -18049,19 +18166,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "쌍용플레티넘밸류",
-          "area": 84.96,
-          "intArea": 84,
-          "floor": "12층",
-          "price": 16.0,
-          "tradeDate": "2026-09-03",
-          "regionName": "서울 강남구",
-          "category": "seoul-southeast",
-          "previousHigh": 16.4,
-          "previousHighDate": "2026-05-26",
-          "recoveryRatio": 97.6
-        },
-        {
           "aptName": "둔촌푸르지오",
           "area": 84.92,
           "intArea": 84,
@@ -18073,6 +18177,19 @@
           "previousHigh": 17.3,
           "previousHighDate": "2026-07-30",
           "recoveryRatio": 92.5
+        },
+        {
+          "aptName": "쌍용플레티넘밸류",
+          "area": 84.96,
+          "intArea": 84,
+          "floor": "12층",
+          "price": 16.0,
+          "tradeDate": "2026-09-03",
+          "regionName": "서울 강남구",
+          "category": "seoul-southeast",
+          "previousHigh": 16.4,
+          "previousHighDate": "2026-05-26",
+          "recoveryRatio": 97.6
         },
         {
           "aptName": "위례24단지(꿈에그린)",
@@ -18608,32 +18725,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "광진We’vePark",
-          "area": 131.02,
-          "intArea": 131,
-          "floor": "17층",
-          "price": 15.6,
-          "tradeDate": "2026-09-12",
-          "regionName": "서울 광진구",
-          "category": "seoul-river",
-          "previousHigh": 15.6,
-          "previousHighDate": "2026-09-12",
-          "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "e편한세상영등포아델포레",
-          "area": 84.9948,
-          "intArea": 84,
-          "floor": "6층",
-          "price": 15.6,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 16.5,
-          "previousHighDate": "2026-08-07",
-          "recoveryRatio": 94.5
-        },
-        {
           "aptName": "사당롯데캐슬2차",
           "area": 84.766,
           "intArea": 84,
@@ -18658,6 +18749,32 @@
           "previousHigh": 16.3,
           "previousHighDate": "2026-05-01",
           "recoveryRatio": 95.7
+        },
+        {
+          "aptName": "광진We’vePark",
+          "area": 131.02,
+          "intArea": 131,
+          "floor": "17층",
+          "price": 15.6,
+          "tradeDate": "2026-09-12",
+          "regionName": "서울 광진구",
+          "category": "seoul-river",
+          "previousHigh": 15.6,
+          "previousHighDate": "2026-09-12",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "e편한세상영등포아델포레",
+          "area": 84.9948,
+          "intArea": 84,
+          "floor": "6층",
+          "price": 15.6,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 16.5,
+          "previousHighDate": "2026-08-07",
+          "recoveryRatio": 94.5
         },
         {
           "aptName": "우장산아이파크,이편한세상",
@@ -18725,19 +18842,6 @@
           "recoveryRatio": 97.8
         },
         {
-          "aptName": "강남자곡 힐스테이트",
-          "area": 59.93,
-          "intArea": 59,
-          "floor": "3층",
-          "price": 15.55,
-          "tradeDate": "2026-09-12",
-          "regionName": "서울 강남구",
-          "category": "seoul-southeast",
-          "previousHigh": 15.8,
-          "previousHighDate": "2026-07-09",
-          "recoveryRatio": 98.4
-        },
-        {
           "aptName": "삼성광나루",
           "area": 84.79,
           "intArea": 84,
@@ -18761,6 +18865,19 @@
           "category": "seoul-southeast",
           "previousHigh": 15.8,
           "previousHighDate": "2026-06-10",
+          "recoveryRatio": 98.4
+        },
+        {
+          "aptName": "강남자곡 힐스테이트",
+          "area": 59.93,
+          "intArea": 59,
+          "floor": "3층",
+          "price": 15.55,
+          "tradeDate": "2026-09-12",
+          "regionName": "서울 강남구",
+          "category": "seoul-southeast",
+          "previousHigh": 15.8,
+          "previousHighDate": "2026-07-09",
           "recoveryRatio": 98.4
         },
         {
@@ -19245,6 +19362,19 @@
           "recoveryRatio": 99.0
         },
         {
+          "aptName": "왕십리풍림아이원",
+          "area": 59.936,
+          "intArea": 59,
+          "floor": "14층",
+          "price": 15.2,
+          "tradeDate": "2026-09-12",
+          "regionName": "서울 성동구",
+          "category": "seoul-river",
+          "previousHigh": 15.8,
+          "previousHighDate": "2026-06-23",
+          "recoveryRatio": 96.2
+        },
+        {
           "aptName": "서강오벨리스크스위트",
           "area": 73.38,
           "intArea": 73,
@@ -19282,19 +19412,6 @@
           "previousHigh": 15.25,
           "previousHighDate": "2026-02-07",
           "recoveryRatio": 99.7
-        },
-        {
-          "aptName": "왕십리풍림아이원",
-          "area": 59.936,
-          "intArea": 59,
-          "floor": "14층",
-          "price": 15.2,
-          "tradeDate": "2026-09-12",
-          "regionName": "서울 성동구",
-          "category": "seoul-river",
-          "previousHigh": 15.8,
-          "previousHighDate": "2026-06-23",
-          "recoveryRatio": 96.2
         },
         {
           "aptName": "브라운스톤당산",
@@ -19336,19 +19453,6 @@
           "recoveryRatio": 98.4
         },
         {
-          "aptName": "현대인텔렉스",
-          "area": 133.49,
-          "intArea": 133,
-          "floor": "16층",
-          "price": 15.1,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 강남구",
-          "category": "seoul-southeast",
-          "previousHigh": 15.1,
-          "previousHighDate": "2026-09-22",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "둔촌푸르지오",
           "area": 59.98,
           "intArea": 59,
@@ -19360,6 +19464,19 @@
           "previousHigh": 15.65,
           "previousHighDate": "2026-07-12",
           "recoveryRatio": 96.5
+        },
+        {
+          "aptName": "현대인텔렉스",
+          "area": 133.49,
+          "intArea": 133,
+          "floor": "16층",
+          "price": 15.1,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 강남구",
+          "category": "seoul-southeast",
+          "previousHigh": 15.1,
+          "previousHighDate": "2026-09-22",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "왕십리풍림아이원",
@@ -19440,19 +19557,6 @@
           "recoveryRatio": 76.9
         },
         {
-          "aptName": "성산시영(선경)",
-          "area": 50.54,
-          "intArea": 50,
-          "floor": "1층",
-          "price": 15.0,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 15.5,
-          "previousHighDate": "2026-07-31",
-          "recoveryRatio": 96.8
-        },
-        {
           "aptName": "왕십리풍림아이원",
           "area": 59.936,
           "intArea": 59,
@@ -19464,6 +19568,19 @@
           "previousHigh": 15.8,
           "previousHighDate": "2026-06-23",
           "recoveryRatio": 94.9
+        },
+        {
+          "aptName": "성산시영(선경)",
+          "area": 50.54,
+          "intArea": 50,
+          "floor": "1층",
+          "price": 15.0,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 15.5,
+          "previousHighDate": "2026-07-31",
+          "recoveryRatio": 96.8
         },
         {
           "aptName": "더샵파크프레스티지",
@@ -19687,32 +19804,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "마포아크로타워",
-          "area": 84.99,
-          "intArea": 84,
-          "floor": "20층",
-          "price": 14.9,
-          "tradeDate": "2026-09-01",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 14.9,
-          "previousHighDate": "2026-02-09",
-          "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "성동강변파크빌101(강변타워)",
-          "area": 84.51,
-          "intArea": 84,
-          "floor": "3층",
-          "price": 14.9,
-          "tradeDate": "2026-09-17",
-          "regionName": "서울 광진구",
-          "category": "seoul-river",
-          "previousHigh": 14.9,
-          "previousHighDate": "2026-09-17",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "동아그린",
           "area": 58.32,
           "intArea": 58,
@@ -19752,6 +19843,19 @@
           "recoveryRatio": 94.3
         },
         {
+          "aptName": "마포아크로타워",
+          "area": 84.99,
+          "intArea": 84,
+          "floor": "20층",
+          "price": 14.9,
+          "tradeDate": "2026-09-01",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 14.9,
+          "previousHighDate": "2026-02-09",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "극동(105)",
           "area": 51.57,
           "intArea": 51,
@@ -19776,6 +19880,19 @@
           "previousHigh": 15.55,
           "previousHighDate": "2026-08-26",
           "recoveryRatio": 95.8
+        },
+        {
+          "aptName": "성동강변파크빌101(강변타워)",
+          "area": 84.51,
+          "intArea": 84,
+          "floor": "3층",
+          "price": 14.9,
+          "tradeDate": "2026-09-17",
+          "regionName": "서울 광진구",
+          "category": "seoul-river",
+          "previousHigh": 14.9,
+          "previousHighDate": "2026-09-17",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "우장산힐스테이트",
@@ -19869,19 +19986,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "신길자이",
-          "area": 114.99,
-          "intArea": 114,
-          "floor": "16층",
-          "price": 14.8,
-          "tradeDate": "2026-09-15",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 14.8,
-          "previousHighDate": "2026-09-15",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "대림(169-8)",
           "area": 59.67,
           "intArea": 59,
@@ -19893,6 +19997,19 @@
           "previousHigh": 15.49,
           "previousHighDate": "2026-07-07",
           "recoveryRatio": 95.5
+        },
+        {
+          "aptName": "신길자이",
+          "area": 114.99,
+          "intArea": 114,
+          "floor": "16층",
+          "price": 14.8,
+          "tradeDate": "2026-09-15",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 14.8,
+          "previousHighDate": "2026-09-15",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "마곡엠밸리11단지",
@@ -20038,19 +20155,6 @@
           "recoveryRatio": 94.2
         },
         {
-          "aptName": "삼성래미안",
-          "area": 114.87,
-          "intArea": 114,
-          "floor": "2층",
-          "price": 14.7,
-          "tradeDate": "2026-09-16",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 14.7,
-          "previousHighDate": "2026-09-16",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "사당롯데캐슬2차",
           "area": 84.766,
           "intArea": 84,
@@ -20062,6 +20166,19 @@
           "previousHigh": 15.7,
           "previousHighDate": "2026-09-02",
           "recoveryRatio": 93.6
+        },
+        {
+          "aptName": "삼성래미안",
+          "area": 114.87,
+          "intArea": 114,
+          "floor": "2층",
+          "price": 14.7,
+          "tradeDate": "2026-09-16",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 14.7,
+          "previousHighDate": "2026-09-16",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "청구(366)",
@@ -20233,6 +20350,32 @@
           "recoveryRatio": 91.8
         },
         {
+          "aptName": "신동아",
+          "area": 59.97,
+          "intArea": 59,
+          "floor": "3층",
+          "price": 14.5,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 성동구",
+          "category": "seoul-river",
+          "previousHigh": 14.97,
+          "previousHighDate": "2026-08-01",
+          "recoveryRatio": 96.9
+        },
+        {
+          "aptName": "한신무학",
+          "area": 62.41,
+          "intArea": 62,
+          "floor": "12층",
+          "price": 14.5,
+          "tradeDate": "2026-09-07",
+          "regionName": "서울 성동구",
+          "category": "seoul-river",
+          "previousHigh": 14.5,
+          "previousHighDate": "2026-09-07",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "정우상가맨션",
           "area": 126.07,
           "intArea": 126,
@@ -20272,29 +20415,16 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "신동아",
-          "area": 59.97,
-          "intArea": 59,
-          "floor": "3층",
+          "aptName": "한강타운",
+          "area": 84.99,
+          "intArea": 84,
+          "floor": "11층",
           "price": 14.5,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 성동구",
-          "category": "seoul-river",
-          "previousHigh": 14.97,
-          "previousHighDate": "2026-08-01",
-          "recoveryRatio": 96.9
-        },
-        {
-          "aptName": "한신무학",
-          "area": 62.41,
-          "intArea": 62,
-          "floor": "12층",
-          "price": 14.5,
-          "tradeDate": "2026-09-07",
-          "regionName": "서울 성동구",
-          "category": "seoul-river",
+          "tradeDate": "2026-09-17",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
           "previousHigh": 14.5,
-          "previousHighDate": "2026-09-07",
+          "previousHighDate": "2026-09-17",
           "recoveryRatio": 100.0
         },
         {
@@ -20309,19 +20439,6 @@
           "previousHigh": 14.83,
           "previousHighDate": "2026-08-07",
           "recoveryRatio": 97.8
-        },
-        {
-          "aptName": "한강타운",
-          "area": 84.99,
-          "intArea": 84,
-          "floor": "11층",
-          "price": 14.5,
-          "tradeDate": "2026-09-17",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 14.5,
-          "previousHighDate": "2026-09-17",
-          "recoveryRatio": 100.0
         },
         {
           "aptName": "래미안포레카운티",
@@ -20896,6 +21013,19 @@
           "recoveryRatio": 90.3
         },
         {
+          "aptName": "경남교수",
+          "area": 113.93,
+          "intArea": 113,
+          "floor": "11층",
+          "price": 14.0,
+          "tradeDate": "2026-09-30",
+          "regionName": "서울 동작구",
+          "category": "seoul-southwest",
+          "previousHigh": 14.0,
+          "previousHighDate": "2026-01-31",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "보라매경남아너스빌",
           "area": 84.79,
           "intArea": 84,
@@ -20922,17 +21052,17 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "경남교수",
-          "area": 113.93,
-          "intArea": 113,
-          "floor": "11층",
+          "aptName": "화곡푸르지오",
+          "area": 156.876,
+          "intArea": 156,
+          "floor": "2층",
           "price": 14.0,
-          "tradeDate": "2026-09-30",
-          "regionName": "서울 동작구",
+          "tradeDate": "2026-09-01",
+          "regionName": "서울 강서구",
           "category": "seoul-southwest",
-          "previousHigh": 14.0,
-          "previousHighDate": "2026-01-31",
-          "recoveryRatio": 100.0
+          "previousHigh": 15.5,
+          "previousHighDate": "2023-08-15",
+          "recoveryRatio": 90.3
         },
         {
           "aptName": "봉천동아",
@@ -20946,19 +21076,6 @@
           "previousHigh": 14.0,
           "previousHighDate": "2026-09-14",
           "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "화곡푸르지오",
-          "area": 156.876,
-          "intArea": 156,
-          "floor": "2층",
-          "price": 14.0,
-          "tradeDate": "2026-09-01",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 15.5,
-          "previousHighDate": "2023-08-15",
-          "recoveryRatio": 90.3
         },
         {
           "aptName": "신도림태영타운",
@@ -21325,19 +21442,6 @@
           "recoveryRatio": 98.2
         },
         {
-          "aptName": "양평한신",
-          "area": 59.94,
-          "intArea": 59,
-          "floor": "17층",
-          "price": 13.75,
-          "tradeDate": "2026-09-04",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 14.35,
-          "previousHighDate": "2026-07-11",
-          "recoveryRatio": 95.8
-        },
-        {
           "aptName": "극동(105)",
           "area": 46.75,
           "intArea": 46,
@@ -21362,6 +21466,19 @@
           "previousHigh": 14.3,
           "previousHighDate": "2026-09-15",
           "recoveryRatio": 96.2
+        },
+        {
+          "aptName": "양평한신",
+          "area": 59.94,
+          "intArea": 59,
+          "floor": "17층",
+          "price": 13.75,
+          "tradeDate": "2026-09-04",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 14.35,
+          "previousHighDate": "2026-07-11",
+          "recoveryRatio": 95.8
         },
         {
           "aptName": "신성둔촌미소지움1",
@@ -21481,19 +21598,6 @@
           "recoveryRatio": 96.8
         },
         {
-          "aptName": "관악푸르지오",
-          "area": 114.69,
-          "intArea": 114,
-          "floor": "18층",
-          "price": 13.55,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 13.55,
-          "previousHighDate": "2026-09-19",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "화곡푸르지오",
           "area": 156.876,
           "intArea": 156,
@@ -21507,17 +21611,17 @@
           "recoveryRatio": 87.4
         },
         {
-          "aptName": "코오롱",
-          "area": 102.158,
-          "intArea": 102,
-          "floor": "11층",
-          "price": 13.5,
-          "tradeDate": "2026-09-03",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
-          "previousHigh": 13.75,
-          "previousHighDate": "2026-04-18",
-          "recoveryRatio": 98.2
+          "aptName": "관악푸르지오",
+          "area": 114.69,
+          "intArea": 114,
+          "floor": "18층",
+          "price": 13.55,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 13.55,
+          "previousHighDate": "2026-09-19",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "성수우방2차아파트",
@@ -21531,6 +21635,19 @@
           "previousHigh": 13.5,
           "previousHighDate": "2026-09-18",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "코오롱",
+          "area": 102.158,
+          "intArea": 102,
+          "floor": "11층",
+          "price": 13.5,
+          "tradeDate": "2026-09-03",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 13.75,
+          "previousHighDate": "2026-04-18",
+          "recoveryRatio": 98.2
         },
         {
           "aptName": "주공2",
@@ -22014,19 +22131,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "신림푸르지오",
-          "area": 138.64,
-          "intArea": 138,
-          "floor": "15층",
-          "price": 13.25,
-          "tradeDate": "2026-09-17",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 14.6,
-          "previousHighDate": "2021-10-09",
-          "recoveryRatio": 90.8
-        },
-        {
           "aptName": "우성2",
           "area": 84.7,
           "intArea": 84,
@@ -22038,6 +22142,19 @@
           "previousHigh": 13.25,
           "previousHighDate": "2026-09-09",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "신림푸르지오",
+          "area": 138.64,
+          "intArea": 138,
+          "floor": "15층",
+          "price": 13.25,
+          "tradeDate": "2026-09-17",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 14.6,
+          "previousHighDate": "2021-10-09",
+          "recoveryRatio": 90.8
         },
         {
           "aptName": "래미안포레카운티",
@@ -22131,19 +22248,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "로데오현대",
-          "area": 55.08,
-          "intArea": 55,
-          "floor": "4층",
-          "price": 13.0,
-          "tradeDate": "2026-09-14",
-          "regionName": "서울 강남구",
-          "category": "seoul-southeast",
-          "previousHigh": 13.6,
-          "previousHighDate": "2026-05-30",
-          "recoveryRatio": 95.6
-        },
-        {
           "aptName": "강동리버스트8단지",
           "area": 59.97,
           "intArea": 59,
@@ -22170,6 +22274,19 @@
           "recoveryRatio": 94.0
         },
         {
+          "aptName": "로데오현대",
+          "area": 55.08,
+          "intArea": 55,
+          "floor": "4층",
+          "price": 13.0,
+          "tradeDate": "2026-09-14",
+          "regionName": "서울 강남구",
+          "category": "seoul-southeast",
+          "previousHigh": 13.6,
+          "previousHighDate": "2026-05-30",
+          "recoveryRatio": 95.6
+        },
+        {
           "aptName": "씨티극동1",
           "area": 59.69,
           "intArea": 59,
@@ -22178,19 +22295,6 @@
           "tradeDate": "2026-09-14",
           "regionName": "서울 송파구",
           "category": "seoul-southeast",
-          "previousHigh": 13.0,
-          "previousHighDate": "2026-09-14",
-          "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "광남벨라스2동",
-          "area": 139.36,
-          "intArea": 139,
-          "floor": "3층",
-          "price": 13.0,
-          "tradeDate": "2026-09-14",
-          "regionName": "서울 마포구",
-          "category": "seoul-river",
           "previousHigh": 13.0,
           "previousHighDate": "2026-09-14",
           "recoveryRatio": 100.0
@@ -22207,6 +22311,19 @@
           "previousHigh": 14.25,
           "previousHighDate": "2026-04-18",
           "recoveryRatio": 91.2
+        },
+        {
+          "aptName": "광남벨라스2동",
+          "area": 139.36,
+          "intArea": 139,
+          "floor": "3층",
+          "price": 13.0,
+          "tradeDate": "2026-09-14",
+          "regionName": "서울 마포구",
+          "category": "seoul-river",
+          "previousHigh": 13.0,
+          "previousHighDate": "2026-09-14",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "삼환",
@@ -23028,19 +23145,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "현대1차",
-          "area": 79.52,
-          "intArea": 79,
-          "floor": "4층",
-          "price": 12.5,
-          "tradeDate": "2026-09-10",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 12.5,
-          "previousHighDate": "2026-09-10",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "보라매아카데미타워",
           "area": 115.54,
           "intArea": 115,
@@ -23080,6 +23184,32 @@
           "recoveryRatio": 100.0
         },
         {
+          "aptName": "현대1차",
+          "area": 79.52,
+          "intArea": 79,
+          "floor": "4층",
+          "price": 12.5,
+          "tradeDate": "2026-09-10",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 12.5,
+          "previousHighDate": "2026-09-10",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "등촌동아이파크",
+          "area": 84.7556,
+          "intArea": 84,
+          "floor": "8층",
+          "price": 12.5,
+          "tradeDate": "2026-09-11",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
+          "previousHigh": 13.7,
+          "previousHighDate": "2026-08-20",
+          "recoveryRatio": 91.2
+        },
+        {
           "aptName": "봉천동아",
           "area": 84.87,
           "intArea": 84,
@@ -23104,19 +23234,6 @@
           "previousHigh": 13.35,
           "previousHighDate": "2026-08-10",
           "recoveryRatio": 93.6
-        },
-        {
-          "aptName": "등촌동아이파크",
-          "area": 84.7556,
-          "intArea": 84,
-          "floor": "8층",
-          "price": 12.5,
-          "tradeDate": "2026-09-11",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 13.7,
-          "previousHighDate": "2026-08-20",
-          "recoveryRatio": 91.2
         },
         {
           "aptName": "주공5",
@@ -23327,19 +23444,6 @@
           "recoveryRatio": 81.4
         },
         {
-          "aptName": "봉천우성",
-          "area": 84.96,
-          "intArea": 84,
-          "floor": "3층",
-          "price": 12.45,
-          "tradeDate": "2026-09-18",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 12.45,
-          "previousHighDate": "2026-09-18",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "등촌동아이파크",
           "area": 84.9958,
           "intArea": 84,
@@ -23351,6 +23455,19 @@
           "previousHigh": 13.7,
           "previousHighDate": "2026-08-20",
           "recoveryRatio": 90.9
+        },
+        {
+          "aptName": "봉천우성",
+          "area": 84.96,
+          "intArea": 84,
+          "floor": "3층",
+          "price": 12.45,
+          "tradeDate": "2026-09-18",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 12.45,
+          "previousHighDate": "2026-09-18",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "길음동동부센트레빌(1278-0)",
@@ -24536,6 +24653,19 @@
           "recoveryRatio": 98.6
         },
         {
+          "aptName": "가양6단지",
+          "area": 49.5,
+          "intArea": 49,
+          "floor": "7층",
+          "price": 11.8,
+          "tradeDate": "2026-09-18",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
+          "previousHigh": 11.8,
+          "previousHighDate": "2026-09-18",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "서울대벤처타운역푸르지오",
           "area": 84.9843,
           "intArea": 84,
@@ -24562,17 +24692,17 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "가양6단지",
-          "area": 49.5,
-          "intArea": 49,
-          "floor": "7층",
+          "aptName": "현대",
+          "area": 84.98,
+          "intArea": 84,
+          "floor": "20층",
           "price": 11.8,
-          "tradeDate": "2026-09-18",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 11.8,
-          "previousHighDate": "2026-09-18",
-          "recoveryRatio": 100.0
+          "tradeDate": "2026-09-03",
+          "regionName": "서울 노원구",
+          "category": "seoul-northeast",
+          "previousHigh": 12.55,
+          "previousHighDate": "2021-09-15",
+          "recoveryRatio": 94.0
         },
         {
           "aptName": "삼성래미안트리베라2단지",
@@ -24586,19 +24716,6 @@
           "previousHigh": 12.15,
           "previousHighDate": "2026-09-12",
           "recoveryRatio": 97.1
-        },
-        {
-          "aptName": "현대",
-          "area": 84.98,
-          "intArea": 84,
-          "floor": "20층",
-          "price": 11.8,
-          "tradeDate": "2026-09-03",
-          "regionName": "서울 노원구",
-          "category": "seoul-northeast",
-          "previousHigh": 12.55,
-          "previousHighDate": "2021-09-15",
-          "recoveryRatio": 94.0
         },
         {
           "aptName": "롯데캐슬골든힐스",
@@ -24705,19 +24822,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "벽산블루밍",
-          "area": 84.99,
-          "intArea": 84,
-          "floor": "22층",
-          "price": 11.75,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 13.05,
-          "previousHighDate": "2026-08-08",
-          "recoveryRatio": 90.0
-        },
-        {
           "aptName": "우성2",
           "area": 65.88,
           "intArea": 65,
@@ -24729,6 +24833,19 @@
           "previousHigh": 11.75,
           "previousHighDate": "2026-09-10",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "벽산블루밍",
+          "area": 84.99,
+          "intArea": 84,
+          "floor": "22층",
+          "price": 11.75,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 13.05,
+          "previousHighDate": "2026-08-08",
+          "recoveryRatio": 90.0
         },
         {
           "aptName": "현대성우8차",
@@ -24913,19 +25030,6 @@
           "recoveryRatio": 99.2
         },
         {
-          "aptName": "현대(관악)",
-          "area": 68.8,
-          "intArea": 68,
-          "floor": "7층",
-          "price": 11.65,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 11.8,
-          "previousHighDate": "2026-08-10",
-          "recoveryRatio": 98.7
-        },
-        {
           "aptName": "강서쌍용예가",
           "area": 84.9025,
           "intArea": 84,
@@ -24937,6 +25041,19 @@
           "previousHigh": 11.65,
           "previousHighDate": "2026-05-09",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "현대(관악)",
+          "area": 68.8,
+          "intArea": 68,
+          "floor": "7층",
+          "price": 11.65,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 11.8,
+          "previousHighDate": "2026-08-10",
+          "recoveryRatio": 98.7
         },
         {
           "aptName": "고척파크푸르지오",
@@ -25147,32 +25264,6 @@
           "recoveryRatio": 96.2
         },
         {
-          "aptName": "송천센트레빌",
-          "area": 59.762,
-          "intArea": 59,
-          "floor": "3층",
-          "price": 11.5,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 11.5,
-          "previousHighDate": "2026-09-19",
-          "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "꿈의숲롯데캐슬",
-          "area": 84.98,
-          "intArea": 84,
-          "floor": "11층",
-          "price": 11.5,
-          "tradeDate": "2026-09-14",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 11.7,
-          "previousHighDate": "2021-10-19",
-          "recoveryRatio": 98.3
-        },
-        {
           "aptName": "노원롯데캐슬시그니처",
           "area": 84.999,
           "intArea": 84,
@@ -25210,6 +25301,32 @@
           "previousHigh": 11.5,
           "previousHighDate": "2026-07-28",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "송천센트레빌",
+          "area": 59.762,
+          "intArea": 59,
+          "floor": "3층",
+          "price": 11.5,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 11.5,
+          "previousHighDate": "2026-09-19",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "꿈의숲롯데캐슬",
+          "area": 84.98,
+          "intArea": 84,
+          "floor": "11층",
+          "price": 11.5,
+          "tradeDate": "2026-09-14",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 11.7,
+          "previousHighDate": "2021-10-19",
+          "recoveryRatio": 98.3
         },
         {
           "aptName": "종암2차SKVIEW",
@@ -25407,19 +25524,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "관악드림(삼성)",
-          "area": 59.85,
-          "intArea": 59,
-          "floor": "19층",
-          "price": 11.4,
-          "tradeDate": "2026-09-09",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 12.1,
-          "previousHighDate": "2026-09-05",
-          "recoveryRatio": 94.2
-        },
-        {
           "aptName": "가양6단지",
           "area": 49.5,
           "intArea": 49,
@@ -25457,6 +25561,19 @@
           "previousHigh": 11.57,
           "previousHighDate": "2026-06-18",
           "recoveryRatio": 98.5
+        },
+        {
+          "aptName": "관악드림(삼성)",
+          "area": 59.85,
+          "intArea": 59,
+          "floor": "19층",
+          "price": 11.4,
+          "tradeDate": "2026-09-09",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 12.1,
+          "previousHighDate": "2026-09-05",
+          "recoveryRatio": 94.2
         },
         {
           "aptName": "길음역금호어울림센터힐",
@@ -27097,6 +27214,19 @@
           "recoveryRatio": 89.5
         },
         {
+          "aptName": "강변",
+          "area": 49.5,
+          "intArea": 49,
+          "floor": "8층",
+          "price": 10.7,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
+          "previousHigh": 11.1,
+          "previousHighDate": "2026-06-09",
+          "recoveryRatio": 96.4
+        },
+        {
           "aptName": "신림푸르지오",
           "area": 84.79,
           "intArea": 84,
@@ -27134,19 +27264,6 @@
           "previousHigh": 11.7,
           "previousHighDate": "2026-08-31",
           "recoveryRatio": 91.5
-        },
-        {
-          "aptName": "강변",
-          "area": 49.5,
-          "intArea": 49,
-          "floor": "8층",
-          "price": 10.7,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 11.1,
-          "previousHighDate": "2026-06-09",
-          "recoveryRatio": 96.4
         },
         {
           "aptName": "디큐브시티",
@@ -27500,19 +27617,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "도림청구",
-          "area": 126.65,
-          "intArea": 126,
-          "floor": "3층",
-          "price": 10.5,
-          "tradeDate": "2026-09-07",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 10.5,
-          "previousHighDate": "2026-09-07",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "상도현대",
           "area": 84.97,
           "intArea": 84,
@@ -27524,6 +27628,19 @@
           "previousHigh": 11.6,
           "previousHighDate": "2026-09-04",
           "recoveryRatio": 90.5
+        },
+        {
+          "aptName": "도림청구",
+          "area": 126.65,
+          "intArea": 126,
+          "floor": "3층",
+          "price": 10.5,
+          "tradeDate": "2026-09-07",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 10.5,
+          "previousHighDate": "2026-09-07",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "주공3",
@@ -28163,19 +28280,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "동양",
-          "area": 84.85,
-          "intArea": 84,
-          "floor": "1층",
-          "price": 10.3,
-          "tradeDate": "2026-09-24",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 10.8,
-          "previousHighDate": "2021-09-04",
-          "recoveryRatio": 95.4
-        },
-        {
           "aptName": "신호리치빌",
           "area": 84.69,
           "intArea": 84,
@@ -28187,6 +28291,19 @@
           "previousHigh": 10.3,
           "previousHighDate": "2026-09-17",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "동양",
+          "area": 84.85,
+          "intArea": 84,
+          "floor": "1층",
+          "price": 10.3,
+          "tradeDate": "2026-09-24",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 10.8,
+          "previousHighDate": "2021-09-04",
+          "recoveryRatio": 95.4
         },
         {
           "aptName": "가양도시개발9-2단지",
@@ -28384,19 +28501,6 @@
           "recoveryRatio": 92.7
         },
         {
-          "aptName": "현대(관악)",
-          "area": 58.59,
-          "intArea": 58,
-          "floor": "2층",
-          "price": 10.2,
-          "tradeDate": "2026-09-17",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 10.45,
-          "previousHighDate": "2026-07-15",
-          "recoveryRatio": 97.6
-        },
-        {
           "aptName": "벽산늘푸른",
           "area": 84.94,
           "intArea": 84,
@@ -28408,6 +28512,19 @@
           "previousHigh": 10.2,
           "previousHighDate": "2026-09-03",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "현대(관악)",
+          "area": 58.59,
+          "intArea": 58,
+          "floor": "2층",
+          "price": 10.2,
+          "tradeDate": "2026-09-17",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 10.45,
+          "previousHighDate": "2026-07-15",
+          "recoveryRatio": 97.6
         },
         {
           "aptName": "한마을",
@@ -28722,6 +28839,32 @@
           "recoveryRatio": 92.6
         },
         {
+          "aptName": "성우아파트",
+          "area": 99.8,
+          "intArea": 99,
+          "floor": "4층",
+          "price": 10.0,
+          "tradeDate": "2026-09-16",
+          "regionName": "서울 동작구",
+          "category": "seoul-southwest",
+          "previousHigh": 10.0,
+          "previousHighDate": "2026-09-16",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "성우2차아파트",
+          "area": 75.6,
+          "intArea": 75,
+          "floor": "4층",
+          "price": 10.0,
+          "tradeDate": "2026-09-17",
+          "regionName": "서울 동작구",
+          "category": "seoul-southwest",
+          "previousHigh": 10.0,
+          "previousHighDate": "2026-09-17",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "광진동양파라곤2단지",
           "area": 72.5,
           "intArea": 72,
@@ -28761,29 +28904,16 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "성우아파트",
-          "area": 99.8,
-          "intArea": 99,
-          "floor": "4층",
+          "aptName": "마곡센트레빌",
+          "area": 59.607,
+          "intArea": 59,
+          "floor": "8층",
           "price": 10.0,
-          "tradeDate": "2026-09-16",
-          "regionName": "서울 동작구",
+          "tradeDate": "2026-09-08",
+          "regionName": "서울 강서구",
           "category": "seoul-southwest",
           "previousHigh": 10.0,
-          "previousHighDate": "2026-09-16",
-          "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "성우2차아파트",
-          "area": 75.6,
-          "intArea": 75,
-          "floor": "4층",
-          "price": 10.0,
-          "tradeDate": "2026-09-17",
-          "regionName": "서울 동작구",
-          "category": "seoul-southwest",
-          "previousHigh": 10.0,
-          "previousHighDate": "2026-09-17",
+          "previousHighDate": "2026-09-08",
           "recoveryRatio": 100.0
         },
         {
@@ -28800,19 +28930,6 @@
           "recoveryRatio": 85.5
         },
         {
-          "aptName": "마곡센트레빌",
-          "area": 59.607,
-          "intArea": 59,
-          "floor": "8층",
-          "price": 10.0,
-          "tradeDate": "2026-09-08",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 10.0,
-          "previousHighDate": "2026-09-08",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "주공19단지(창동리버타운)",
           "area": 60.5,
           "intArea": 60,
@@ -28824,32 +28941,6 @@
           "previousHigh": 10.0,
           "previousHighDate": "2026-09-19",
           "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "미아동부센트레빌",
-          "area": 59.96,
-          "intArea": 59,
-          "floor": "11층",
-          "price": 10.0,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 10.1,
-          "previousHighDate": "2026-09-08",
-          "recoveryRatio": 99.0
-        },
-        {
-          "aptName": "두산위브트레지움",
-          "area": 84.99,
-          "intArea": 84,
-          "floor": "7층",
-          "price": 10.0,
-          "tradeDate": "2026-09-02",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 10.97,
-          "previousHighDate": "2026-07-18",
-          "recoveryRatio": 91.2
         },
         {
           "aptName": "염광",
@@ -28889,6 +28980,32 @@
           "previousHigh": 10.5,
           "previousHighDate": "2026-09-10",
           "recoveryRatio": 95.2
+        },
+        {
+          "aptName": "미아동부센트레빌",
+          "area": 59.96,
+          "intArea": 59,
+          "floor": "11층",
+          "price": 10.0,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 10.1,
+          "previousHighDate": "2026-09-08",
+          "recoveryRatio": 99.0
+        },
+        {
+          "aptName": "두산위브트레지움",
+          "area": 84.99,
+          "intArea": 84,
+          "floor": "7층",
+          "price": 10.0,
+          "tradeDate": "2026-09-02",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 10.97,
+          "previousHighDate": "2026-07-18",
+          "recoveryRatio": 91.2
         },
         {
           "aptName": "브라운스톤동선",
@@ -29411,19 +29528,6 @@
           "recoveryRatio": 92.9
         },
         {
-          "aptName": "래미안트리베라1단지",
-          "area": 59.6,
-          "intArea": 59,
-          "floor": "4층",
-          "price": 9.85,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 10.8,
-          "previousHighDate": "2026-09-04",
-          "recoveryRatio": 91.2
-        },
-        {
           "aptName": "현대",
           "area": 59.95,
           "intArea": 59,
@@ -29448,6 +29552,19 @@
           "previousHigh": 10.6,
           "previousHighDate": "2021-09-30",
           "recoveryRatio": 92.9
+        },
+        {
+          "aptName": "래미안트리베라1단지",
+          "area": 59.6,
+          "intArea": 59,
+          "floor": "4층",
+          "price": 9.85,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 10.8,
+          "previousHighDate": "2026-09-04",
+          "recoveryRatio": 91.2
         },
         {
           "aptName": "성복역리버파크",
@@ -31387,19 +31504,6 @@
           "recoveryRatio": 77.1
         },
         {
-          "aptName": "경남아너스빌(1356-0)",
-          "area": 84.873,
-          "intArea": 84,
-          "floor": "16층",
-          "price": 9.15,
-          "tradeDate": "2026-09-11",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 9.44,
-          "previousHighDate": "2021-08-22",
-          "recoveryRatio": 96.9
-        },
-        {
           "aptName": "화랑타운아파트",
           "area": 84.65,
           "intArea": 84,
@@ -31411,6 +31515,19 @@
           "previousHigh": 9.6,
           "previousHighDate": "2021-09-04",
           "recoveryRatio": 95.3
+        },
+        {
+          "aptName": "경남아너스빌(1356-0)",
+          "area": 84.873,
+          "intArea": 84,
+          "floor": "16층",
+          "price": 9.15,
+          "tradeDate": "2026-09-11",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 9.44,
+          "previousHighDate": "2021-08-22",
+          "recoveryRatio": 96.9
         },
         {
           "aptName": "미사강변트래지안",
@@ -31764,19 +31881,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "동아타운21",
-          "area": 125.42,
-          "intArea": 125,
-          "floor": "5층",
-          "price": 9.0,
-          "tradeDate": "2026-09-01",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 9.0,
-          "previousHighDate": "2026-09-01",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "마곡 한진해모로",
           "area": 84.93,
           "intArea": 84,
@@ -31788,6 +31892,19 @@
           "previousHigh": 9.5,
           "previousHighDate": "2026-05-27",
           "recoveryRatio": 94.7
+        },
+        {
+          "aptName": "동아타운21",
+          "area": 125.42,
+          "intArea": 125,
+          "floor": "5층",
+          "price": 9.0,
+          "tradeDate": "2026-09-01",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 9.0,
+          "previousHighDate": "2026-09-01",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "한마을",
@@ -31855,32 +31972,6 @@
           "recoveryRatio": 99.4
         },
         {
-          "aptName": "에스케이북한산시티",
-          "area": 84.76,
-          "intArea": 84,
-          "floor": "5층",
-          "price": 9.0,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 9.23,
-          "previousHighDate": "2026-08-13",
-          "recoveryRatio": 97.5
-        },
-        {
-          "aptName": "에스케이북한산시티",
-          "area": 114.85,
-          "intArea": 114,
-          "floor": "2층",
-          "price": 9.0,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 9.95,
-          "previousHighDate": "2026-10-06",
-          "recoveryRatio": 90.5
-        },
-        {
           "aptName": "하계2현대",
           "area": 75.35,
           "intArea": 75,
@@ -31931,6 +32022,32 @@
           "previousHigh": 10.45,
           "previousHighDate": "2021-08-19",
           "recoveryRatio": 86.1
+        },
+        {
+          "aptName": "에스케이북한산시티",
+          "area": 84.76,
+          "intArea": 84,
+          "floor": "5층",
+          "price": 9.0,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 9.23,
+          "previousHighDate": "2026-08-13",
+          "recoveryRatio": 97.5
+        },
+        {
+          "aptName": "에스케이북한산시티",
+          "area": 114.85,
+          "intArea": 114,
+          "floor": "2층",
+          "price": 9.0,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 9.95,
+          "previousHighDate": "2026-10-06",
+          "recoveryRatio": 90.5
         },
         {
           "aptName": "한진(609-1)",
@@ -32466,19 +32583,6 @@
           "recoveryRatio": 98.9
         },
         {
-          "aptName": "벽산타운II",
-          "area": 57.36,
-          "intArea": 57,
-          "floor": "17층",
-          "price": 8.9,
-          "tradeDate": "2026-09-10",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 8.9,
-          "previousHighDate": "2026-09-10",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "등촌동보람쉬움아파트",
           "area": 84.51,
           "intArea": 84,
@@ -32489,6 +32593,19 @@
           "category": "seoul-southwest",
           "previousHigh": 8.9,
           "previousHighDate": "2026-09-04",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "벽산타운II",
+          "area": 57.36,
+          "intArea": 57,
+          "floor": "17층",
+          "price": 8.9,
+          "tradeDate": "2026-09-10",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 8.9,
+          "previousHighDate": "2026-09-10",
           "recoveryRatio": 100.0
         },
         {
@@ -32986,19 +33103,6 @@
           "recoveryRatio": 88.8
         },
         {
-          "aptName": "에스케이북한산시티",
-          "area": 114.85,
-          "intArea": 114,
-          "floor": "20층",
-          "price": 8.7,
-          "tradeDate": "2026-09-08",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 9.95,
-          "previousHighDate": "2026-10-06",
-          "recoveryRatio": 87.4
-        },
-        {
           "aptName": "화랑해링턴플레이스아파트",
           "area": 126.78,
           "intArea": 126,
@@ -33036,6 +33140,19 @@
           "previousHigh": 9.0,
           "previousHighDate": "2021-08-16",
           "recoveryRatio": 96.7
+        },
+        {
+          "aptName": "에스케이북한산시티",
+          "area": 114.85,
+          "intArea": 114,
+          "floor": "20층",
+          "price": 8.7,
+          "tradeDate": "2026-09-08",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 9.95,
+          "previousHighDate": "2026-10-06",
+          "recoveryRatio": 87.4
         },
         {
           "aptName": "한진(609-1)",
@@ -33272,19 +33389,6 @@
           "recoveryRatio": 96.6
         },
         {
-          "aptName": "동부",
-          "area": 78.43,
-          "intArea": 78,
-          "floor": "1층",
-          "price": 8.6,
-          "tradeDate": "2026-09-15",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 9.7,
-          "previousHighDate": "2022-05-01",
-          "recoveryRatio": 88.7
-        },
-        {
           "aptName": "가양도시개발9-2단지",
           "area": 39.6,
           "intArea": 39,
@@ -33296,6 +33400,19 @@
           "previousHigh": 8.6,
           "previousHighDate": "2026-09-18",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "동부",
+          "area": 78.43,
+          "intArea": 78,
+          "floor": "1층",
+          "price": 8.6,
+          "tradeDate": "2026-09-15",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 9.7,
+          "previousHighDate": "2022-05-01",
+          "recoveryRatio": 88.7
         },
         {
           "aptName": "구로두산",
@@ -33558,6 +33675,19 @@
           "recoveryRatio": 100.0
         },
         {
+          "aptName": "가양2단지(성지)",
+          "area": 39.6,
+          "intArea": 39,
+          "floor": "13층",
+          "price": 8.5,
+          "tradeDate": "2026-09-29",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
+          "previousHigh": 8.99,
+          "previousHighDate": "2026-09-03",
+          "recoveryRatio": 94.5
+        },
+        {
           "aptName": "관악산휴먼시아2단지",
           "area": 114.7,
           "intArea": 114,
@@ -33610,19 +33740,6 @@
           "recoveryRatio": 93.4
         },
         {
-          "aptName": "가양2단지(성지)",
-          "area": 39.6,
-          "intArea": 39,
-          "floor": "13층",
-          "price": 8.5,
-          "tradeDate": "2026-09-29",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 8.99,
-          "previousHighDate": "2026-09-03",
-          "recoveryRatio": 94.5
-        },
-        {
           "aptName": "상아1차아파트",
           "area": 69.03,
           "intArea": 69,
@@ -33647,19 +33764,6 @@
           "previousHigh": 11.0,
           "previousHighDate": "2021-10-16",
           "recoveryRatio": 77.3
-        },
-        {
-          "aptName": "주공1단지",
-          "area": 79.07,
-          "intArea": 79,
-          "floor": "3층",
-          "price": 8.5,
-          "tradeDate": "2026-09-16",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.5,
-          "previousHighDate": "2026-09-16",
-          "recoveryRatio": 100.0
         },
         {
           "aptName": "주공10",
@@ -33751,6 +33855,19 @@
           "previousHigh": 8.6,
           "previousHighDate": "2026-03-19",
           "recoveryRatio": 98.8
+        },
+        {
+          "aptName": "주공1단지",
+          "area": 79.07,
+          "intArea": 79,
+          "floor": "3층",
+          "price": 8.5,
+          "tradeDate": "2026-09-16",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.5,
+          "previousHighDate": "2026-09-16",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "아남",
@@ -34156,6 +34273,19 @@
           "recoveryRatio": 100.0
         },
         {
+          "aptName": "현진에버빌",
+          "area": 84.9234,
+          "intArea": 84,
+          "floor": "15층",
+          "price": 8.4,
+          "tradeDate": "2026-09-20",
+          "regionName": "서울 동작구",
+          "category": "seoul-southwest",
+          "previousHigh": 8.4,
+          "previousHighDate": "2026-09-20",
+          "recoveryRatio": 100.0
+        },
+        {
           "aptName": "우성1",
           "area": 62.37,
           "intArea": 62,
@@ -34180,19 +34310,6 @@
           "previousHigh": 8.9,
           "previousHighDate": "2026-07-20",
           "recoveryRatio": 94.4
-        },
-        {
-          "aptName": "현진에버빌",
-          "area": 84.9234,
-          "intArea": 84,
-          "floor": "15층",
-          "price": 8.4,
-          "tradeDate": "2026-09-20",
-          "regionName": "서울 동작구",
-          "category": "seoul-southwest",
-          "previousHigh": 8.4,
-          "previousHighDate": "2026-09-20",
-          "recoveryRatio": 100.0
         },
         {
           "aptName": "관악산휴먼시아2단지",
@@ -34624,19 +34741,6 @@
           "recoveryRatio": 75.5
         },
         {
-          "aptName": "경남아너스빌(1356-0)",
-          "area": 59.964,
-          "intArea": 59,
-          "floor": "4층",
-          "price": 8.3,
-          "tradeDate": "2026-09-08",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.35,
-          "previousHighDate": "2026-07-09",
-          "recoveryRatio": 99.4
-        },
-        {
           "aptName": "상계주공2(고층)",
           "area": 68.86,
           "intArea": 68,
@@ -34661,6 +34765,19 @@
           "previousHigh": 9.15,
           "previousHighDate": "2021-06-26",
           "recoveryRatio": 90.7
+        },
+        {
+          "aptName": "경남아너스빌(1356-0)",
+          "area": 59.964,
+          "intArea": 59,
+          "floor": "4층",
+          "price": 8.3,
+          "tradeDate": "2026-09-08",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.35,
+          "previousHighDate": "2026-07-09",
+          "recoveryRatio": 99.4
         },
         {
           "aptName": "정릉우성아파트 101~105동",
@@ -35079,19 +35196,6 @@
           "recoveryRatio": 93.4
         },
         {
-          "aptName": "에스케이북한산시티",
-          "area": 59.98,
-          "intArea": 59,
-          "floor": "25층",
-          "price": 8.2,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.4,
-          "previousHighDate": "2026-09-29",
-          "recoveryRatio": 97.6
-        },
-        {
           "aptName": "세양청마루",
           "area": 84.957,
           "intArea": 84,
@@ -35155,6 +35259,19 @@
           "previousHigh": 8.45,
           "previousHighDate": "2021-04-16",
           "recoveryRatio": 97.0
+        },
+        {
+          "aptName": "에스케이북한산시티",
+          "area": 59.98,
+          "intArea": 59,
+          "floor": "25층",
+          "price": 8.2,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.4,
+          "previousHighDate": "2026-09-29",
+          "recoveryRatio": 97.6
         },
         {
           "aptName": "동아아파트",
@@ -35248,19 +35365,6 @@
           "recoveryRatio": 91.1
         },
         {
-          "aptName": "금호2",
-          "area": 84.87,
-          "intArea": 84,
-          "floor": "5층",
-          "price": 8.15,
-          "tradeDate": "2026-09-03",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 8.15,
-          "previousHighDate": "2026-09-03",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "등촌7,8단지주공아파트",
           "area": 41.85,
           "intArea": 41,
@@ -35272,6 +35376,19 @@
           "previousHigh": 8.4,
           "previousHighDate": "2026-10-02",
           "recoveryRatio": 97.0
+        },
+        {
+          "aptName": "금호2",
+          "area": 84.87,
+          "intArea": 84,
+          "floor": "5층",
+          "price": 8.15,
+          "tradeDate": "2026-09-03",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 8.15,
+          "previousHighDate": "2026-09-03",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "현대상선",
@@ -35534,19 +35651,6 @@
           "recoveryRatio": 95.3
         },
         {
-          "aptName": "삼각산아이원",
-          "area": 59.758,
-          "intArea": 59,
-          "floor": "3층",
-          "price": 8.05,
-          "tradeDate": "2026-09-06",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.15,
-          "previousHighDate": "2026-08-22",
-          "recoveryRatio": 98.8
-        },
-        {
           "aptName": "태릉우성아파트",
           "area": 66.87,
           "intArea": 66,
@@ -35558,6 +35662,19 @@
           "previousHigh": 8.7,
           "previousHighDate": "2022-05-21",
           "recoveryRatio": 92.5
+        },
+        {
+          "aptName": "삼각산아이원",
+          "area": 59.758,
+          "intArea": 59,
+          "floor": "3층",
+          "price": 8.05,
+          "tradeDate": "2026-09-06",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.15,
+          "previousHighDate": "2026-08-22",
+          "recoveryRatio": 98.8
         },
         {
           "aptName": "한빛골드빌1차",
@@ -35963,19 +36080,6 @@
           "recoveryRatio": 88.1
         },
         {
-          "aptName": "에스케이북한산시티",
-          "area": 59.98,
-          "intArea": 59,
-          "floor": "12층",
-          "price": 7.97,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.4,
-          "previousHighDate": "2026-09-29",
-          "recoveryRatio": 94.9
-        },
-        {
           "aptName": "동부아파트",
           "area": 114.17,
           "intArea": 114,
@@ -35987,6 +36091,19 @@
           "previousHigh": 8.5,
           "previousHighDate": "2022-10-04",
           "recoveryRatio": 93.8
+        },
+        {
+          "aptName": "에스케이북한산시티",
+          "area": 59.98,
+          "intArea": 59,
+          "floor": "12층",
+          "price": 7.97,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.4,
+          "previousHighDate": "2026-09-29",
+          "recoveryRatio": 94.9
         },
         {
           "aptName": "해오름한국",
@@ -36236,19 +36353,6 @@
           "recoveryRatio": 87.3
         },
         {
-          "aptName": "수유역두산위브1",
-          "area": 84.9909,
-          "intArea": 84,
-          "floor": "2층",
-          "price": 7.9,
-          "tradeDate": "2026-09-18",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.47,
-          "previousHighDate": "2022-04-22",
-          "recoveryRatio": 93.3
-        },
-        {
           "aptName": "장미(시영6)",
           "area": 49.5,
           "intArea": 49,
@@ -36260,6 +36364,19 @@
           "previousHigh": 7.9,
           "previousHighDate": "2026-09-18",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "수유역두산위브1",
+          "area": 84.9909,
+          "intArea": 84,
+          "floor": "2층",
+          "price": 7.9,
+          "tradeDate": "2026-09-18",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.47,
+          "previousHighDate": "2022-04-22",
+          "recoveryRatio": 93.3
         },
         {
           "aptName": "삼보힐하우스",
@@ -36795,19 +36912,6 @@
           "recoveryRatio": 93.0
         },
         {
-          "aptName": "벽산라이브파크",
-          "area": 114.68,
-          "intArea": 114,
-          "floor": "4층",
-          "price": 7.7,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.5,
-          "previousHighDate": "2021-08-14",
-          "recoveryRatio": 90.6
-        },
-        {
           "aptName": "태릉우성아파트",
           "area": 66.87,
           "intArea": 66,
@@ -36832,6 +36936,19 @@
           "previousHigh": 7.9,
           "previousHighDate": "2021-07-05",
           "recoveryRatio": 97.5
+        },
+        {
+          "aptName": "벽산라이브파크",
+          "area": 114.68,
+          "intArea": 114,
+          "floor": "4층",
+          "price": 7.7,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.5,
+          "previousHighDate": "2021-08-14",
+          "recoveryRatio": 90.6
         },
         {
           "aptName": "중앙하이츠빌2단지",
@@ -37068,19 +37185,6 @@
           "recoveryRatio": 97.6
         },
         {
-          "aptName": "영일",
-          "area": 41.32,
-          "intArea": 41,
-          "floor": "2층",
-          "price": 7.6,
-          "tradeDate": "2026-09-12",
-          "regionName": "서울 영등포구",
-          "category": "seoul-southwest",
-          "previousHigh": 7.6,
-          "previousHighDate": "2026-05-21",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "하나마을",
           "area": 108.12,
           "intArea": 108,
@@ -37091,6 +37195,19 @@
           "category": "seoul-southwest",
           "previousHigh": 7.6,
           "previousHighDate": "2026-09-01",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "영일",
+          "area": 41.32,
+          "intArea": 41,
+          "floor": "2층",
+          "price": 7.6,
+          "tradeDate": "2026-09-12",
+          "regionName": "서울 영등포구",
+          "category": "seoul-southwest",
+          "previousHigh": 7.6,
+          "previousHighDate": "2026-05-21",
           "recoveryRatio": 100.0
         },
         {
@@ -37133,19 +37250,6 @@
           "recoveryRatio": 89.4
         },
         {
-          "aptName": "벽산라이브파크",
-          "area": 114.68,
-          "intArea": 114,
-          "floor": "4층",
-          "price": 7.6,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.5,
-          "previousHighDate": "2021-08-14",
-          "recoveryRatio": 89.4
-        },
-        {
           "aptName": "상계주공2(고층)",
           "area": 58.01,
           "intArea": 58,
@@ -37157,6 +37261,19 @@
           "previousHigh": 8.0,
           "previousHighDate": "2021-06-09",
           "recoveryRatio": 95.0
+        },
+        {
+          "aptName": "벽산라이브파크",
+          "area": 114.68,
+          "intArea": 114,
+          "floor": "4층",
+          "price": 7.6,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.5,
+          "previousHighDate": "2021-08-14",
+          "recoveryRatio": 89.4
         },
         {
           "aptName": "정릉풍림아이원",
@@ -37705,19 +37822,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "삼성산주공(주공3단지)",
-          "area": 113.31,
-          "intArea": 113,
-          "floor": "16층",
-          "price": 7.45,
-          "tradeDate": "2026-09-15",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 9.05,
-          "previousHighDate": "2021-07-03",
-          "recoveryRatio": 82.3
-        },
-        {
           "aptName": "마곡중앙하이츠아파트",
           "area": 51.03,
           "intArea": 51,
@@ -37742,6 +37846,19 @@
           "previousHigh": 10.9,
           "previousHighDate": "2026-09-23",
           "recoveryRatio": 68.3
+        },
+        {
+          "aptName": "삼성산주공(주공3단지)",
+          "area": 113.31,
+          "intArea": 113,
+          "floor": "16층",
+          "price": 7.45,
+          "tradeDate": "2026-09-15",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 9.05,
+          "previousHighDate": "2021-07-03",
+          "recoveryRatio": 82.3
         },
         {
           "aptName": "하버라인4단지",
@@ -37848,45 +37965,6 @@
           "recoveryRatio": 94.3
         },
         {
-          "aptName": "벽산라이브파크",
-          "area": 84.89,
-          "intArea": 84,
-          "floor": "3층",
-          "price": 7.4,
-          "tradeDate": "2026-09-11",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 8.3,
-          "previousHighDate": "2026-10-03",
-          "recoveryRatio": 89.2
-        },
-        {
-          "aptName": "수유벽산1차",
-          "area": 84.92,
-          "intArea": 84,
-          "floor": "5층",
-          "price": 7.4,
-          "tradeDate": "2026-09-12",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 7.9,
-          "previousHighDate": "2022-04-22",
-          "recoveryRatio": 93.7
-        },
-        {
-          "aptName": "수유벽산1차",
-          "area": 84.95,
-          "intArea": 84,
-          "floor": "12층",
-          "price": 7.4,
-          "tradeDate": "2026-09-07",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 7.9,
-          "previousHighDate": "2022-04-22",
-          "recoveryRatio": 93.7
-        },
-        {
           "aptName": "보람아파트",
           "area": 68.99,
           "intArea": 68,
@@ -37924,6 +38002,45 @@
           "previousHigh": 7.65,
           "previousHighDate": "2021-09-18",
           "recoveryRatio": 96.7
+        },
+        {
+          "aptName": "벽산라이브파크",
+          "area": 84.89,
+          "intArea": 84,
+          "floor": "3층",
+          "price": 7.4,
+          "tradeDate": "2026-09-11",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 8.3,
+          "previousHighDate": "2026-10-03",
+          "recoveryRatio": 89.2
+        },
+        {
+          "aptName": "수유벽산1차",
+          "area": 84.92,
+          "intArea": 84,
+          "floor": "5층",
+          "price": 7.4,
+          "tradeDate": "2026-09-12",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 7.9,
+          "previousHighDate": "2022-04-22",
+          "recoveryRatio": 93.7
+        },
+        {
+          "aptName": "수유벽산1차",
+          "area": 84.95,
+          "intArea": 84,
+          "floor": "12층",
+          "price": 7.4,
+          "tradeDate": "2026-09-07",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 7.9,
+          "previousHighDate": "2022-04-22",
+          "recoveryRatio": 93.7
         },
         {
           "aptName": "벽적골9단지주공",
@@ -38225,19 +38342,6 @@
           "recoveryRatio": 97.3
         },
         {
-          "aptName": "수유벽산1차",
-          "area": 84.92,
-          "intArea": 84,
-          "floor": "5층",
-          "price": 7.3,
-          "tradeDate": "2026-09-21",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 7.9,
-          "previousHighDate": "2022-04-22",
-          "recoveryRatio": 92.4
-        },
-        {
           "aptName": "성북역신도브래뉴",
           "area": 84.8437,
           "intArea": 84,
@@ -38262,6 +38366,19 @@
           "previousHigh": 8.0,
           "previousHighDate": "2021-10-09",
           "recoveryRatio": 91.2
+        },
+        {
+          "aptName": "수유벽산1차",
+          "area": 84.92,
+          "intArea": 84,
+          "floor": "5층",
+          "price": 7.3,
+          "tradeDate": "2026-09-21",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 7.9,
+          "previousHighDate": "2022-04-22",
+          "recoveryRatio": 92.4
         },
         {
           "aptName": "도담마을우미린",
@@ -38485,19 +38602,6 @@
           "recoveryRatio": 96.0
         },
         {
-          "aptName": "벽산블루밍",
-          "area": 84.95,
-          "intArea": 84,
-          "floor": "9층",
-          "price": 7.2,
-          "tradeDate": "2026-09-17",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 13.05,
-          "previousHighDate": "2026-08-08",
-          "recoveryRatio": 55.2
-        },
-        {
           "aptName": "마곡에이치밸리움",
           "area": 51.464,
           "intArea": 51,
@@ -38509,6 +38613,19 @@
           "previousHigh": 7.2,
           "previousHighDate": "2026-09-10",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "벽산블루밍",
+          "area": 84.95,
+          "intArea": 84,
+          "floor": "9층",
+          "price": 7.2,
+          "tradeDate": "2026-09-17",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 13.05,
+          "previousHighDate": "2026-08-08",
+          "recoveryRatio": 55.2
         },
         {
           "aptName": "청솔우성",
@@ -38836,19 +38953,6 @@
           "recoveryRatio": 96.6
         },
         {
-          "aptName": "수유벽산1차",
-          "area": 84.95,
-          "intArea": 84,
-          "floor": "2층",
-          "price": 7.15,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 7.9,
-          "previousHighDate": "2022-04-22",
-          "recoveryRatio": 90.5
-        },
-        {
           "aptName": "중계그린1단지",
           "area": 49.5,
           "intArea": 49,
@@ -38873,6 +38977,19 @@
           "previousHigh": 8.0,
           "previousHighDate": "2021-10-09",
           "recoveryRatio": 89.4
+        },
+        {
+          "aptName": "수유벽산1차",
+          "area": 84.95,
+          "intArea": 84,
+          "floor": "2층",
+          "price": 7.15,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 7.9,
+          "previousHighDate": "2022-04-22",
+          "recoveryRatio": 90.5
         },
         {
           "aptName": "정릉스카이쌍용아파트",
@@ -39265,19 +39382,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "동훈CDI",
-          "area": 84.39,
-          "intArea": 84,
-          "floor": "6층",
-          "price": 7.0,
-          "tradeDate": "2026-09-13",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 7.0,
-          "previousHighDate": "2026-09-13",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "등촌파밀리에더클래식101동",
           "area": 48.39,
           "intArea": 48,
@@ -39288,6 +39392,19 @@
           "category": "seoul-southwest",
           "previousHigh": 7.0,
           "previousHighDate": "2026-09-19",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "동훈CDI",
+          "area": 84.39,
+          "intArea": 84,
+          "floor": "6층",
+          "price": 7.0,
+          "tradeDate": "2026-09-13",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 7.0,
+          "previousHighDate": "2026-09-13",
           "recoveryRatio": 100.0
         },
         {
@@ -39302,19 +39419,6 @@
           "previousHigh": 11.95,
           "previousHighDate": "2026-09-16",
           "recoveryRatio": 58.6
-        },
-        {
-          "aptName": "미아한일유앤아이",
-          "area": 68.303,
-          "intArea": 68,
-          "floor": "12층",
-          "price": 7.0,
-          "tradeDate": "2026-09-16",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 7.3,
-          "previousHighDate": "2021-07-17",
-          "recoveryRatio": 95.9
         },
         {
           "aptName": "중계그린1단지",
@@ -39419,6 +39523,19 @@
           "previousHigh": 8.3,
           "previousHighDate": "2021-02-06",
           "recoveryRatio": 84.3
+        },
+        {
+          "aptName": "미아한일유앤아이",
+          "area": 68.303,
+          "intArea": 68,
+          "floor": "12층",
+          "price": 7.0,
+          "tradeDate": "2026-09-16",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 7.3,
+          "previousHighDate": "2021-07-17",
+          "recoveryRatio": 95.9
         },
         {
           "aptName": "정릉풍림아이원",
@@ -40474,6 +40591,19 @@
           "recoveryRatio": 95.7
         },
         {
+          "aptName": "대림e편한세상",
+          "area": 84.84,
+          "intArea": 84,
+          "floor": "9층",
+          "price": 6.7,
+          "tradeDate": "2026-09-30",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
+          "previousHigh": 9.8,
+          "previousHighDate": "2025-12-12",
+          "recoveryRatio": 68.4
+        },
+        {
           "aptName": "은천2단지아파트",
           "area": 49.95,
           "intArea": 49,
@@ -40511,19 +40641,6 @@
           "previousHigh": 6.9,
           "previousHighDate": "2026-10-15",
           "recoveryRatio": 97.1
-        },
-        {
-          "aptName": "대림e편한세상",
-          "area": 84.84,
-          "intArea": 84,
-          "floor": "9층",
-          "price": 6.7,
-          "tradeDate": "2026-09-30",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 9.8,
-          "previousHighDate": "2025-12-12",
-          "recoveryRatio": 68.4
         },
         {
           "aptName": "희훈타워빌",
@@ -40682,19 +40799,6 @@
           "recoveryRatio": 89.9
         },
         {
-          "aptName": "주공4단지",
-          "area": 76.51,
-          "intArea": 76,
-          "floor": "5층",
-          "price": 6.65,
-          "tradeDate": "2026-09-16",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 7.5,
-          "previousHighDate": "2022-01-17",
-          "recoveryRatio": 88.7
-        },
-        {
           "aptName": "상계대림",
           "area": 84.91,
           "intArea": 84,
@@ -40706,6 +40810,19 @@
           "previousHigh": 8.3,
           "previousHighDate": "2022-04-20",
           "recoveryRatio": 80.1
+        },
+        {
+          "aptName": "주공4단지",
+          "area": 76.51,
+          "intArea": 76,
+          "floor": "5층",
+          "price": 6.65,
+          "tradeDate": "2026-09-16",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 7.5,
+          "previousHighDate": "2022-01-17",
+          "recoveryRatio": 88.7
         },
         {
           "aptName": "황골마을주공1",
@@ -40994,19 +41111,6 @@
           "recoveryRatio": 87.3
         },
         {
-          "aptName": "주공1단지",
-          "area": 49.94,
-          "intArea": 49,
-          "floor": "1층",
-          "price": 6.55,
-          "tradeDate": "2026-09-04",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 7.2,
-          "previousHighDate": "2022-04-30",
-          "recoveryRatio": 91.0
-        },
-        {
           "aptName": "청암1단지",
           "area": 84.8,
           "intArea": 84,
@@ -41018,6 +41122,19 @@
           "previousHigh": 8.8,
           "previousHighDate": "2021-10-28",
           "recoveryRatio": 74.4
+        },
+        {
+          "aptName": "주공1단지",
+          "area": 49.94,
+          "intArea": 49,
+          "floor": "1층",
+          "price": 6.55,
+          "tradeDate": "2026-09-04",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 7.2,
+          "previousHighDate": "2022-04-30",
+          "recoveryRatio": 91.0
         },
         {
           "aptName": "태천와이드빌",
@@ -41072,32 +41189,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "은천2단지아파트",
-          "area": 49.95,
-          "intArea": 49,
-          "floor": "5층",
-          "price": 6.5,
-          "tradeDate": "2026-09-08",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 6.75,
-          "previousHighDate": "2026-09-14",
-          "recoveryRatio": 96.3
-        },
-        {
-          "aptName": "예촌그린",
-          "area": 97.61,
-          "intArea": 97,
-          "floor": "1층",
-          "price": 6.5,
-          "tradeDate": "2026-09-14",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 6.5,
-          "previousHighDate": "2026-09-14",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "장미",
           "area": 49.2,
           "intArea": 49,
@@ -41122,6 +41213,32 @@
           "previousHigh": 8.0,
           "previousHighDate": "2022-03-24",
           "recoveryRatio": 81.2
+        },
+        {
+          "aptName": "은천2단지아파트",
+          "area": 49.95,
+          "intArea": 49,
+          "floor": "5층",
+          "price": 6.5,
+          "tradeDate": "2026-09-08",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 6.75,
+          "previousHighDate": "2026-09-14",
+          "recoveryRatio": 96.3
+        },
+        {
+          "aptName": "예촌그린",
+          "area": 97.61,
+          "intArea": 97,
+          "floor": "1층",
+          "price": 6.5,
+          "tradeDate": "2026-09-14",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 6.5,
+          "previousHighDate": "2026-09-14",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "도봉파크빌3",
@@ -41187,19 +41304,6 @@
           "previousHigh": 7.0,
           "previousHighDate": "2022-12-30",
           "recoveryRatio": 92.9
-        },
-        {
-          "aptName": "두산위브트레지움",
-          "area": 84.95,
-          "intArea": 84,
-          "floor": "11층",
-          "price": 6.5,
-          "tradeDate": "2026-09-12",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 10.97,
-          "previousHighDate": "2026-07-18",
-          "recoveryRatio": 59.3
         },
         {
           "aptName": "대창센시티",
@@ -41356,6 +41460,19 @@
           "previousHigh": 9.85,
           "previousHighDate": "2021-11-09",
           "recoveryRatio": 66.0
+        },
+        {
+          "aptName": "두산위브트레지움",
+          "area": 84.95,
+          "intArea": 84,
+          "floor": "11층",
+          "price": 6.5,
+          "tradeDate": "2026-09-12",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 10.97,
+          "previousHighDate": "2026-07-18",
+          "recoveryRatio": 59.3
         },
         {
           "aptName": "진성",
@@ -41696,19 +41813,6 @@
           "recoveryRatio": 87.7
         },
         {
-          "aptName": "래미안수유",
-          "area": 59.88,
-          "intArea": 59,
-          "floor": "14층",
-          "price": 6.4,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.8,
-          "previousHighDate": "2021-08-04",
-          "recoveryRatio": 94.1
-        },
-        {
           "aptName": "상계주공9(고층)",
           "area": 49.94,
           "intArea": 49,
@@ -41746,6 +41850,19 @@
           "previousHigh": 7.2,
           "previousHighDate": "2021-07-26",
           "recoveryRatio": 88.9
+        },
+        {
+          "aptName": "래미안수유",
+          "area": 59.88,
+          "intArea": 59,
+          "floor": "14층",
+          "price": 6.4,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.8,
+          "previousHighDate": "2021-08-04",
+          "recoveryRatio": 94.1
         },
         {
           "aptName": "아남",
@@ -41930,19 +42047,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "금호2",
-          "area": 59.96,
-          "intArea": 59,
-          "floor": "10층",
-          "price": 6.35,
-          "tradeDate": "2026-09-22",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 6.5,
-          "previousHighDate": "2021-10-04",
-          "recoveryRatio": 97.7
-        },
-        {
           "aptName": "화곡1차보람더하임",
           "area": 80.26,
           "intArea": 80,
@@ -41954,6 +42058,19 @@
           "previousHigh": 6.35,
           "previousHighDate": "2026-09-12",
           "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "금호2",
+          "area": 59.96,
+          "intArea": 59,
+          "floor": "10층",
+          "price": 6.35,
+          "tradeDate": "2026-09-22",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 6.5,
+          "previousHighDate": "2021-10-04",
+          "recoveryRatio": 97.7
         },
         {
           "aptName": "구로지웰",
@@ -42008,6 +42125,19 @@
           "recoveryRatio": 100.0
         },
         {
+          "aptName": "방화5",
+          "area": 39.6,
+          "intArea": 39,
+          "floor": "8층",
+          "price": 6.3,
+          "tradeDate": "2026-09-10",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
+          "previousHigh": 6.5,
+          "previousHighDate": "2022-04-09",
+          "recoveryRatio": 96.9
+        },
+        {
           "aptName": "부미아띠랑스힐",
           "area": 83.95,
           "intArea": 83,
@@ -42032,19 +42162,6 @@
           "previousHigh": 7.2,
           "previousHighDate": "2021-09-11",
           "recoveryRatio": 87.5
-        },
-        {
-          "aptName": "방화5",
-          "area": 39.6,
-          "intArea": 39,
-          "floor": "8층",
-          "price": 6.3,
-          "tradeDate": "2026-09-10",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 6.5,
-          "previousHighDate": "2022-04-09",
-          "recoveryRatio": 96.9
         },
         {
           "aptName": "구로두산위브",
@@ -42437,19 +42554,6 @@
           "recoveryRatio": 82.7
         },
         {
-          "aptName": "주공1단지",
-          "area": 41.3,
-          "intArea": 41,
-          "floor": "7층",
-          "price": 6.2,
-          "tradeDate": "2026-09-30",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.2,
-          "previousHighDate": "2026-09-30",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "우국리더스빌",
           "area": 59.96,
           "intArea": 59,
@@ -42513,6 +42617,19 @@
           "previousHigh": 6.3,
           "previousHighDate": "2021-12-21",
           "recoveryRatio": 98.4
+        },
+        {
+          "aptName": "주공1단지",
+          "area": 41.3,
+          "intArea": 41,
+          "floor": "7층",
+          "price": 6.2,
+          "tradeDate": "2026-09-30",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.2,
+          "previousHighDate": "2026-09-30",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "정릉풍림아이원",
@@ -42905,19 +43022,6 @@
           "recoveryRatio": 89.6
         },
         {
-          "aptName": "삼성산주공(주공3단지)",
-          "area": 58.55,
-          "intArea": 58,
-          "floor": "19층",
-          "price": 6.0,
-          "tradeDate": "2026-09-23",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 6.5,
-          "previousHighDate": "2021-10-20",
-          "recoveryRatio": 92.3
-        },
-        {
           "aptName": "마곡중앙하이츠아파트",
           "area": 59.34,
           "intArea": 59,
@@ -42981,6 +43085,19 @@
           "previousHigh": 6.28,
           "previousHighDate": "2021-09-22",
           "recoveryRatio": 95.5
+        },
+        {
+          "aptName": "삼성산주공(주공3단지)",
+          "area": 58.55,
+          "intArea": 58,
+          "floor": "19층",
+          "price": 6.0,
+          "tradeDate": "2026-09-23",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 6.5,
+          "previousHighDate": "2021-10-20",
+          "recoveryRatio": 92.3
         },
         {
           "aptName": "주공2",
@@ -44660,19 +44777,6 @@
           "recoveryRatio": 94.2
         },
         {
-          "aptName": "번동한양아파트",
-          "area": 84.67,
-          "intArea": 84,
-          "floor": "5층",
-          "price": 5.7,
-          "tradeDate": "2026-09-10",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.5,
-          "previousHighDate": "2021-05-03",
-          "recoveryRatio": 87.7
-        },
-        {
           "aptName": "상계주공10(저층)",
           "area": 47.34,
           "intArea": 47,
@@ -44709,6 +44813,19 @@
           "category": "seoul-northeast",
           "previousHigh": 6.5,
           "previousHighDate": "2021-10-29",
+          "recoveryRatio": 87.7
+        },
+        {
+          "aptName": "번동한양아파트",
+          "area": 84.67,
+          "intArea": 84,
+          "floor": "5층",
+          "price": 5.7,
+          "tradeDate": "2026-09-10",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.5,
+          "previousHighDate": "2021-05-03",
           "recoveryRatio": 87.7
         },
         {
@@ -44907,32 +45024,6 @@
           "recoveryRatio": 93.3
         },
         {
-          "aptName": "극동",
-          "area": 84.99,
-          "intArea": 84,
-          "floor": "12층",
-          "price": 5.6,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.5,
-          "previousHighDate": "2021-08-30",
-          "recoveryRatio": 86.2
-        },
-        {
-          "aptName": "번동한양아파트",
-          "area": 84.67,
-          "intArea": 84,
-          "floor": "5층",
-          "price": 5.6,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.5,
-          "previousHighDate": "2021-05-03",
-          "recoveryRatio": 86.2
-        },
-        {
           "aptName": "삼익포레스트아파트",
           "area": 51.03,
           "intArea": 51,
@@ -45009,6 +45100,32 @@
           "previousHigh": 6.0,
           "previousHighDate": "2021-11-25",
           "recoveryRatio": 93.3
+        },
+        {
+          "aptName": "극동",
+          "area": 84.99,
+          "intArea": 84,
+          "floor": "12층",
+          "price": 5.6,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.5,
+          "previousHighDate": "2021-08-30",
+          "recoveryRatio": 86.2
+        },
+        {
+          "aptName": "번동한양아파트",
+          "area": 84.67,
+          "intArea": 84,
+          "floor": "5층",
+          "price": 5.6,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.5,
+          "previousHighDate": "2021-05-03",
+          "recoveryRatio": 86.2
         },
         {
           "aptName": "벽적골우성",
@@ -45219,19 +45336,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "신림동쌍용아파트",
-          "area": 59.26,
-          "intArea": 59,
-          "floor": "15층",
-          "price": 5.5,
-          "tradeDate": "2026-09-19",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 5.5,
-          "previousHighDate": "2022-01-15",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "청솔",
           "area": 39.36,
           "intArea": 39,
@@ -45282,6 +45386,19 @@
           "previousHigh": 5.9,
           "previousHighDate": "2022-02-19",
           "recoveryRatio": 93.2
+        },
+        {
+          "aptName": "신림동쌍용아파트",
+          "area": 59.26,
+          "intArea": 59,
+          "floor": "15층",
+          "price": 5.5,
+          "tradeDate": "2026-09-19",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 5.5,
+          "previousHighDate": "2022-01-15",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "금강",
@@ -45362,19 +45479,6 @@
           "recoveryRatio": 91.7
         },
         {
-          "aptName": "동문",
-          "area": 59.64,
-          "intArea": 59,
-          "floor": "9층",
-          "price": 5.5,
-          "tradeDate": "2026-09-16",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 5.95,
-          "previousHighDate": "2022-06-15",
-          "recoveryRatio": 92.4
-        },
-        {
           "aptName": "상계주공11(고층)",
           "area": 41.3,
           "intArea": 41,
@@ -45451,6 +45555,19 @@
           "previousHigh": 5.8,
           "previousHighDate": "2021-08-30",
           "recoveryRatio": 94.8
+        },
+        {
+          "aptName": "동문",
+          "area": 59.64,
+          "intArea": 59,
+          "floor": "9층",
+          "price": 5.5,
+          "tradeDate": "2026-09-16",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 5.95,
+          "previousHighDate": "2022-06-15",
+          "recoveryRatio": 92.4
         },
         {
           "aptName": "우남퍼스트빌",
@@ -46753,19 +46870,6 @@
           "recoveryRatio": 88.1
         },
         {
-          "aptName": "효성네오인텔리안",
-          "area": 71.05,
-          "intArea": 71,
-          "floor": "10층",
-          "price": 5.2,
-          "tradeDate": "2026-09-01",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 5.3,
-          "previousHighDate": "2026-04-29",
-          "recoveryRatio": 98.1
-        },
-        {
           "aptName": "상계주공10(고층)",
           "area": 41.3,
           "intArea": 41,
@@ -46790,6 +46894,19 @@
           "previousHigh": 6.0,
           "previousHighDate": "2021-08-06",
           "recoveryRatio": 86.7
+        },
+        {
+          "aptName": "효성네오인텔리안",
+          "area": 71.05,
+          "intArea": 71,
+          "floor": "10층",
+          "price": 5.2,
+          "tradeDate": "2026-09-01",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 5.3,
+          "previousHighDate": "2026-04-29",
+          "recoveryRatio": 98.1
         },
         {
           "aptName": "벽적골우성",
@@ -46974,19 +47091,6 @@
           "recoveryRatio": 86.6
         },
         {
-          "aptName": "현대",
-          "area": 71.9,
-          "intArea": 71,
-          "floor": "5층",
-          "price": 5.18,
-          "tradeDate": "2026-09-15",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 5.18,
-          "previousHighDate": "2026-09-15",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "방화그린",
           "area": 39.76,
           "intArea": 39,
@@ -46998,6 +47102,19 @@
           "previousHigh": 6.28,
           "previousHighDate": "2021-09-22",
           "recoveryRatio": 82.5
+        },
+        {
+          "aptName": "현대",
+          "area": 71.9,
+          "intArea": 71,
+          "floor": "5층",
+          "price": 5.18,
+          "tradeDate": "2026-09-15",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 5.18,
+          "previousHighDate": "2026-09-15",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "은빛1단지",
@@ -47091,6 +47208,19 @@
           "recoveryRatio": 80.8
         },
         {
+          "aptName": "근상프리즘",
+          "area": 79.55,
+          "intArea": 79,
+          "floor": "15층",
+          "price": 5.1,
+          "tradeDate": "2026-09-04",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
+          "previousHigh": 5.45,
+          "previousHighDate": "2026-01-24",
+          "recoveryRatio": 93.6
+        },
+        {
           "aptName": "신림동쌍용아파트",
           "area": 59.26,
           "intArea": 59,
@@ -47115,19 +47245,6 @@
           "previousHigh": 5.5,
           "previousHighDate": "2022-01-15",
           "recoveryRatio": 92.7
-        },
-        {
-          "aptName": "근상프리즘",
-          "area": 79.55,
-          "intArea": 79,
-          "floor": "15층",
-          "price": 5.1,
-          "tradeDate": "2026-09-04",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 5.45,
-          "previousHighDate": "2026-01-24",
-          "recoveryRatio": 93.6
         },
         {
           "aptName": "순영웰라이빌1차",
@@ -47520,19 +47637,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "다청림라인씨티",
-          "area": 36.68,
-          "intArea": 36,
-          "floor": "7층",
-          "price": 5.0,
-          "tradeDate": "2026-09-04",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 5.0,
-          "previousHighDate": "2026-09-04",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "중앙화곡하이츠",
           "area": 56.88,
           "intArea": 56,
@@ -47544,6 +47648,19 @@
           "previousHigh": 5.7,
           "previousHighDate": "2021-10-14",
           "recoveryRatio": 87.7
+        },
+        {
+          "aptName": "다청림라인씨티",
+          "area": 36.68,
+          "intArea": 36,
+          "floor": "7층",
+          "price": 5.0,
+          "tradeDate": "2026-09-04",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 5.0,
+          "previousHighDate": "2026-09-04",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "신동아아파트4",
@@ -47585,6 +47702,32 @@
           "recoveryRatio": 73.0
         },
         {
+          "aptName": "상계주공12(고층)",
+          "area": 41.3,
+          "intArea": 41,
+          "floor": "5층",
+          "price": 5.0,
+          "tradeDate": "2026-09-10",
+          "regionName": "서울 노원구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.2,
+          "previousHighDate": "2021-09-09",
+          "recoveryRatio": 80.6
+        },
+        {
+          "aptName": "주공6",
+          "area": 44.1,
+          "intArea": 44,
+          "floor": "11층",
+          "price": 5.0,
+          "tradeDate": "2026-09-01",
+          "regionName": "서울 노원구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.0,
+          "previousHighDate": "2021-08-06",
+          "recoveryRatio": 83.3
+        },
+        {
           "aptName": "성원상떼빌",
           "area": 84.98,
           "intArea": 84,
@@ -47622,32 +47765,6 @@
           "previousHigh": 5.0,
           "previousHighDate": "2026-09-12",
           "recoveryRatio": 100.0
-        },
-        {
-          "aptName": "상계주공12(고층)",
-          "area": 41.3,
-          "intArea": 41,
-          "floor": "5층",
-          "price": 5.0,
-          "tradeDate": "2026-09-10",
-          "regionName": "서울 노원구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.2,
-          "previousHighDate": "2021-09-09",
-          "recoveryRatio": 80.6
-        },
-        {
-          "aptName": "주공6",
-          "area": 44.1,
-          "intArea": 44,
-          "floor": "11층",
-          "price": 5.0,
-          "tradeDate": "2026-09-01",
-          "regionName": "서울 노원구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.0,
-          "previousHighDate": "2021-08-06",
-          "recoveryRatio": 83.3
         },
         {
           "aptName": "황골마을한국",
@@ -48014,19 +48131,6 @@
           "recoveryRatio": 81.7
         },
         {
-          "aptName": "성원상떼빌",
-          "area": 84.98,
-          "intArea": 84,
-          "floor": "3층",
-          "price": 4.9,
-          "tradeDate": "2026-09-04",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 5.7,
-          "previousHighDate": "2023-05-09",
-          "recoveryRatio": 86.0
-        },
-        {
           "aptName": "시영3차(라이프)아파트",
           "area": 39.6,
           "intArea": 39,
@@ -48064,6 +48168,19 @@
           "previousHigh": 6.2,
           "previousHighDate": "2021-09-09",
           "recoveryRatio": 79.0
+        },
+        {
+          "aptName": "성원상떼빌",
+          "area": 84.98,
+          "intArea": 84,
+          "floor": "3층",
+          "price": 4.9,
+          "tradeDate": "2026-09-04",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 5.7,
+          "previousHighDate": "2023-05-09",
+          "recoveryRatio": 86.0
         },
         {
           "aptName": "벽적골한신",
@@ -48300,19 +48417,6 @@
           "recoveryRatio": 96.4
         },
         {
-          "aptName": "현대",
-          "area": 71.9,
-          "intArea": 71,
-          "floor": "8층",
-          "price": 4.75,
-          "tradeDate": "2026-09-15",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 5.18,
-          "previousHighDate": "2026-09-15",
-          "recoveryRatio": 91.7
-        },
-        {
           "aptName": "한미(286-1)",
           "area": 47.22,
           "intArea": 47,
@@ -48352,6 +48456,19 @@
           "recoveryRatio": 83.3
         },
         {
+          "aptName": "현대",
+          "area": 71.9,
+          "intArea": 71,
+          "floor": "8층",
+          "price": 4.75,
+          "tradeDate": "2026-09-15",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 5.18,
+          "previousHighDate": "2026-09-15",
+          "recoveryRatio": 91.7
+        },
+        {
           "aptName": "대명하이빌(103동)",
           "area": 74.4,
           "intArea": 74,
@@ -48365,19 +48482,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "번동솔그린",
-          "area": 59.82,
-          "intArea": 59,
-          "floor": "4층",
-          "price": 4.75,
-          "tradeDate": "2026-09-11",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 5.98,
-          "previousHighDate": "2022-03-09",
-          "recoveryRatio": 79.4
-        },
-        {
           "aptName": "임성아파트",
           "area": 60.0,
           "intArea": 60,
@@ -48389,6 +48493,19 @@
           "previousHigh": 4.9,
           "previousHighDate": "2026-07-28",
           "recoveryRatio": 96.9
+        },
+        {
+          "aptName": "번동솔그린",
+          "area": 59.82,
+          "intArea": 59,
+          "floor": "4층",
+          "price": 4.75,
+          "tradeDate": "2026-09-11",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 5.98,
+          "previousHighDate": "2022-03-09",
+          "recoveryRatio": 79.4
         },
         {
           "aptName": "우방",
@@ -48495,6 +48612,19 @@
           "recoveryRatio": 91.3
         },
         {
+          "aptName": "웰라이빌",
+          "area": 79.87,
+          "intArea": 79,
+          "floor": "15층",
+          "price": 4.7,
+          "tradeDate": "2026-09-04",
+          "regionName": "서울 강서구",
+          "category": "seoul-southwest",
+          "previousHigh": 5.06,
+          "previousHighDate": "2026-06-13",
+          "recoveryRatio": 92.9
+        },
+        {
           "aptName": "신림현대",
           "area": 34.86,
           "intArea": 34,
@@ -48519,19 +48649,6 @@
           "previousHigh": 6.0,
           "previousHighDate": "2021-09-13",
           "recoveryRatio": 78.3
-        },
-        {
-          "aptName": "웰라이빌",
-          "area": 79.87,
-          "intArea": 79,
-          "floor": "15층",
-          "price": 4.7,
-          "tradeDate": "2026-09-04",
-          "regionName": "서울 강서구",
-          "category": "seoul-southwest",
-          "previousHigh": 5.06,
-          "previousHighDate": "2026-06-13",
-          "recoveryRatio": 92.9
         },
         {
           "aptName": "리치안풍산",
@@ -48586,6 +48703,19 @@
           "recoveryRatio": 96.9
         },
         {
+          "aptName": "상계주공12(고층)",
+          "area": 41.3,
+          "intArea": 41,
+          "floor": "1층",
+          "price": 4.7,
+          "tradeDate": "2026-09-21",
+          "regionName": "서울 노원구",
+          "category": "seoul-northeast",
+          "previousHigh": 6.2,
+          "previousHighDate": "2021-09-09",
+          "recoveryRatio": 75.8
+        },
+        {
           "aptName": "훼밀리힐",
           "area": 78.84,
           "intArea": 78,
@@ -48610,19 +48740,6 @@
           "previousHigh": 5.73,
           "previousHighDate": "2022-05-17",
           "recoveryRatio": 82.0
-        },
-        {
-          "aptName": "상계주공12(고층)",
-          "area": 41.3,
-          "intArea": 41,
-          "floor": "1층",
-          "price": 4.7,
-          "tradeDate": "2026-09-21",
-          "regionName": "서울 노원구",
-          "category": "seoul-northeast",
-          "previousHigh": 6.2,
-          "previousHighDate": "2021-09-09",
-          "recoveryRatio": 75.8
         },
         {
           "aptName": "벽적골한신",
@@ -48950,19 +49067,6 @@
           "recoveryRatio": 74.2
         },
         {
-          "aptName": "성원상떼빌",
-          "area": 84.98,
-          "intArea": 84,
-          "floor": "1층",
-          "price": 4.6,
-          "tradeDate": "2026-09-05",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 5.7,
-          "previousHighDate": "2023-05-09",
-          "recoveryRatio": 80.7
-        },
-        {
           "aptName": "삼익2차아파트",
           "area": 54.74,
           "intArea": 54,
@@ -48987,6 +49091,19 @@
           "previousHigh": 6.08,
           "previousHighDate": "2021-08-18",
           "recoveryRatio": 75.7
+        },
+        {
+          "aptName": "성원상떼빌",
+          "area": 84.98,
+          "intArea": 84,
+          "floor": "1층",
+          "price": 4.6,
+          "tradeDate": "2026-09-05",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 5.7,
+          "previousHighDate": "2023-05-09",
+          "recoveryRatio": 80.7
         },
         {
           "aptName": "망포벽산이빌리지",
@@ -49145,19 +49262,6 @@
           "recoveryRatio": 90.0
         },
         {
-          "aptName": "금호(1차)",
-          "area": 59.4,
-          "intArea": 59,
-          "floor": "12층",
-          "price": 4.5,
-          "tradeDate": "2026-09-16",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 5.5,
-          "previousHighDate": "2022-03-16",
-          "recoveryRatio": 81.8
-        },
-        {
           "aptName": "중앙화곡하이츠",
           "area": 56.88,
           "intArea": 56,
@@ -49169,6 +49273,19 @@
           "previousHigh": 5.7,
           "previousHighDate": "2021-10-14",
           "recoveryRatio": 78.9
+        },
+        {
+          "aptName": "금호(1차)",
+          "area": 59.4,
+          "intArea": 59,
+          "floor": "12층",
+          "price": 4.5,
+          "tradeDate": "2026-09-16",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 5.5,
+          "previousHighDate": "2022-03-16",
+          "recoveryRatio": 81.8
         },
         {
           "aptName": "창동주공4단지",
@@ -49522,19 +49639,6 @@
           "recoveryRatio": 78.2
         },
         {
-          "aptName": "신원",
-          "area": 59.96,
-          "intArea": 59,
-          "floor": "10층",
-          "price": 4.4,
-          "tradeDate": "2026-09-14",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 5.35,
-          "previousHighDate": "2021-07-26",
-          "recoveryRatio": 82.2
-        },
-        {
           "aptName": "시영2단지(라이프)아파트",
           "area": 39.6,
           "intArea": 39,
@@ -49546,6 +49650,19 @@
           "previousHigh": 5.48,
           "previousHighDate": "2021-09-01",
           "recoveryRatio": 80.3
+        },
+        {
+          "aptName": "신원",
+          "area": 59.96,
+          "intArea": 59,
+          "floor": "10층",
+          "price": 4.4,
+          "tradeDate": "2026-09-14",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 5.35,
+          "previousHighDate": "2021-07-26",
+          "recoveryRatio": 82.2
         },
         {
           "aptName": "쌍용스윗닷홈2차",
@@ -50224,19 +50341,6 @@
           "recoveryRatio": 82.6
         },
         {
-          "aptName": "태영",
-          "area": 42.24,
-          "intArea": 42,
-          "floor": "8층",
-          "price": 4.1,
-          "tradeDate": "2026-09-09",
-          "regionName": "서울 관악구",
-          "category": "seoul-southwest",
-          "previousHigh": 4.1,
-          "previousHighDate": "2026-09-09",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "트윈캐슬B동(56-11)",
           "area": 79.38,
           "intArea": 79,
@@ -50247,6 +50351,19 @@
           "category": "seoul-southwest",
           "previousHigh": 4.1,
           "previousHighDate": "2026-09-23",
+          "recoveryRatio": 100.0
+        },
+        {
+          "aptName": "태영",
+          "area": 42.24,
+          "intArea": 42,
+          "floor": "8층",
+          "price": 4.1,
+          "tradeDate": "2026-09-09",
+          "regionName": "서울 관악구",
+          "category": "seoul-southwest",
+          "previousHigh": 4.1,
+          "previousHighDate": "2026-09-09",
           "recoveryRatio": 100.0
         },
         {
@@ -50432,19 +50549,6 @@
           "recoveryRatio": 75.6
         },
         {
-          "aptName": "주공4단지",
-          "area": 41.3,
-          "intArea": 41,
-          "floor": "5층",
-          "price": 4.0,
-          "tradeDate": "2026-09-04",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 5.33,
-          "previousHighDate": "2021-08-19",
-          "recoveryRatio": 75.0
-        },
-        {
           "aptName": "상계주공13(고층)",
           "area": 45.55,
           "intArea": 45,
@@ -50482,6 +50586,19 @@
           "previousHigh": 5.0,
           "previousHighDate": "2022-03-19",
           "recoveryRatio": 80.0
+        },
+        {
+          "aptName": "주공4단지",
+          "area": 41.3,
+          "intArea": 41,
+          "floor": "5층",
+          "price": 4.0,
+          "tradeDate": "2026-09-04",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 5.33,
+          "previousHighDate": "2021-08-19",
+          "recoveryRatio": 75.0
         },
         {
           "aptName": "신나무실휴먼시아5단지",
@@ -51459,19 +51576,6 @@
           "recoveryRatio": 56.8
         },
         {
-          "aptName": "효성네오인텔리안",
-          "area": 40.99,
-          "intArea": 40,
-          "floor": "10층",
-          "price": 3.4,
-          "tradeDate": "2026-09-09",
-          "regionName": "서울 강북구",
-          "category": "seoul-northeast",
-          "previousHigh": 3.4,
-          "previousHighDate": "2026-09-09",
-          "recoveryRatio": 100.0
-        },
-        {
           "aptName": "주공2",
           "area": 38.64,
           "intArea": 38,
@@ -51496,6 +51600,19 @@
           "previousHigh": 4.5,
           "previousHighDate": "2022-04-13",
           "recoveryRatio": 75.6
+        },
+        {
+          "aptName": "효성네오인텔리안",
+          "area": 40.99,
+          "intArea": 40,
+          "floor": "10층",
+          "price": 3.4,
+          "tradeDate": "2026-09-09",
+          "regionName": "서울 강북구",
+          "category": "seoul-northeast",
+          "previousHigh": 3.4,
+          "previousHighDate": "2026-09-09",
+          "recoveryRatio": 100.0
         },
         {
           "aptName": "목화수목원아파트101동",
@@ -51524,19 +51641,6 @@
           "recoveryRatio": 100.0
         },
         {
-          "aptName": "청담신원아침도시마인",
-          "area": 27.7131,
-          "intArea": 27,
-          "floor": "4층",
-          "price": 3.3,
-          "tradeDate": "2026-09-12",
-          "regionName": "서울 강남구",
-          "category": "seoul-southeast",
-          "previousHigh": 3.6,
-          "previousHighDate": "2022-08-19",
-          "recoveryRatio": 91.7
-        },
-        {
           "aptName": "금호아파트",
           "area": 27.61,
           "intArea": 27,
@@ -51548,6 +51652,19 @@
           "previousHigh": 4.5,
           "previousHighDate": "2021-08-12",
           "recoveryRatio": 73.3
+        },
+        {
+          "aptName": "청담신원아침도시마인",
+          "area": 27.7131,
+          "intArea": 27,
+          "floor": "4층",
+          "price": 3.3,
+          "tradeDate": "2026-09-12",
+          "regionName": "서울 강남구",
+          "category": "seoul-southeast",
+          "previousHigh": 3.6,
+          "previousHighDate": "2022-08-19",
+          "recoveryRatio": 91.7
         },
         {
           "aptName": "경남",
@@ -52835,19 +52952,6 @@
           "previousHigh": 1.51,
           "previousHighDate": "2020-01-06",
           "recoveryRatio": 84.1
-        },
-        {
-          "aptName": "석계역한일노벨리아시티",
-          "area": 15.2144,
-          "intArea": 15,
-          "floor": "16층",
-          "price": 1.22,
-          "tradeDate": "2026-09-29",
-          "regionName": "서울 성북구",
-          "category": "seoul-northeast",
-          "previousHigh": 1.4,
-          "previousHighDate": "2020-02-21",
-          "recoveryRatio": 87.1
         },
         {
           "aptName": "방학지음재힐스",
