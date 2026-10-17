@@ -1,13 +1,13 @@
 """
-수도권 25개 구역 아파트 실거래가 장기 벤치마크 데이터베이스 구축기 (문법 에러 수정 완료본)
-- 개선사항:
-  1. f-string 키 생성 문법 에러(SyntaxError) 수정
-  2. 실시간 로깅(flush=True) 적용으로 깃허브 액션 콘솔 멈춤 현상 방지
-  3. requests timeout 6초 설정으로 지연 원천 차단
-  4. 매 4개월 단위 중간 자동 저장(체크포인트) 지원
+수도권 25개 구역 아파트 실거래가 장기 벤치마크 데이터베이스 구축기
+- 변경사항:
+  1. 단지명 띄어쓰기/특수문자 제거 정규화 (normalize_apt_name)
+  2. 전용면적 소수점 버림 처리 (get_integer_area)로 키값 통일
+  3. 실시간 로깅(flush=True) 및 타임아웃 6초 적용
 """
 
 import os
+import re
 import sys
 import time
 import argparse
@@ -60,8 +60,29 @@ TARGET_REGIONS = {
 API_ENDPOINT = "http://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
 BENCHMARK_FILE = "data/history_ath_benchmark.csv"
 
+def normalize_apt_name(name: str) -> str:
+    """단지명 띄어쓰기 및 특수문자 제거 후 소문자 변환"""
+    if not name:
+        return ""
+    return re.sub(r'[\s\(\)\-\_\,\.]', '', name).lower()
+
+def get_integer_area(area) -> int:
+    """전용면적 소수점 버림 처리"""
+    try:
+        val = float(area)
+        return int(val)
+    except (ValueError, TypeError):
+        return 84
+
+def make_key(apt_name: str, area, region_name: str) -> str:
+    """정규화된 고유 비교 키 생성"""
+    norm_apt = normalize_apt_name(apt_name)
+    int_area = get_integer_area(area)
+    norm_region = normalize_apt_name(region_name)
+    return f"{norm_apt}_{int_area}_{norm_region}"
+
 def fetch_region_month(service_key: str, code: str, ym: str, region_name: str, category: str) -> list:
-    """단일 구역 단일 월 국토부 XML 고속 안전 조회 (타임아웃 6초)"""
+    """단일 구역 단일 월 XML 조회 (타임아웃 6초)"""
     decoded_key = urllib.parse.unquote(service_key)
     params = {
         "serviceKey": decoded_key,
@@ -77,8 +98,7 @@ def fetch_region_month(service_key: str, code: str, ym: str, region_name: str, c
             return records
 
         root = ET.fromstring(resp.content)
-        items = root.findall(".//item")
-        for item in items:
+        for item in root.findall(".//item"):
             def val(tag):
                 node = item.find(tag)
                 return node.text.strip() if (node is not None and node.text) else ""
@@ -138,31 +158,33 @@ def build_benchmark(start_ym="202001", end_ym="202112"):
 
     os.makedirs("data", exist_ok=True)
     months = generate_target_months(start_ym, end_ym)
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🚀 수집 시작: {start_ym} ~ {end_ym} (총 {len(months)}개월 x 25개 구역)", flush=True)
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🚀 수집 시작: {start_ym} ~ {end_ym} (총 {len(months)}개월)", flush=True)
 
     existing_benchmark = {}
     if os.path.exists(BENCHMARK_FILE):
         try:
             prev_df = pd.read_csv(BENCHMARK_FILE)
             for _, r in prev_df.iterrows():
-                area_int = int(round(float(r['전용면적'])))
-                key = f"{r['아파트']}_{area_int}_{r['지역명']}"
+                apt_str = str(r["아파트"])
+                area_val = r["전용면적"]
+                region_str = str(r["지역명"])
+
+                key = make_key(apt_str, area_val, region_str)
                 existing_benchmark[key] = {
-                    "아파트": r["아파트"],
-                    "전용면적": float(r["전용면적"]),
-                    "평형그룹": area_int,
-                    "지역명": r["지역명"],
+                    "아파트": apt_str,
+                    "전용면적": float(area_val),
+                    "평형그룹": get_integer_area(area_val),
+                    "지역명": region_str,
                     "권역코드": r.get("권역코드", "all"),
                     "역대최고가_억": float(r["역대최고가_억"]),
                     "최고가계약일": str(r["최고가계약일"]),
                     "최고가층": str(r.get("최고가층", "중층")),
                     "누적거래건수": int(r.get("누적거래건수", 1))
                 }
-            print(f"📦 [기존 벤치마크 로드] 기존 {len(existing_benchmark)}개 단지 전고점 데이터와 병합 준비 완료.", flush=True)
+            print(f"📦 [기존 벤치마크 로드] 기존 {len(existing_benchmark)}개 단지 전고점 데이터 병합 준비 완료.", flush=True)
         except Exception as e:
             print(f"⚠️ 기존 파일 파싱 주의: {e}", flush=True)
 
-    # 4스레드 병렬 실행
     with ThreadPoolExecutor(max_workers=4) as executor:
         for ym_idx, ym in enumerate(months, 1):
             print(f"⏳ [{ym_idx:02d}/{len(months):02d}] {ym} 데이터 수집 중...", end="", flush=True)
@@ -181,25 +203,22 @@ def build_benchmark(start_ym="202001", end_ym="202112"):
                 except Exception:
                     pass
 
-            # 실시간 전고점 비교 및 갱신
             updated_count = 0
             new_count = 0
             if month_records:
-                m_df = pd.DataFrame(month_records)
-                m_df["평형그룹"] = m_df["전용면적"].round().astype(int)
-
-                for _, row in m_df.iterrows():
-                    key = f"{row['아파트']}_{row['평형그룹']}_{row['지역명']}"
+                for row in month_records:
+                    key = make_key(row["아파트"], row["전용면적"], row["지역명"])
                     deal_price = row["거래금액_억"]
                     deal_date = row["계약일자"]
                     floor = row["층"]
+                    int_area = get_integer_area(row["전용면적"])
 
                     if key not in existing_benchmark:
                         new_count += 1
                         existing_benchmark[key] = {
                             "아파트": row["아파트"],
                             "전용면적": row["전용면적"],
-                            "평형그룹": row["평형그룹"],
+                            "평형그룹": int_area,
                             "지역명": row["지역명"],
                             "권역코드": row["권역코드"],
                             "역대최고가_억": deal_price,
@@ -209,7 +228,6 @@ def build_benchmark(start_ym="202001", end_ym="202112"):
                         }
                     else:
                         existing_benchmark[key]["누적거래건수"] += 1
-                        # 더 높은 금액 발견 시 전고점 갱신
                         if deal_price > existing_benchmark[key]["역대최고가_억"]:
                             existing_benchmark[key]["역대최고가_억"] = deal_price
                             existing_benchmark[key]["최고가계약일"] = deal_date
@@ -218,14 +236,11 @@ def build_benchmark(start_ym="202001", end_ym="202112"):
 
             print(f" 완료! (체결 {len(month_records)}건 | 신규 {new_count}개 | 최고가갱신 {updated_count}건)", flush=True)
 
-            # 매 4개월마다 중간 안전 저장
             if ym_idx % 4 == 0:
                 save_benchmark_to_csv(existing_benchmark)
-                print(f"  💾 [중간 저장] 누적 {len(existing_benchmark)}개 단지 저장 완료", flush=True)
 
             time.sleep(0.3)
 
-    # 최종 결과 저장
     save_benchmark_to_csv(existing_benchmark)
     print(f"\n🎉 [완료] 총 {len(existing_benchmark)}개 단지 전고점 벤치마크 병합 완료: {BENCHMARK_FILE}", flush=True)
 
