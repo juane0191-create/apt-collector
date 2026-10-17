@@ -1,6 +1,6 @@
 """
 수도권 25개 구역 실거래가 수집 및 2020~2022 벤치마크 정밀 대조 엔진
-- 백엔드/프론트엔드 매칭 키 완벽 동기화 (단지명 띄어쓰기 제거 + 전용면적 소수점 버림)
+- 함수명 오타(getIntegerArea -> get_integer_area) 수정 완료본
 """
 
 import os
@@ -64,7 +64,7 @@ def normalize_apt_name(name: str) -> str:
     return re.sub(r'[\s\(\)\-\_\,\.]', '', name).lower()
 
 def get_integer_area(area) -> int:
-    """전용면적 소수점 완전 무시(버림 처리)"""
+    """전용면적 소수점 버림 처리"""
     try:
         val = float(area)
         return int(val)
@@ -208,7 +208,7 @@ def run_pipeline():
                 curated_list.append({
                     "aptName": r["aptName"],
                     "area": r["area"],
-                    "intArea": getIntegerArea(r["area"]),
+                    "intArea": get_integer_area(r["area"]),
                     "floor": r["floor"],
                     "price": r["price"],
                     "tradeDate": r["tradeDate"],
